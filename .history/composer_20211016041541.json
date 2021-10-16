@@ -5,7 +5,7 @@
     "require": {
         "phpmailer/phpmailer": "^6.5"
     },
-    "license": "GPL-3.0",
+    "license": "GPLv3",
     "autoload": {
         "psr-4": {
             "Mrstan\\OcBlogPhp\\": "src/"
