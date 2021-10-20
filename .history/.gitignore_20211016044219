@@ -1,7 +1,6 @@
 composer.phar
 /vendor/
 /.vscode/
-/.history/
 node_modules/
 .env*
 *.log
