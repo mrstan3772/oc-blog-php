@@ -21,72 +21,72 @@ const config = {
 
 export const opti = () => ({
     any_section: function () {
-        return gulp.src('../../public_html/assets/src/images/any/*')
+        return gulp.src('../../Web/assets/src/images/any/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/any'))
+            .pipe(gulp.dest('../../Web/dist/images/any'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     home_section: function () {
-        return gulp.src('../../public_html/assets/src/images/home/*')
+        return gulp.src('../../Web/assets/src/images/home/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/home'))
+            .pipe(gulp.dest('../../Web/dist/images/home'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     about_section: function () {
-        return gulp.src('../../public_html/assets/src/images/about/*')
+        return gulp.src('../../Web/assets/src/images/about/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/about'))
+            .pipe(gulp.dest('../../Web/dist/images/about'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     festival_section: function () {
-        return gulp.src('../../public_html/assets/src/images/festival/*')
+        return gulp.src('../../Web/assets/src/images/services/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/festival'))
+            .pipe(gulp.dest('../../Web/dist/images/services'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     movie_section: function () {
-        return gulp.src('../../public_html/assets/src/images/movie/*')
+        return gulp.src('../../Web/assets/src/images/work/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/movie'))
+            .pipe(gulp.dest('../../Web/dist/images/work'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     news_section: function () {
-        return gulp.src('../../public_html/assets/src/images/news/*')
+        return gulp.src('../../Web/assets/src/images/blog/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/news'))
+            .pipe(gulp.dest('../../Web/dist/images/blog'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     reservation_section: function () {
-        return gulp.src('../../public_html/assets/src/images/reservation/*')
+        return gulp.src('../../Web/assets/src/images/admin/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/reservation'))
+            .pipe(gulp.dest('../../Web/dist/images/admin'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
     },
 
     contact_section: function () {
-        return gulp.src('../../public_html/assets/src/images/contact/*')
+        return gulp.src('../../Web/assets/src/images/contact/*')
             .pipe(imagemin())
-            .pipe(gulp.dest('../../public_html/dist/images/contact'))
+            .pipe(gulp.dest('../../Web/dist/images/contact'))
             .pipe(imagemin(config.params, {
                 verbose: config.verbose
             }))
