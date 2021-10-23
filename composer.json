@@ -3,7 +3,8 @@
     "description": "Personnal blog, project, career, lifestyle and more",
     "type": "project",
     "require": {
-        "phpmailer/phpmailer": "^6.5"
+        "phpmailer/phpmailer": "^6.5",
+        "twig/twig": "^3.0"
     },
     "license": "GPL-3.0",
     "authors": [

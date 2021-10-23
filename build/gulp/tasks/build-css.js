@@ -6,9 +6,12 @@ import gulpSass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import rename from 'gulp-rename';
 import autoprefixer from 'gulp-autoprefixer';
+import concat from 'gulp-concat';
+import uglify from 'gulp-uglify-es';
 
 import nodeSass from 'node-sass';
 
+const ug = uglify.default;
 const sass = gulpSass(nodeSass);
 
 export const build_css = () => ({
@@ -32,15 +35,15 @@ export const build_css = () => ({
          },
 
         concat_lib: function () {
-            return gulp.src('../../Web/assets/src/js/lib/**/*.css')
+            return gulp.src('../../Web/assets/src/css/lib/**/*.css')
             .pipe(concat('all.01ERHS32GTDHB1RBSJ9BP95MC9.css'))
             .pipe(gulp.dest('../../Web/dist/css/lib'))
         },
     
         concat_lib_min: function () {
-            return gulp.src('../../Web/assets/src/js/lib/**/*.css')
+            return gulp.src('../../Web/assets/src/css/lib/**/*.css')
             .pipe(concat('all.01ERHS32GTDHB1RBSJ9BP95MC9.css'))
-            .pipe(ug())
+            .pipe(sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError))
             .pipe(rename({extname: '.min.css'}))
             .pipe(gulp.dest('../../Web/dist/css/lib'))
         },
