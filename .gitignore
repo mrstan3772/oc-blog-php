@@ -3,6 +3,8 @@ composer.phar
 /.vscode/
 /.history/
 node_modules/
+package-lock.json
+package.json
 .env*
 *.log
 *.sqlite
