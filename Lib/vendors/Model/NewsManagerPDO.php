@@ -2,25 +2,28 @@
 
 namespace Model;
 
-use Entity\News;
+use \Entity\News;
+use \PDO;
 
 class NewsManagerPDO extends NewsManager
 {
     protected function add(News $news): Void
     {
-        $request = $this->dao->prepare('INSERT INTO blog."news"(news_author, news_lead_paragraph, news_title, news_content) VALUES(:news_author, :news_lead_paragraph, :news_title, :news_content)');
+        $request = $this->dao->prepare('INSERT INTO blog."news"(news_author_id, news_lead_paragraph, news_title, news_category, news_cover, news_content) VALUES(:news_author_id, :news_lead_paragraph, :news_title, :news_category, :news_cover, :news_content)');
 
-        $request->bindValue(':news_title', $news->newsTitle());
-        $request->bindValue(':news_lead_paragraph', $news->newsLeadParagraph());
-        $request->bindValue(':news_author', $news->newsAuthor());
-        $request->bindValue(':news_content', $news->newsContent());
+        $request->bindValue(':news_title', $news->newsTitle(), PDO::PARAM_STR);
+        $request->bindValue(':news_lead_paragraph', $news->newsLeadParagraph(), PDO::PARAM_STR);
+        $request->bindValue(':news_author_id', $news->newsAuthorId(), PDO::PARAM_INT);
+        $request->bindValue(':news_category', $news->newsCategory(), PDO::PARAM_STR);
+        $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
+        $request->bindValue(':news_content', $news->newsContent(), PDO::PARAM_STR);
 
         $request->execute();
     }
 
-    public function getList(Int $start = -1, Int $limit = -1): Array
+    public function getList(Int $start = -1, Int $limit = -1): array
     {
-        $sql = 'SELECT id, news_author, news_lead_paragraph, news_title, "news_content", "news_added_date", "news_update_date" FROM blog."news" ORDER BY id DESC';
+        $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", "news_added_date", "news_update_date" FROM blog."news" ORDER BY id DESC';
 
         if ($start != -1 || $limit != -1) {
             $sql .= ' LIMIT ' . (int) $limit . ' OFFSET ' . (int) $start;
@@ -41,9 +44,9 @@ class NewsManagerPDO extends NewsManager
         return $newsList;
     }
 
-    public function getUnique(Int $id) : News
+    public function getUnique(Int $id): News
     {
-        $request = $this->dao->prepare('SELECT id, news_author, news_lead_paragraph, news_title, "news_content", "news_added_date", "news_update_date" FROM blog."news" WHERE id = :id');
+        $request = $this->dao->prepare('SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", "news_added_date", "news_update_date" FROM blog."news" WHERE id = :id');
         $request->bindValue(':id', (int) $id, \PDO::PARAM_INT);
         $request->execute();
 
@@ -60,24 +63,26 @@ class NewsManagerPDO extends NewsManager
         return null;
     }
 
-    public function count() : Int
+    public function count(): Int
     {
         return $this->dao->query('SELECT COUNT(*) FROM blog."news"')->fetchColumn();
     }
 
-    protected function modify(News $news) : Void
+    protected function modify(News $news): Void
     {
-        $request = $this->dao->prepare('UPDATE blog."news" SET news_author = :news_author, news_title = :news_title, news_content = :news_content WHERE id = :id');
+        $request = $this->dao->prepare('UPDATE blog."news" SET news_author_id = :news_author_id, news_title = :news_title, news_category = :news_category, news_cover = :news_cover, news_content = :news_content WHERE id = :id');
 
-        $request->bindValue(':news_title', $news->newsTitle());
-        $request->bindValue(':news_author', $news->newsAuthor());
-        $request->bindValue(':news_content', $news->newsContent());
-        $request->bindValue(':id', $news->id(), \PDO::PARAM_INT);
+        $request->bindValue(':news_title', $news->newsTitle(), PDO::PARAM_STR);
+        $request->bindValue(':news_author_id', $news->newsAuthorId(), PDO::PARAM_INT);
+        $request->bindValue(':news_category', $news->newsCategory(), PDO::PARAM_STR);
+        $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
+        $request->bindValue(':news_content', $news->newsContent(), PDO::PARAM_STR);
+        $request->bindValue(':id', $news->id(), PDO::PARAM_INT);
 
         $request->execute();
     }
 
-    public function delete($id) : Void
+    public function delete($id): Void
     {
         $this->dao->exec('DELETE FROM blog."news" WHERE id = ' . (int) $id);
     }

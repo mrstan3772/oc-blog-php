@@ -6,35 +6,36 @@ use SamplePHPFramework\Entity;
 
 class News extends Entity
 {
-    protected $news_author;
+    protected $news_author_id;
     protected $news_title;
     protected $news_lead_paragraph;
+    protected $news_category;
+    protected $news_cover;
     protected $news_content;
     protected $news_added_date;
     protected $news_update_date;
 
-    const INVALID_AUTHOR = 1;
-    const INVALID_LEAD_PARAGRAPH = 2;
-    const INVALID_TITLE = 3;
-    const INVALID_CONTENT = 4;
+    const INVALID_LEAD_PARAGRAPH = 1;
+    const INVALID_TITLE = 2;
+    const INVALID_CATEGORY = 3;
+    const INVALID_COVER = 4;
+    const INVALID_CONTENT = 5;
 
     public function isValid()
     {
-        return !(empty($this->news_author) || empty($this->news_lead_paragraph) || empty($this->news_title) || empty($this->news_content));
+        return !(empty($this->news_author_id) || empty($this->news_lead_paragraph)
+            || empty($this->news_title) || empty($this->news_category)
+            || empty($this->news_content));
     }
 
-    public function newsAuthor()
+    public function newsAuthorId()
     {
-        return $this->news_author;
+        return $this->news_author_id;
     }
 
-    public function setNewsAuthor(String $news_author): Self
+    public function setNewsAuthorId(String $news_author_id): Self
     {
-        if (!is_string($news_author) || empty($news_author || strlen($news_author) >= 2 && strlen($news_author) <= 30)) {
-            $this->errors[] = self::INVALID_AUTHOR;
-        }
-
-        $this->news_author = htmlspecialchars($news_author);
+        $this->news_author_id = (int) $news_author_id;
 
         return $this;
     }
@@ -67,6 +68,38 @@ class News extends Entity
         }
 
         $this->news_title = htmlspecialchars($news_title);
+
+        return $this;
+    }
+
+    public function newsCategory()
+    {
+        return $this->news_category;
+    }
+
+    public function setNewsCategory(String $news_category): Self
+    {
+        if (!is_string($news_category) || empty($news_category) || strlen($news_category) >= 3 && strlen($news_category) <= 50) {
+            $this->errors[] = self::INVALID_CATEGORY;
+        }
+
+        $this->news_category = htmlspecialchars($news_category);
+
+        return $this;
+    }
+
+    public function newsCover()
+    {
+        return $this->news_cover;
+    }
+
+    public function setNewsCover(String $news_cover): Self
+    {
+        if (!is_string($news_cover) || empty($news_cover) || strlen($news_cover) >= 5 && strlen($news_cover) <= 255) {
+            $this->errors[] = self::INVALID_COVER;
+        }
+
+        $this->news_cover = strip_tags($news_cover);
 
         return $this;
     }

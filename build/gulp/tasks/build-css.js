@@ -34,6 +34,25 @@ export const build_css = () => ({
                 .pipe(gulp.dest('../../Web/dist/css'))
          },
 
+         compile_perso : function () { 
+            return gulp.src('../../Web/assets/src/css/my.css')
+                .pipe(sourcemaps.init())
+                .pipe(sass({ fiber: Fiber, outputStyle: 'expanded' }).on('error', sass.logError))
+                .pipe(autoprefixer())
+                .pipe(sourcemaps.write('./maps'))
+                .pipe(gulp.dest('../../Web/dist/css'))
+         },
+
+         compile_perso_min : function () { 
+            return gulp.src('../../Web/assets/src/css/my.css')
+                .pipe(sourcemaps.init())
+                .pipe(sass({ fiber: Fiber, outputStyle: 'compressed' }).on('error', sass.logError))
+                .pipe(autoprefixer())
+                .pipe(sourcemaps.write('./maps'))
+                .pipe(rename({extname: '.min.css'}))
+                .pipe(gulp.dest('../../Web/dist/css'))
+         },
+
         concat_lib: function () {
             return gulp.src('../../Web/assets/src/css/lib/**/*.css')
             .pipe(concat('all.01ERHS32GTDHB1RBSJ9BP95MC9.css'))

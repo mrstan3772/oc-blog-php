@@ -5,19 +5,20 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>DevFolio Bootstrap Portfolio Template - Index</title>
+    <title><?= $title ?></title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="/<?= $config->get('assets_path') ?>/any/favicon.png" rel="icon">
+    <link href="/<?= $config->get('assets_path') ?>/any/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Vendor CSS Files -->
     <link rel="stylesheet" href="/<?= $config->get('assets_path') ?>/css/lib/all.01ERHS32GTDHB1RBSJ9BP95MC9.min.css" />
 
     <!-- Template Main CSS File -->
     <link rel="stylesheet" href="/<?= $config->get('assets_path') ?>/css/main.01EJNXGEKMD3NWBHKYF0TS7KJQ.min.css" />
+    <link rel="stylesheet" href="/<?= $config->get('assets_path') ?>/css/my.min.css" />
 
     <!-- =======================================================
   * Template Name: DevFolio - v4.6.0
@@ -33,9 +34,9 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index.html">DevFolio</a></h1>
+            <h1 class="logo"><a href="/"><?= $title ?></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <a href="/" class="logo"><img src="/<?= $config->get('assets_path') ?>/images/any/Logo-site-blanc.png" alt="" class="img-fluid"></a>
 
             <nav id="navbar" class="navbar">
                 <ul>
@@ -70,7 +71,7 @@
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <div id="hero" class="hero route bg-image" style="background-image: url(assets/img/hero-bg.jpg)">
+    <div id="hero" class="hero route bg-image" style="background-image: url(/<?= $config->get('assets_path') ?>/any/hero-bg.jpg)">
         <div class="overlay-itro"></div>
         <div class="hero-content display-table">
             <div class="table-cell">
@@ -78,7 +79,7 @@
                     <!--<p class="display-6 color-d">Hello, world!</p>-->
                     <h1 class="hero-title mb-4">Je suis Stanley LOUIS JEAN</h1>
                     <p class="hero-subtitle"><span class="typed" data-typed-items="Designeur, Developeur, Freelanceur"></span></p>
-                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">Learn More</a></p>
+                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">En Apprendre +</a></p>
                 </div>
             </div>
         </div>
@@ -123,7 +124,7 @@
     <script src="/<?= $config->get('assets_path') ?>/js/lib/all.01ERHS32GTDHB1RBSJ9BP95MC9.min.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/app.01ERHPZDG1M4VB2J6GR62KN832.min.js"></script>
+    <script src="/<?= $config->get('assets_path') ?>/js/app.01ERHPZDG1M4VB2J6GR62KN832.min.js"></script>
 </body>
 
 </html>

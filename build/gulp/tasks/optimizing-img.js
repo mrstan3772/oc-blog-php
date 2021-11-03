@@ -47,7 +47,7 @@ export const opti = () => ({
             }))
     },
 
-    festival_section: function () {
+    services_section: function () {
         return gulp.src('../../Web/assets/src/images/services/*')
             .pipe(imagemin())
             .pipe(gulp.dest('../../Web/dist/images/services'))
@@ -56,7 +56,7 @@ export const opti = () => ({
             }))
     },
 
-    movie_section: function () {
+    work_section: function () {
         return gulp.src('../../Web/assets/src/images/work/*')
             .pipe(imagemin())
             .pipe(gulp.dest('../../Web/dist/images/work'))
@@ -65,7 +65,7 @@ export const opti = () => ({
             }))
     },
 
-    news_section: function () {
+    blog_section: function () {
         return gulp.src('../../Web/assets/src/images/blog/*')
             .pipe(imagemin())
             .pipe(gulp.dest('../../Web/dist/images/blog'))
@@ -74,7 +74,7 @@ export const opti = () => ({
             }))
     },
 
-    reservation_section: function () {
+    admin_section: function () {
         return gulp.src('../../Web/assets/src/images/admin/*')
             .pipe(imagemin())
             .pipe(gulp.dest('../../Web/dist/images/admin'))
@@ -97,12 +97,12 @@ export const opti = () => ({
 gulp.task('any_section', any_section)
 gulp.task('home_section', home_section)
 gulp.task('about_section', about_section)
-gulp.task('festival_section', festival_section)
-gulp.task('movie_section', movie_section)
-gulp.task('news_section', news_section)
-gulp.task('reservation_section', reservation_section)
-gulp.task('contact_section', reservation_section)
+gulp.task('services_section', services_section)
+gulp.task('work_section', work_section)
+gulp.task('blog_section', blog_section)
+gulp.task('admin_section', admin_section)
+gulp.task('contact_section', admin_section)
 */
 
 
-// module.exports = () => gulp.task('default', gulp.series('any_section', 'home_section', 'about_section', 'festival_section', 'movie_section', 'news_section', 'reservation_section', 'watch', 'contact_section', 'watch'))
+// module.exports = () => gulp.task('default', gulp.series('any_section', 'home_section', 'about_section', 'services_section', 'work_section', 'blog_section', 'admin_section', 'watch', 'contact_section', 'watch'))

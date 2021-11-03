@@ -60,7 +60,7 @@ class NewsletterEmail extends Entity
             $this->errors[] = self::INVALID_NE_EMAIL;
         }
 
-        $this->ne_adress = $ne_adress;
+        $this->ne_adress = htmlspecialchars($ne_adress);
     }
 
     /**

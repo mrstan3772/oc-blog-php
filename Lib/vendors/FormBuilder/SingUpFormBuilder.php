@@ -127,7 +127,7 @@ class SingUpFormBuilder extends FormBuilder
                 new PasswordField(
                     [
                         'label' => 'RETAPEZ LE MOT DE PASSE',
-                        'name' => 'password_repeat',
+                        'name' => 'passwordRepeat',
                         'minLength' => 8,
                         'maxLength' => 30,
                         'placeholder' => 'Votre mot de passe (8 caractères minimum)',

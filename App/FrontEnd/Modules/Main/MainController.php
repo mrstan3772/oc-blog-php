@@ -37,11 +37,32 @@ class MainController extends BackController
             $this->app->user()->getAttribute('lang')
         );
 
+        $news_number = $this->app->config()->get('news_number');
+        $characters_number = $this->app->config()->get('characters_number');
+
+        $member_manager = $this->managers->getManagerOf('Member');
+        $news_manager = $this->managers->getManagerOf('News');
+
+        $news_list = $news_manager->getList(0, $news_number);
+
+        $author_list = [];
+
+        foreach ($news_list as $news) {
+            if (strlen($news->newsLeadParagraph()) > $characters_number) {
+                $start = substr($news->newsLeadParagraph(), 0, $characters_number);
+                $start = substr($start, 0, strrpos($start, ' ')) . '...';
+                $news->setNewsLeadParagraph($start);
+            }
+            $author_list[$news->id()] = $member_manager->getUnique($news->newsAuthorId());
+        }
+
+        $this->page->addVar('news_list', $news_list);
+        $this->page->addVar('author_list', $author_list);
 
         if ($request->postExists('neAdress')) {
-            $newsletter = new NewsletterEmail([
-                'neAdress' => $request->postData('neAdress'),
-            ]);
+            $newsletter = new NewsletterEmail(
+                ['neAdress' => $request->postData('neAdress'),]
+            );
         } else {
             $newsletter = new NewsletterEmail;
         }
@@ -56,10 +77,10 @@ class MainController extends BackController
         if ($form_handler->process()) {
             $this->managers->getManagerOf('NewsletterEmail')->save($newsletter);
             $this->app->user()->setFlash('L\'adresse email a bien été enregistré, merci de vous êtres abonné.');
-            $this->app->http_response()->redirect('/#footer');
+            $this->app->httpResponse()->redirect('/#footer');
         }
 
-        $this->page->addVar('title', 'NOU LA BA ZOT !');
+        $this->page->addVar('title', 'BLOG STANLEY LOUIS JEAN');
         $this->page->addVar('c_lg', $lang_abbr);
         $this->page->addVar('copyright_date', $current_year);
         $this->page->addVar('form_newsletter', $form_newsletter->createView());

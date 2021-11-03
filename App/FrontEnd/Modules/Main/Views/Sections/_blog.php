@@ -8,106 +8,42 @@
                          Blog
                      </h3>
                      <p class="subtitle-a">
-                         Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                         Ici je vous partage mes dernières découvertes et expériences hight-tech
                      </p>
                      <div class="line-mf"></div>
                  </div>
              </div>
          </div>
          <div class="row">
-             <div class="col-md-4">
-                 <div class="card card-blog">
-                     <div class="card-img">
-                         <a href="blog-single.html"><img src="assets/img/post-1.jpg" alt="" class="img-fluid"></a>
-                     </div>
-                     <div class="card-body">
-                         <div class="card-category-box">
-                             <div class="card-category">
-                                 <h6 class="category">Travel</h6>
+             <?php foreach ($news_list as $news) : ?>
+                 <div class="col-md-4">
+                     <div class="card card-blog">
+                         <div class="card-img">
+                             <a href="blog-single.html"><img src="/<?= $config->get('assets_path') ?>/images/blog/<?= $news['newsCover'] ?>" alt="" class="img-fluid"></a>
+                         </div>
+                         <div class="card-body">
+                             <div class="card-category-box">
+                                 <div class="card-category">
+                                     <h6 class="category"><?= $news['newsCategory'] ?></h6>
+                                 </div>
                              </div>
+                             <h3 class="card-title"><a href="blog-single.html"><?= $news['newsTitle'] ?></a></h3>
+                             <p class="card-description">
+                                 <?= $news->newsLeadParagraph() ?>
+                             </p>
                          </div>
-                         <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                         <p class="card-description">
-                             Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                             a pellentesque nec,
-                             egestas non nisi.
-                         </p>
-                     </div>
-                     <div class="card-footer">
-                         <div class="post-author">
-                             <a href="#">
-                                 <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                 <span class="author">Morgan Freeman</span>
-                             </a>
-                         </div>
-                         <div class="post-date">
-                             <span class="bi bi-clock"></span> 10 min
+                         <div class="card-footer">
+                             <div class="post-author">
+                                     <img src="/<?= $config->get('assets_path') ?>/images/any/<?= $author_list[$news['id']]['memberProfilePicturePath'] ?>" alt="" class="avatar rounded-circle">
+                                     <span class="author"><?= $author_list[$news['id']]['memberFirstname']?> <?= $author_list[$news['id']]['memberLastName']?></span>
+                             </div>
+                             <div class="post-date">
+                                 <span class="bi bi-clock"></span> <?= $news['newsAddedDate']->format('d/m/Y à H\hi') ?>
+                             </div>
                          </div>
                      </div>
                  </div>
-             </div>
-             <div class="col-md-4">
-                 <div class="card card-blog">
-                     <div class="card-img">
-                         <a href="blog-single.html"><img src="assets/img/post-2.jpg" alt="" class="img-fluid"></a>
-                     </div>
-                     <div class="card-body">
-                         <div class="card-category-box">
-                             <div class="card-category">
-                                 <h6 class="category">Web Design</h6>
-                             </div>
-                         </div>
-                         <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                         <p class="card-description">
-                             Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                             a pellentesque nec,
-                             egestas non nisi.
-                         </p>
-                     </div>
-                     <div class="card-footer">
-                         <div class="post-author">
-                             <a href="#">
-                                 <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                 <span class="author">Morgan Freeman</span>
-                             </a>
-                         </div>
-                         <div class="post-date">
-                             <span class="bi bi-clock"></span> 10 min
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-4">
-                 <div class="card card-blog">
-                     <div class="card-img">
-                         <a href="blog-single.html"><img src="assets/img/post-3.jpg" alt="" class="img-fluid"></a>
-                     </div>
-                     <div class="card-body">
-                         <div class="card-category-box">
-                             <div class="card-category">
-                                 <h6 class="category">Web Design</h6>
-                             </div>
-                         </div>
-                         <h3 class="card-title"><a href="blog-single.html">See more ideas about Travel</a></h3>
-                         <p class="card-description">
-                             Proin eget tortor risus. Pellentesque in ipsum id orci porta dapibus. Praesent sapien massa, convallis
-                             a pellentesque nec,
-                             egestas non nisi.
-                         </p>
-                     </div>
-                     <div class="card-footer">
-                         <div class="post-author">
-                             <a href="#">
-                                 <img src="assets/img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
-                                 <span class="author">Morgan Freeman</span>
-                             </a>
-                         </div>
-                         <div class="post-date">
-                             <span class="bi bi-clock"></span> 10 min
-                         </div>
-                     </div>
-                 </div>
-             </div>
+             <?php endforeach; ?>
          </div>
      </div>
  </section><!-- End Blog Section -->

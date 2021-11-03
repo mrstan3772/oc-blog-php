@@ -20,7 +20,7 @@ class NewsletterFormBuilder extends FormBuilder
             new EmailField(
                 [
                     'label' => 'MAIL',
-                    'name' => 'ne_adress',
+                    'name' => 'neAdress',
                     'maxLength' => 100,
                     'minLength' => 6,
                     'placeholder' => 'johndoe@stanleylouisjean.com',

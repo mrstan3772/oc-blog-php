@@ -9,15 +9,15 @@
                             <div class="row">
                                 <div class="col-sm-6 col-md-5">
                                     <div class="about-img">
-                                        <img src="assets/img/testimonial-2.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                                        <img src="/<?= $config->get('assets_path') ?>/images/about/profil.jpg" class="img-fluid rounded b-shadow-a" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-7">
                                     <div class="about-info">
-                                        <p><span class="title-s">Name: </span> <span>Morgan Freeman</span></p>
-                                        <p><span class="title-s">Profile: </span> <span>full stack developer</span></p>
-                                        <p><span class="title-s">Email: </span> <span>contact@example.com</span></p>
-                                        <p><span class="title-s">Phone: </span> <span>(617) 557-0089</span></p>
+                                        <p><span class="title-s">Nom: </span> <span>Stanley LOUIS JEAN</span></p>
+                                        <p><span class="title-s">Profession: </span> <span>Développeur Full Stack</span></p>
+                                        <p><span class="title-s">Email: </span> <span>dev@stanleylouisjean.blog</span></p>
+                                        <p><span class="title-s">Téléphone: </span> <span>0782498929</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -35,9 +35,9 @@
                                 <div class="progress">
                                     <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
-                                <span>JAVASCRIPT</span> <span class="pull-right">90%</span>
+                                <span>JAVASCRIPT</span> <span class="pull-right">60%</span>
                                 <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             </div>
                         </div>
@@ -45,24 +45,17 @@
                             <div class="about-me pt-4 pt-md-0">
                                 <div class="title-box-2">
                                     <h5 class="title-left">
-                                        About me
+                                        À propos de moi
                                     </h5>
                                 </div>
                                 <p class="lead">
-                                    Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Curabitur arcu erat, accumsan id
-                                    imperdiet et, porttitor
-                                    at sem. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Nulla
-                                    porttitor accumsan tincidunt.
+                                    Je suis titulaire d’un BTS SIO (Service Informatique aux Organisations) et est également suivie plusieurs formations orienté développement web au travers de MOOC.
                                 </p>
                                 <p class="lead">
-                                    Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vivamus suscipit tortor eget felis
-                                    porttitor volutpat. Vestibulum
-                                    ac diam sit amet quam vehicula elementum sed sit amet dui. porttitor at sem.
+                                    Je suis fan depuis plusieurs années des nouvelles technologies et j’ai décidé d’en faire mon métier, car il s’agit d’un secteur d’avenir en perpétuelle transformation qui nous façonne dans nos usages de vie au quotidien.
                                 </p>
                                 <p class="lead">
-                                    Nulla porttitor accumsan tincidunt. Quisque velit nisi, pretium ut lacinia in, elementum id enim.
-                                    Nulla porttitor accumsan
-                                    tincidunt. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+                                    Dans un premier temps j’évolue sur des applications PHP & JS qui peuvent éventuellement êtres accompagné de l'utilisation de différents types de structure de travail comme Symfony, Laravel, React, Vue.js , le recours à des piles de logiciels, l’utilisation de CMS comme WordPress et la polyvalence sur des environnements d’exploitation variés (Windows, distributions linux..).
                                 </p>
                             </div>
                         </div>

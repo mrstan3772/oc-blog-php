@@ -11,7 +11,7 @@ use SamplePHPFramework\Entity;
 class Member extends Entity
 {
     /** @var string La bio du membre. */
-    protected String $member_bio_fr_fr;
+    protected ?String $member_bio_fr_fr = null;
 
     /** @var string Le nom de la ville où habite le membre. */
     protected ?String $member_city_name_fr_fr = null;
@@ -20,16 +20,16 @@ class Member extends Entity
     protected ?String $member_country_name_fr_fr = null;
 
     /** @var mixed La date de naissance du membre. */
-    protected $member_date_of_birth;
+    protected $member_date_of_birth = null;
 
     /** @var string L'addresse email du membre. */
-    protected String $member_email_address;
+    protected ?String $member_email_address = null;
 
     /** @var string L'URL de la page de profile Facebook du membre. */
-    protected String $member_facebook_page_url;
+    protected ?String $member_facebook_page_url = null;
 
     /** @var string Le prénom du membre. */
-    protected String $member_firstname;
+    protected ?String $member_firstname = null;
 
     /** @var string Le genre du membre. */
     protected String $member_gender;
@@ -38,7 +38,7 @@ class Member extends Entity
     protected ?String $member_home_address = null;
 
     /** @var string L'URL de la page de profile Instagram du membre. */
-    protected String $member_instagram_page_url;
+    protected ?String $member_instagram_page_url = null;
 
     /** @var string Le nom de famille du membre. */
     protected String $member_lastname;
@@ -53,7 +53,7 @@ class Member extends Entity
     protected String $member_pseudonym;
 
     /** @var string L'URL associé à la chaine Youtube du membre. */
-    protected String $member_youtube_page_url;
+    protected ?String $member_youtube_page_url = null;
 
     /** @var int Le code postal du membre. */
     protected ?Int $member_zip_code = null;

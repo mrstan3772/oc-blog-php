@@ -4,6 +4,7 @@ namespace Model;
 
 use SamplePHPFramework\Manager;
 use \Entity\News;
+use \Entity\Member;
 
 abstract class NewsManager extends Manager
 {
@@ -12,7 +13,7 @@ abstract class NewsManager extends Manager
      * @param $news News La news à ajouter
      * @return void
      */
-    abstract protected function add(News $news) : Void;
+    abstract protected function add(News $news): Void;
 
     /**
      * Méthode permettant d'enregistrer une news.
@@ -21,7 +22,7 @@ abstract class NewsManager extends Manager
      * @see self::modify()
      * @return void
      */
-    public function save(News $news) : Void
+    public function save(News $news): Void
     {
         if ($news->isValid()) {
             $news->isNew() ? $this->add($news) : $this->modify($news);
@@ -36,32 +37,32 @@ abstract class NewsManager extends Manager
      * @param $limite int Le nombre de news à sélectionner
      * @return array La liste des news. Chaque entrée est une instance de News.
      */
-    abstract public function getList(Int $debut = -1, Int $limit = -1) : Array;
+    abstract public function getList(Int $debut = -1, Int $limit = -1): array;
 
     /**
      * Méthode retournant une news précise.
      * @param $id int L'identifiant de la news à récupérer
      * @return News La news demandée
      */
-    abstract public function getUnique(Int $id) : News;
-
+    abstract public function getUnique(Int $id): News;
+    
     /**
      * Méthode renvoyant le nombre de news total.
      * @return int
      */
-    abstract public function count() : Int;
+    abstract public function count(): Int;
 
     /**
      * Méthode permettant de modifier une news.
      * @param $news news la news à modifier
      * @return void
      */
-    abstract protected function modify(News $news) : Void;
+    abstract protected function modify(News $news): Void;
 
     /**
      * Méthode permettant de supprimer une news.
      * @param $id int L'identifiant de la news à supprimer
      * @return void
      */
-    abstract public function delete(Int $id) : Void;
+    abstract public function delete(Int $id): Void;
 }

@@ -24,7 +24,7 @@ class Comment extends Entity
         $this->comment_news_id = (int) $comment_news_id;
     }
 
-    public function setCommentNewsAuthor(Int $comment_news_author_id): Void
+    public function setCommentNewsAuthorId(Int $comment_news_author_id): Void
     {
         if (!is_string($comment_news_author_id) || empty($comment_news_author_id)) {
             $this->erreurs[] = self::INVALID_AUTHOR;
@@ -52,7 +52,7 @@ class Comment extends Entity
         return $this->comment_news_id;
     }
 
-    public function commentNewsAuthor(): Int
+    public function commentNewsAuthorId(): Int
     {
         return $this->comment_news_author_id;
     }
