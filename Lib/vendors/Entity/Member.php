@@ -124,7 +124,7 @@ class Member extends Entity
             || empty($this->member_firstname) || empty($this->member_gender) || empty($this->member_home_address)
             || empty($this->member_instagram_page_url) || empty($this->member_lastname) || empty($this->member_phone_number)
             || empty($this->member_profile_picture_path) || empty($this->member_pseudonym) || empty($this->member_youtube_page_url)
-            || empty($this->member_zip_code)) || empty($this->member_password)
+            || empty($this->member_zip_code) || empty($this->member_password))
             && is_string($this->member_bio_fr_fr) && is_string($this->member_city_name_fr_fr) && is_string($this->member_country_name_fr_fr)
             && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime)  && is_string($this->member_email_address) && is_string($this->member_facebook_page_url)
             && is_string($this->member_firstname) && is_string($this->member_gender) && is_string($this->member_home_address)

@@ -71,7 +71,7 @@
     </header><!-- End Header -->
 
     <!-- ======= Hero Section ======= -->
-    <div id="hero" class="hero route bg-image" style="background-image: url(/<?= $config->get('assets_path') ?>/any/hero-bg.jpg)">
+    <div id="hero" class="hero route bg-image" style="background-image: url(/<?= $config->get('assets_path') ?>/images/any/hero-bg.jpg)">
         <div class="overlay-itro"></div>
         <div class="hero-content display-table">
             <div class="table-cell">

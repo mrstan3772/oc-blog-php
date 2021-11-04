@@ -10,7 +10,7 @@ use \SamplePHPFramework\Validator\NotNullValidator;
 
 class CommentFormBuilder extends FormBuilder
 {
-    public function build()
+    public function build() : Void
     {
         $this->form->add(
             new TextField(

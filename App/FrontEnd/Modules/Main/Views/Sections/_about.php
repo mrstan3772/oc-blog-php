@@ -57,8 +57,17 @@
                                 <p class="lead">
                                     Dans un premier temps j’évolue sur des applications PHP & JS qui peuvent éventuellement êtres accompagné de l'utilisation de différents types de structure de travail comme Symfony, Laravel, React, Vue.js , le recours à des piles de logiciels, l’utilisation de CMS comme WordPress et la polyvalence sur des environnements d’exploitation variés (Windows, distributions linux..).
                                 </p>
+                                <p class="d-flex justify-content-center pt-3"><a class="btn btn-primary btn js-scroll px-4" target="_blank" href="/<?= $config->get('assets_path') ?>/pdf/CV_2021-02-17_STANLEY_LOUIS_JEAN.pdf" role="button">CONSULTER LE CV</a></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="d-flex justify-content-center socials">
+                        <ul>
+                            <li><a href="#about"><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
+                            <li><a href="#about"><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
+                            <li><a href="#about"><span class="ico-circle"><i class="bi bi-twitter"></i></span></a></li>
+                            <li><a href="#about"><span class="ico-circle"><i class="bi bi-linkedin"></i></span></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

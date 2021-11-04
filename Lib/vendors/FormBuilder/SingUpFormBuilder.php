@@ -16,7 +16,7 @@ use \SamplePHPFramework\Validator\NotNullValidator;
 
 class SingUpFormBuilder extends FormBuilder
 {
-    public function build()
+    public function build() : Void
     {
         $this->form->add(
             new StringField(
@@ -27,7 +27,7 @@ class SingUpFormBuilder extends FormBuilder
                     'maxLength' => 50,
                     'placeholder' => 'john76',
                     'validators' => [
-                        new MinLengthValidator('Le nom d\'utilisateur spécifié est trop court (3 caractères maximum)', 3),
+                        new MinLengthValidator('Le nom d\'utilisateur spécifié est trop court (3 caractères minimum)', 3),
                         new MaxLengthValidator('Le nom d\'utilisateur spécifié est trop long (50 caractères maximum)', 50),
                         new NotNullValidator('Merci de spécifier le nom d\'utilisateur'),
                     ],
@@ -43,7 +43,7 @@ class SingUpFormBuilder extends FormBuilder
                         'maxLength' => 50,
                         'placeholder' => 'Doe',
                         'validators' => [
-                            new MinLengthValidator('Le nom spécifié est trop court (2 caractères maximum)', 2),
+                            new MinLengthValidator('Le nom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
                             new NotNullValidator('Merci de spécifier un nom'),
                         ],
@@ -59,7 +59,7 @@ class SingUpFormBuilder extends FormBuilder
                         'maxLength' => 30,
                         'placeholder' => 'John',
                         'validators' => [
-                            new MinLengthValidator('Le prénom spécifié est trop court (2 caractères maximum)', 2),
+                            new MinLengthValidator('Le prénom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le prénom spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un prénom'),
                         ],
@@ -116,7 +116,7 @@ class SingUpFormBuilder extends FormBuilder
                         'maxLength' => 30,
                         'placeholder' => 'Votre mot de passe (8 caractères minimum)',
                         'validators' => [
-                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères maximum)', 8),
+                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                             new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un mot de passe'),
                         ],
@@ -132,7 +132,7 @@ class SingUpFormBuilder extends FormBuilder
                         'maxLength' => 30,
                         'placeholder' => 'Votre mot de passe (8 caractères minimum)',
                         'validators' => [
-                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères maximum)', 8),
+                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                             new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un mot de passe'),
                         ],

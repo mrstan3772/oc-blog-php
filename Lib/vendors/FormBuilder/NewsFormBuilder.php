@@ -11,7 +11,7 @@ use \SamplePHPFramework\Validator\NotNullValidator;
 
 class NewsFormBuilder extends FormBuilder
 {
-    public function build()
+    public function build() : Void
     {
         $this->form->add(
             new StringField(
@@ -21,7 +21,7 @@ class NewsFormBuilder extends FormBuilder
                     'minLength' => 3,
                     'maxLength' => 100,
                     'validators' => [
-                        new MinLengthValidator('Le titre spécifié est trop court (3 caractères maximum)', 3),
+                        new MinLengthValidator('Le titre spécifié est trop court (3 caractères minimum)', 3),
                         new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
                         new NotNullValidator('Merci de spécifier le titre du post'),
                     ],
@@ -38,7 +38,7 @@ class NewsFormBuilder extends FormBuilder
                         'minLength' => 5,
                         'maxLength' => 1000,
                         'validators' => [
-                            new MinLengthValidator('Le contenu du chapô spécifié est trop court (5 caractères maximum)', 5),
+                            new MinLengthValidator('Le contenu du chapô spécifié est trop court (5 caractères minimum)', 5),
                             new MaxLengthValidator('Le contenu de chapô spécifié est trop long (1000 caractères maximum)', 1000),
                             new NotNullValidator('Merci de spécifier le contenu du chapô'),
                         ],
@@ -55,7 +55,7 @@ class NewsFormBuilder extends FormBuilder
                         'minLength' => 5,
                         'maxLength' => 50000,
                         'validators' => [
-                            new MinLengthValidator('Le contenu de l\'article spécifié est trop court (5 caractères maximum)', 5),
+                            new MinLengthValidator('Le contenu de l\'article spécifié est trop court (5 caractères minimum)', 5),
                             new MaxLengthValidator('Le contenu de l\'article spécifié est trop long (50000 caractères maximum)', 50000),
                             new NotNullValidator('Merci de spécifier le contenu du post'),
                         ],

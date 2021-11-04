@@ -3,3 +3,13 @@
     min-height: 500px;
   }
 }
+
+@media (max-width: 760px) {
+  #header .logo a {
+    font-size: .9rem;
+  }
+}
+
+.form-control, .form-label {
+  width: 100%;
+}
