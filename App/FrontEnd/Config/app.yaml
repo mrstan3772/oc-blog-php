@@ -1,6 +1,7 @@
 default_lang: "fr_fr"
 assets_path: "dist"
 news_number: 3
+news_index_list_number: 9
 characters_number: 150
 work_list:
   chat_en_ligne:
