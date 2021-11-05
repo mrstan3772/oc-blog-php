@@ -5,3 +5,9 @@ routes:
         action: 'index'
         vars:
             - 'section'
+    work:
+        url: '/work/([-a-z]+)'
+        module: 'Work'
+        action: 'show'
+        vars:
+            - 'id'

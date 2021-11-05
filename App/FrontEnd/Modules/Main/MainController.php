@@ -26,10 +26,7 @@ class MainController extends BackController
      */
     public function executeIndex(HTTPRequest $request): Void
     {
-        // APPLICATION DE LA CONFIGURATION
-        $current_date = new DateTime();
-        $current_year = $current_date->format('Y');
-
+        // CONFIGURATION DE LA VUE
         $this->app->user()->selectDefaultLanguage();
 
         $lang_abbr = preg_replace_callback(
@@ -62,6 +59,9 @@ class MainController extends BackController
             $newsletter = new NewsletterEmail;
         }
 
+        // GESTION DES PROJETS
+        $works = $this->app->config()->get('work_list');
+        $this->page->addVar('works', $works);
 
         // GESTION DES NEWS
         $news_number = $this->app->config()->get('news_number');
@@ -122,9 +122,7 @@ class MainController extends BackController
 
 
         // AFFECTATION DES VARIABLES
-        $this->page->addVar('title', 'BLOG STANLEY LOUIS JEAN');
         $this->page->addVar('c_lg', $lang_abbr);
-        $this->page->addVar('copyright_date', $current_year);
         $this->page->addVar('form_newsletter', $form_newsletter->createView());
         $this->page->addVar('form_contact', $form_contact->createView());
     }

@@ -15,150 +15,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-1.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">Chat en ligne</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2018</span>
-                                    </div>
+                <?php foreach ($works as $key => $work) : ?>
+                    <div class="col-md-4">
+                        <div class="work-box">
+                            <a href="/<?= $config->get('assets_path') ?>/images/work/<?= $work->cover ?>" data-gallery="portfolioGallery" class="portfolio-lightbox">
+                                <div class="work-img">
+                                    <img src="/<?= $config->get('assets_path') ?>/images/work/<?= $work->cover ?>" alt="" class="img-fluid">
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
+                            </a>
+                            <div class="work-content">
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <h2 class="w-title"><?= $work->title ?></h2>
+                                        <div class="w-more">
+                                            <span class="w-ctegory"><?= $work->category ?></span> / <span class="w-date"><?= $work->date ?></span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-2.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-2.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">Espace suivi de stage</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2018</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
+                                    <div class="col-sm-4">
+                                        <div class="w-like">
+                                            <a href="/work/<?= str_replace('_', '-', $key) ?>"> <span class="bi bi-plus-circle"></span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-3.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-3.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">SIG SHOP</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2018</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-4.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-4.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">Cybersécurité</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2018</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-5.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-5.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">Réseau professionnel</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2018</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="work-box">
-                        <a href="/<?= $config->get('assets_path') ?>/images/work/work-6.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox">
-                            <div class="work-img">
-                                <img src="/<?= $config->get('assets_path') ?>/images/work/work-6.jpg" alt="" class="img-fluid">
-                            </div>
-                        </a>
-                        <div class="work-content">
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <h2 class="w-title">BOT / AUTOMATISATION</h2>
-                                    <div class="w-more">
-                                        <span class="w-ctegory">Développement Web</span> / <span class="w-date">18 Sep. 2017</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="w-like">
-                                        <a href="portfolio-details.html"> <span class="bi bi-plus-circle"></span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php endforeach; ?>
 
             </div>
         </div>

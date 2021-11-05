@@ -34,7 +34,7 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="/"><?= $title ?></a></h1>
+            <h1 class="logo"><a href="/"><?= $title_page ?></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <a href="/" class="logo"><img src="/<?= $config->get('assets_path') ?>/images/any/Logo-site-blanc.png" alt="" class="img-fluid"></a>
 
@@ -79,7 +79,7 @@
                     <!--<p class="display-6 color-d">Hello, world!</p>-->
                     <h1 class="hero-title mb-4">Je suis Stanley LOUIS JEAN</h1>
                     <p class="hero-subtitle"><span class="typed" data-typed-items="Designeur, Developeur, Freelanceur"></span></p>
-                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button">En Apprendre +</a></p>
+                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="/#about" role="button">En Apprendre +</a></p>
                 </div>
             </div>
         </div>

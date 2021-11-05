@@ -1,4 +1,244 @@
-default_lang: 'fr_fr'
-assets_path: 'dist'
+default_lang: "fr_fr"
+assets_path: "dist"
 news_number: 3
 characters_number: 150
+work_list:
+  chat_en_ligne:
+    title: "Chat en ligne"
+    category: "PHP, HTML, JS"
+    client: "ENC"
+    date: "20 mai 2018"
+    url: https://project.wschat.dhoruba.com/user/login.php
+    cover: work-1.jpg
+    sliders: ['portfolio-details-1.png', portfolio-details-2.png, portfolio-details-3.png]
+    content: |
+      Dans le cadre d'un projet commun en classe qui fut réalisé par groupe ( 2 ou 3 élèves), nous avons décidé de choisir parmi une liste de plusieurs missions de mettre en oeuvre un chat en ligne. Celui-ci a pour objectif d'être utilisé afin de mettre en relation des étudiants, entreprises et professeurs dans la perspective d'établir un véritable réseau d'aide à la recherche de stage.
+
+      Il est par exemple possible de communiquer par messagerie instantanée du texte, émoji, joindre des fichiers(documents, images, vidéos...) mais également de partager des URL qui seront intégrés directement dans le cours de la conversation. Il sera ainsi possible de lancer une vidéo directement depuis le chat avec son URL ou encore y accéder en cliquant sur le texte brute rendu en lien accessible accompagné d'un descriptif.
+
+      Le chat est uniquement mis à disposition des membres étant inscrits. Une fois connecter l'utilisateur est visible par l'ensemble des autres membres qui sont connectés par la même occasion (pour l'instant pas de discussions hors ligne). Un compteur pour indiquer le nombre d'internautes connectés ainsi que le nom, l'avatar et l'id de ces derniers est également visibles de tous.
+
+      Un chat global est présent sur la page mais des discussions privées peuvent être tenues entre chaque utilisateur dès lors que ces derniers cliquent sur un profil visible dans le tableau des membres connectés.
+
+      Technologies utilisées :
+
+      - au niveau applicative nous avons décidé d'employer un bundle regroupant un ensemble d'outils efficaces et harmonieux afin de construire une application aisément. On peut citer WAMP et XAMPP.
+      Néanmoins loin de nous être arrêtés uniquement à ces outils on a préféré nous pencher sur le moteur SQL du nom de Sql Server plutôt qu'utiliser mysql mis à notre disposition par défaut par le bundle. Le bundle comprend également un serveur apache et un logiciel pour interpréter le langage de programmation qui est PHP sur lequel nous nous sommes reposé. Nous avons également utilisé un deamon pour gérer les sessions, celui-ci n'était pas compris dans le bundle et se nomme memcached.
+
+      - les langages auxquels nous avons eu recours sont les suivants : HTML, CSS(SCSS), PHP, JavaScript(JQuery), bash.
+
+      - la technologie des WebSockets qui est un standard pour une communication full-duplex persistant entre le client et le serveur. C'est notamment par ce biais que le caractère instantané des conversations sans actions préalables de l'utilisateur prend tout son sens. En effet le serveur peut envoyer une réponse au client sans sollicitation de ce dernier. Ainsi la complexité des requêtes et les lourdeurs notamment au niveau du serveur en sont considérablement moins impactées.
+
+      - le gestionnaire de session memcache par l'utilisation d'un driver à ajouter à PHP ( avec l'exécution d'un deamon) permet de partager les informations de session de l'utilisateur entre le serveur web apache et le serveur WebSocket qui doivent tous être sur un domaine unique afin de fonctionner en parallèle mais mis en service sur différents ports.
+
+      - le gestionnaire de dépendances composer afin de bénéficier de nombreuses bibliothèques.
+
+      - les frameworks, librairies, API sont pléthore dont l'incontournable Symfony en version 3. On peut citer également emojione, oscarotero/Embed, jquery-confirm, font-awesome, bootstrap, bootstrap notifyJS, cropper...
+
+  espace_suivi_de_stage:
+    title: "Espace suivi de stage"
+    category: "PHP, HTML, JS"
+    client: "ENC"
+    date: "10 juin 2017"
+    url: "N/A"
+    cover: work-2.jpg
+    sliders: ['portfolio-details-10.png', portfolio-details-11.png, portfolio-details-12.jpg]
+    content: |
+      Application de suivi de stage. Les utilisateurs peuvent être des élèves, entreprises proposant des stages,
+      professeur ou visiteur, qui se connectent via un navigateur Web.
+      Les fonctionnalités sont :
+      Authentification et login
+
+  sig_shop:
+    title: "SIG SHOP"
+    category: "PHP, HTML, JS"
+    client: "ENC"
+    date: "05 juin 2016"
+    url: https://project.sigshop.dhoruba.com/
+    cover: work-3.jpg 
+    sliders: [portfolio-details-3.png, portfolio-details-4.png, portfolio-details-5.png]
+    content: |
+      Introduction (Context du projet)
+      En tant que stagiaire SSII de 4 personnes nous avons été sollicités par SIG SHOP pour réaliser un site web dynamique et polyvalent disposant d’une base de données opérationnel. La société Sig shop commercialise des chaussures et sneakers pour hommes, femmes et enfants. Grâce à un site cela lui permettra d'être visible internationalement. Elle vend tous types de paires en passant du « life style » au sport. La clientèle est essentiellement composée de femmes et d'hommes âgés en moyenne de 14 à 50 ans, voire de magasins et détaillants. Ce site propose des modèles récents.
+      Dans un secteur d'activité fortement concurrentiel (chaussures), il propose une large gamme de chaussures afin de fidéliser la clientèle et maximiser les ventes.
+
+      Identification des besoins :
+
+      La société SIG shop décide d'accroître son rayonnement dans une plus vaste aire de chalandise en se faisant connaître en détail via son site Internet, qui présente l'ensemble de leur sélection de chaussures et d’autres informations pratiques.
+      La réduction des prix car nécessitant la mobilisation de ressources moindre notamment au niveau humain et matériel.
+      La clientèle à la possibilité d’avoir accès aux services et biens à tous instant.
+      Un suivie des commandes pour facilité la gestion des achats et accompagner la clientèle (panier qui conserver les articles du client la duré d’une session).
+      Un catalogue enrichie par ses nombreux prix et modèles ( enfants, femmes, hommes)
+      Un nouveau moyen de les joindre(www).
+
+      Définition des objectifs
+      Un compte client afin fidéliser la clientèle en ciblant ses besoins et en lui offrant en conséquence des services adaptés (recueil des coordonnées).
+      L'adoption de services de statistique avancée afin que SIG shop puissent puisse se faire une vision global chiffrés de ses activités. (localisation géographique, visiteur en temps réel, durée de la visite, savoir le sexe du client et son âge, les mots clefs de recherche qui permettent d’accéder aux site…)
+
+      Identification des contraintes
+
+      Contraintes de délai : l’application doit être réceptionnée le jeudi 4 Mai 2016. Prise en considération des tâches cruciales qui sont nécessaire au bon déroulement du projet.
+
+      Contrainte de coûts : Utilisation de logiciel gratuit et open source en priorité car ayant un budget limité.
+
+      Contraintes de qualité : le site doit être opérationnel et doit être testé à partir de différents navigateurs web et de différentes plates-formes d'exploitation.
+
+      Technologie mise en ouvre :
+
+      Réalisation du projet
+
+      Nous avons réalisé un cahier des charges fonctionnel .
+
+      Nous avons planifié les différentes tâches avec un digramme de Gant.
+
+      Ouvert un espace sur hébergement mutualisé dont découle plusieurs services (statistique, bdd, configuartion php et apache….)
+
+      Créer l'arborescence du site.
+
+      Conçue un schéma relationnel.
+
+      Tout cela en vue de produire un site web fonctionnel dans la mesure on l’utilisateur est inscrit pour utilisé toutes ses capacités.
+
+  cybersecurite:
+    title: "Cybersécurité"
+    category: "NoSQL, Docker, JS"
+    client: "UMANIS"
+    date: "10 février 2018"
+    url: "N/A"
+    cover: work-4.jpg
+    sliders: [portfolio-details-16.jpg, portfolio-details-17.jpg, portfolio-details-19.jpeg]
+    content: |
+      Chiffrement : Développer une version pour RSA et une autre pour AES.
+
+      Mission : ajouter deux nouveaux champs du nom de "cypherAES" et "cypherRSA" dans les documents de la collection person.
+      Mise en place de deux fonctions (réversibilité du chiffrement valeur en clair => valeur chiffrée => valeur en clair):
+
+      - Encryption_AES
+      - Encryption_RSA
+      - Decryption_AES
+      - Decryption_RSA -> id du document en entrée pour déchiffrer la valeur RSA et puis l''afficher.
+
+      Conformité quant aux moyens cryptographiques à utiliser définit dans la SSI.
+
+      Encryption_AES
+
+      Mission : réaliser un chiffrement symétrique qui comprend <"nom + prénom + mail"> séparés par des espaces pour constituer un nouveau champ "cypherAES".
+
+      Utilisation de la librairie AES-JS qui propose une implémentation en JavaScript pure de l''algorithme de chiffrement par bloc AES et de tous les modes d''opération (CBC, CFB, CTR, ECB et OFB).
+      Création d''une fonction "EncryptionAES" qui va être stockée sur le serveur (dans la collection system.js) pour être utilisé par le shell mongo.
+
+      Celle-ci contient à ce jour :
+      - une fonction load() pour charger AES-JS
+      - une requête afin de chercher uniquement les collections n''ayant aucun champ "cypherAES" mais dont les champs "firstname", "lastname" et "mail" sont présents
+      - une clé de 256 bits construite avec Uint8Array() qui représente un tableau d''entiers non signés sur 8 bits
+      - une fonction "insertPseudoEncryptionAES" pour mettre en place le processus de chiffrement pour chaque document contenant un forEach() qui va boucler sur l''ensemble des documents défini par la requête de recherche
+      - une variable de récupération <"nom + prénom + mail"> pour chaque document
+      - une variable de concaténation avec ajout des espaces
+      - une méthode pour la conversion du texte en octet
+      - une méthode pour le chiffrement du pseudo basé sur un compteur (mode d''opération CTR), dans ce mode, le flux de clé est obtenu en chiffrant les valeurs successives d’un compteur (par défaut le compteur commence à 1, dans notre cas initialisé à n)
+      - une méthode qui retourne comme résultat des données sous forme hexadécimale car par soucis de lisibilité on va convertir les données binaires, ils seront donc visibles en clair sous forme hexadécimale dans le document
+      - une requête pour insérer le résultat chiffré dans le document sous sa forme hexadécimale sur lequel le forEach boucle
+      - on appelle la fonction "insertPseudoEncryptionAES"
+      - on instancie également un objet pour calculer le temps d''exécution du script à des fins de tests (à retirer plus tard)
+
+      Encryption_RSA
+
+      Mission : réaliser un chiffrement asymétrique qui comprend <"nom + prénom + mail"> séparés par des espaces pour constituer un nouveau champ "cypherRSA".
+
+      Utilisation de la librairie Cryptico qui propose une implémentation en JavaScript pure des algorithmes de chiffrement RSA et AES.
+
+      Création d''une fonction "EncryptionRSA" qui va être stockée sur le serveur (dans la collection system.js) pour être utilisé par le shell mongo. Celle-ci contient à ce jour :
+      - une fonction load() pour charger cryptico
+      - une requête afin de chercher uniquement les collections n''ayant aucun champ "cypherRSA" mais dont les champs "firstname", "lastname" et "mail" sont présents
+      - une phrase secrète pour générer la clé RSA
+      - une taille en bits pour la clé RSA (1024 dans notre cas)
+      - une fonction "insertPseudoEncryptionRSA" pour mettre en place le processus de chiffrement pour chaque document, contenant un forEach() qui va boucler sur l''ensemble des documents défini par la requête de recherche
+      - une variable de récupération <"nom + prénom + mail"> pour chaque document
+      - une variable de concaténation avec ajout des espaces
+      - une méthode pour générer la clé privée
+      - une méthode pour générer la clé publique
+      - une méthode pour le chiffrement du pseudo
+      - une méthode pour écrire sous forme de chaîne de caractères le résultat chiffré
+      - une requête pour insérer le résultat chiffré dans le document en base64
+      - on appelle la fonction "insertPseudoEncryptionRSA"
+      - on instancie également un objet pour calculer le temps d''exécution du script à des fins de tests (à retirer plus tard)
+
+      Déchiffrement : Développer une version pour RSA et une autre pour AES
+
+      Decryption_AES
+
+      Mission : réaliser un déchiffrement pour l''afficher en clair avec une chaîne de caractères d''un encodage UTF-8 de préférence.
+      Utilisation de la même librairie que pour le chiffrement (AES-JS)
+      Création d''une fonction "DecryptionAES" qui va être stockée sur le serveur (dans la collection system.js) pour être utilisé par le shell mongo. Celle-ci contient à ce jour :
+      - une fonction load() pour charger AES-JS
+      - une requête afin de chercher uniquement le document ayant pour id celui passé en paramètre dans la fonction DecryptionAES avec un forEach()
+      - une méthode pour convertir la valeur en hexadécimale en octets
+      - une méthode pour maintenir compteur à la même valeur (3772) que celle pour le chiffrement
+      - une méthode pour convertir les octets en texte
+      - un appelle de print() pour afficher le résultat du texte déchiffré
+      - une instanciation d''un objet pour calculer le temps d''exécution du script à des fins de tests (à retirer plus tard)
+
+      Decryption_RSA
+
+      Mission : réaliser un déchiffrement pour l''afficher en clair avec une chaîne de caractères d''un encodage UTF-8 de préférence.
+      Utilisation de la même librairie que pour le chiffrement (cryptico)
+      Création d''une fonction "DecryptionRSA" qui va être stockée sur le serveur (dans la collection system.js) pour être utilisé par le shell mongo. Celle-ci contient à ce jour :
+      - une fonction load() pour charger cryptico
+      - une requête afin de chercher uniquement le document ayant pour id celui passé en paramètre dans la fonction DecryptionRSA avec un forEach()
+      - une phrase secrète pour générer la clé privée
+      - une taille en bits pour la clé RSA (1024 dans notre cas)
+      - une méthode pour le déchiffrement contenant la clé privée et le pseudo chiffré en paramètre
+      - un appelle de print() pour afficher le résultat déchiffré en texte
+      - une instanciation d''un objet pour calculer le temps d''exécution du script à des fins de tests (à retirer plus tard)
+
+  reseau_professionnel:
+    title: "Réseau professionnel"
+    category: "HTML, JS"
+    client: "UMANIS"
+    date: "23 mai 2017"
+    url: "N/A"
+    cover: work-5.jpg
+    sliders: [portfolio-details-13.jpg, portfolio-details-14.jpg, portfolio-details-15.jpg]
+    content: |
+      Matching des profils adaptés pour un projet au sein des collaborateurs d'une entreprise via une application web épuré, découpé en une interface 3 tiers. Il s'agit d'un véritable gestionnaire de communautés aux profils divers et variés. Cela offre la possibilité pour un client de constituer une équipe suffisamment efficiente pour une mission donnée.
+
+  bot_automatisation:
+      title: "BOT / AUTOMATISATION"
+      category: "JAVA, BOT"
+      client: "N/A"
+      date: "07 janvier 2018"
+      url: "N/A"
+      cover: work-6.jpg
+      sliders: [portfolio-details-7.jpg, portfolio-details-8.jpeg, portfolio-details-9.jpg]
+      content: |
+        Dans un contexte où l'IA ne cesse d'émerveiller de par son potentiel on voit davantage naître de bots qui sont très évolués. Pourtant ils ne datent pas d'aujourd'hui mais sont utilisés depuis le début de l'informatique afin de simuler un client qui serait utilisé par un humain. Un bot selon Andrew Leonard « un programme informatique autonome supposé intelligent, doué de personnalité, et qui habituellement, mais pas toujours, rend un service ».
+
+        Les grandes entreprises utilisent des bots. C'est le cas de Google qui utilise Googlebot pour indexer les pages web ou encore même dans les jeux vidéo pour simuler un joueur qui sera notre adversaire. On peut encore parler des bots dans le domaine de la messagerie instantanée qui étaient beaucoup utilisés dans les années 90 mais dont le succès c'est vite étiolé par la suite jusqu'en 2016 où l'IA les a fait renaître.
+
+        Évidemment tous n'est pas rose car une utilisation malveillante peut en être faite, tel en est le cas à travers les spambots ou encore webbots.
+
+        Fortement intéressé par ce sujet dont l'attrait provient en tout premier lieu des jeux massivement multijoueur en ligne sur internet, j'ai décidé de démarrer sans objectif particulier un bot qui effectuerait des actions précises sur un jeu en ligne par navigateur quand l'utilisateur le lancera.
+
+        Le principe est le suivant :
+
+        L'IDENTIFICATION
+
+        - l'utilisateur se connecte avec ses identifiants ou directement avec son identifiant de session pour rester connecter.
+        - Il peut définir son serveur si celui-ci n'est pas mentionné alors il sera connecté sur le serveur utilisé lors de sa dernière visite sur le jeu
+        - en cas de changement de serveur il aura la possibilité de choisir ceux parmi proposé parmi une liste.
+
+        CHANGEMENT DE SERVEUR
+
+        - si l'utilisateur décide de changer de serveur, le programme va simuler des évènements(actions) de cliques avec la souris en sélectionnant différents éléments à partir du code HTML de la page afin de choisir le bon serveur auquel souhaite se connecter l'utilisateur.
+
+        UNE FOIS LA CONNEXION ACHEVÉ ET QUE L'UTILISATEUR SE TROUVE SUR LE BON SERVEUR IL DOIT PARTICIPER AUX ENCHÈRES
+
+        - le bot va donc rediriger l'utilisateur vers la page des enchères et va lui montrer l'ensemble des informations de son compte (somme d'argent du jeu virtuel notamment) ainsi que les articles disponibles aux enchères et si des offreurs ont déja misé dessus ainsi que le montant la somme misée.
+
+        - le premier cas est qu'aucune offre est actuellement présente sur l'article alors il est possible pour l'utilisateur de présenter son offre et de bien vérifier si celle-ci est réalisable(inférieur au montant de son argent virtuel). A priori il y a bien une valeur minimale de mise mais aucune valeur maximale. Le champ ne peut être vide et doit respecter le format numérique définit dans le jeu.
+
+        - un second cas qui se présente devant nous est que l'utilisateur veut surenchérir. Il y a donc 1 condition supplémentaire, oui le montant doit être obligatoirement supérieur à l'offre en cours.
+
+        - l'utilisateur mise pour une certaine heure ce qui signifie que le programme va devoir effectuer l'action de miser à l'heure définie par celui-ci au préalable. J'ai donc enregistré les informations de la mise à l'intérieur d'une collection. Celle-ci va être appelée par un gestionnaire de tâche à l'heure qu'aura choisi l'utilisateur.
+
+        Pour l'instant le projet en est encore à ses balbutiements il va donc falloir patienter un peu de temps afin qu'il soit plus complet et stable et qu'une version mature voie le jour.
