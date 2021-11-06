@@ -2,15 +2,9 @@
 
 namespace App\Frontend\Modules\News;
 
-use \Entity\NewsletterEmail;
-use \Entity\Contact;
-use \FormBuilder\NewsletterFormBuilder;
-use \FormBuilder\ContactFormBuilder;
-use \FormBuilder\ProductionRequestFormBuilder;
 use \SamplePHPFramework\Components\BackController;
 use \SamplePHPFramework\Components\HTTPRequest;
 use \SamplePHPFramework\Form\FormHandler;
-use \DateTime;
 
 class NewsController extends BackController
 {
@@ -60,6 +54,8 @@ class NewsController extends BackController
 			$author_list[$news->id()] = $member_manager->getUnique($news->newsAuthorId());
 		}
 
+		// AFFECTATION DES VARIABLES
+        $this->page->addVar('title', 'LISTE DES BILLETS DE BLOG' . ' | ' . $this->page->vars()['title']);
 		$this->page->addVar('news_list', $news_list);
 		$this->page->addVar('author_list', $author_list);
 		$this->page->addVar('page_number', $news_manager->count() / $news_index_list_number + 1);
@@ -93,6 +89,8 @@ class NewsController extends BackController
 			$author_list[$comment->id()] = $member_manager->getUnique($news->newsAuthorId());
 		}
 
+		// AFFECTATION DES VARIABLES
+        $this->page->addVar('title', $news->newstitle() . ' | ' . $this->page->vars()['title']);
 		$this->page->addVar('news', $news);
 		$this->page->addVar('recent_news', $news_list);
 		$this->page->addVar('archive_news', $news_archive_list);

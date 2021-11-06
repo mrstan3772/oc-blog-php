@@ -32,7 +32,7 @@ class Member extends Entity
     protected ?String $member_firstname = null;
 
     /** @var string Le genre du membre. */
-    protected String $member_gender;
+    protected String $member_gender = 'M';
 
     /** @var string L'addresse email du membre. */
     protected ?String $member_home_address = null;
@@ -41,7 +41,7 @@ class Member extends Entity
     protected ?String $member_instagram_page_url = null;
 
     /** @var string Le nom de famille du membre. */
-    protected String $member_lastname;
+    protected ?String $member_lastname = null;
 
     /** @var int Le numéro de téléphone du membre. */
     protected ?Int $member_phone_number = null;
@@ -50,7 +50,7 @@ class Member extends Entity
     protected String $member_profile_picture_path;
 
     /** @var string Le pseudonyme du membre. */
-    protected String $member_pseudonym;
+    protected ?String $member_pseudonym = null;
 
     /** @var string L'URL associé à la chaine Youtube du membre. */
     protected ?String $member_youtube_page_url = null;
@@ -59,7 +59,7 @@ class Member extends Entity
     protected ?Int $member_zip_code = null;
 
     /** @var int Le mot de passe du membre. */
-    protected String $member_password;
+    protected ?String $member_password = null;
 
     /** @var int Retourne un code d'erreur si la bio du membre ne respecte pas les contraintes de validation attendues. */
     const INVALID_MEMBER_BIO = 1;

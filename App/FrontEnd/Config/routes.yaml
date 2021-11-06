@@ -25,3 +25,7 @@ routes:
         action: 'show'
         vars: 
             - 'id'
+    registration:
+        url: '/registration/?'
+        module: 'Account'
+        action: 'registration'

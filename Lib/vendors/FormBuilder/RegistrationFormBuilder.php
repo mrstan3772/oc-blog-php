@@ -3,9 +3,9 @@
 namespace FormBuilder;
 
 use \SamplePHPFramework\Form\FormBuilder;
+use \SamplePHPFramework\Form\StringField;
 use \SamplePHPFramework\Form\DropDownListField;
 use \SamplePHPFramework\Form\EmailField;
-use \SamplePHPFramework\Form\StringField;
 use \SamplePHPFramework\Form\FileField;
 use \SamplePHPFramework\Form\PasswordField;
 use \SamplePHPFramework\Validator\IsEmailValidator;
@@ -14,18 +14,19 @@ use \SamplePHPFramework\Validator\MaxLengthValidator;
 use \SamplePHPFramework\Validator\MinLengthValidator;
 use \SamplePHPFramework\Validator\NotNullValidator;
 
-class SingUpFormBuilder extends FormBuilder
+class RegistrationFormBuilder extends FormBuilder
 {
-    public function build() : Void
+    public function build(): Void
     {
         $this->form->add(
             new StringField(
                 [
-                    'label' => 'NOM D\'UTILISATEUR',
-                    'name' => 'username',
+                    'label' => '',
+                    'name' => 'memberPseudonym',
+                    'classField' => 'form-control',
                     'minLength' => 3,
                     'maxLength' => 50,
-                    'placeholder' => 'john76',
+                    'placeholder' => 'NOM D\'UTILISATEUR',
                     'validators' => [
                         new MinLengthValidator('Le nom d\'utilisateur spécifié est trop court (3 caractères minimum)', 3),
                         new MaxLengthValidator('Le nom d\'utilisateur spécifié est trop long (50 caractères maximum)', 50),
@@ -37,11 +38,12 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new StringField(
                     [
-                        'label' => 'NOM',
-                        'name' => 'lastname',
+                        'label' => '',
+                        'name' => 'memberLastName',
+                        'classField' => 'form-control',
                         'minLength' => 2,
                         'maxLength' => 50,
-                        'placeholder' => 'Doe',
+                        'placeholder' => 'NOM',
                         'validators' => [
                             new MinLengthValidator('Le nom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
@@ -53,11 +55,12 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new StringField(
                     [
-                        'label' => 'PRÉNOM',
-                        'name' => 'firstname',
+                        'label' => '',
+                        'name' => 'memberFirstName',
+                        'classField' => 'form-control',
                         'minLength' => 2,
                         'maxLength' => 30,
-                        'placeholder' => 'John',
+                        'placeholder' => 'PRÉNOM',
                         'validators' => [
                             new MinLengthValidator('Le prénom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le prénom spécifié est trop long (30 caractères maximum)', 30),
@@ -69,8 +72,9 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new DropDownListField(
                     [
-                        'label' => 'CIVILITÉ',
-                        'name' => 'gender',
+                        'label' => '',
+                        'name' => 'memberGender',
+                        'classField' => 'form-control',
                         'optionList' => [
                             'M',
                             'F',
@@ -93,11 +97,12 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new EmailField(
                     [
-                        'label' => 'MAIL',
-                        'name' => 'email',
+                        'label' => '',
+                        'name' => 'memberEmailAddress',
+                        'classField' => 'form-control',
                         'maxLength' => 100,
                         'minLength' => 6,
-                        'placeholder' => 'johndoe@stanleylouisjean.com',
+                        'placeholder' => 'MAIL',
                         'validators' => [
                             new IsEmailValidator('Le mail spécifié ne semble pas être valide.'),
                             new MaxLengthValidator('Le mail spécifié est trop long (100 caractères maximum).', 100),
@@ -110,11 +115,12 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new PasswordField(
                     [
-                        'label' => 'MOT DE PASSE',
-                        'name' => 'password',
+                        'label' => '',
+                        'name' => 'memberPassword',
+                        'classField' => 'form-control',
                         'minLength' => 8,
                         'maxLength' => 30,
-                        'placeholder' => 'Votre mot de passe (8 caractères minimum)',
+                        'placeholder' => 'MOT DE PASSE (8 caractères minimum)',
                         'validators' => [
                             new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                             new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
@@ -126,11 +132,12 @@ class SingUpFormBuilder extends FormBuilder
             ->add(
                 new PasswordField(
                     [
-                        'label' => 'RETAPEZ LE MOT DE PASSE',
-                        'name' => 'passwordRepeat',
+                        'label' => '',
+                        'name' => 'memberPasswordRepeat',
+                        'classField' => 'form-control',
                         'minLength' => 8,
                         'maxLength' => 30,
-                        'placeholder' => 'Votre mot de passe (8 caractères minimum)',
+                        'placeholder' => 'RETAPEZ LE MOT DE PASSE',
                         'validators' => [
                             new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                             new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
@@ -143,7 +150,7 @@ class SingUpFormBuilder extends FormBuilder
                 new FileField(
                     [
                         'label' => 'IMAGE DE PROFILE',
-                        'name' => 'avatar',
+                        'name' => 'memberProfilePicturePath',
                         'accept' => 'image/png, image/jpeg',
                         'validators' => [],
                     ]
