@@ -9,5 +9,19 @@ routes:
         url: '/work/([-a-z]+)'
         module: 'Work'
         action: 'show'
+    news-list:
+        url: '/news/?'
+        module: 'News'
+        action: 'index'
+    news-list-page:
+        url: '/news/page/([1-9]+)/?'
+        module: 'News'
+        action: 'index'
         vars:
+            - 'page'
+    news:
+        url: '/news/([0-9]+)/?'
+        module: 'News'
+        action: 'show'
+        vars: 
             - 'id'
