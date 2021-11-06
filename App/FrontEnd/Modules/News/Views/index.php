@@ -40,7 +40,6 @@
                              <div class="post-date">
                                  <span class="bi bi-clock"></span> <?= $news['newsAddedDate']->format('d/m/Y à H\hi') ?>
                              </div>
-                             <?= $news['id'] ?>
                          </div>
                      </div>
                  </div>
@@ -59,7 +58,7 @@
                      <?php endfor ?>
                      <!-- Lien vers la page suivante (désactivé si on se trouve sur la dernière page) -->
                      <li class="page-item <?= ($current_page == $page_number) ? "disabled" : "" ?>">
-                         <a href="./?page=<?= $current_page + 1 ?>" class="page-link">Suivante</a>
+                         <a href="/news/page/<?= $current_page + 1 ?>" class="page-link">Suivante</a>
                      </li>
                  </ul>
              </nav>

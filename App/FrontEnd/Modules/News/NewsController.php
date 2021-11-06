@@ -62,21 +62,44 @@ class NewsController extends BackController
 
 		$this->page->addVar('news_list', $news_list);
 		$this->page->addVar('author_list', $author_list);
-		$this->page->addVar('page_number', $news_manager->count() / 10);
+		$this->page->addVar('page_number', $news_manager->count() / $news_index_list_number + 1);
 		$this->page->addVar('current_page', $current_page);
 	}
 
-	// public function executeShow(HTTPRequest $request)
-	// {
-	//   $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
-	//   if (empty($news)) {
-	//     $this->app->httpResponse()->redirect404();
-	//   }
+	/**
+	 * ExecuteShow
+	 *
+	 * @param HTTPRequest $request Request parameter
+	 * 
+	 * @return void
+	 */
+	public function executeShow(HTTPRequest $request)
+	{
+		$news_index_list_number = $this->app->config()->get('news_index_list_number');
+		$news_list = $this->managers->getManagerOf('News')->getList(0, $news_index_list_number);
+		$news_archive_list = $this->managers->getManagerOf('News')->getList(0, $news_index_list_number, true);
+		
+		$news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+		if (empty($news)) {
+			$this->app->httpResponse()->redirect404();
+		}
 
-	//   $this->page->addVar('title', $news->title());
-	//   $this->page->addVar('news', $news);
-	//   $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
-	// }
+		$member_manager = $this->managers->getManagerOf('Member');
+		$comment_list = $this->managers->getManagerOf('Comments')->getListOf($news->id());
+
+		$author_list = [];
+
+		foreach ($comment_list as $comment) {
+			$author_list[$comment->id()] = $member_manager->getUnique($news->newsAuthorId());
+		}
+
+		$this->page->addVar('news', $news);
+		$this->page->addVar('recent_news', $news_list);
+		$this->page->addVar('archive_news', $news_archive_list);
+		$this->page->addVar('author', $this->managers->getManagerOf('Member')->getUnique($news->newsAuthorId()));
+		$this->page->addVar('author_list', $author_list);
+		$this->page->addVar('comments', $comment_list);
+	}
 
 	// public function executeInsertComment(HTTPRequest $request)
 	// {

@@ -21,9 +21,13 @@ class NewsManagerPDO extends NewsManager
         $request->execute();
     }
 
-    public function getList(Int $start = -1, Int $limit = -1): array
+    public function getList(Int $start = -1, Int $limit = -1, Bool $archive = false): array
     {
-        $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", "news_added_date", "news_update_date" FROM blog."news" ORDER BY id DESC';
+        if (!$archive) {
+            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" ORDER BY id DESC';
+        } else {
+            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" WHERE news_archive = true ORDER BY id DESC';
+        }
 
         if ($start != -1 || $limit != -1) {
             $sql .= ' LIMIT ' . (int) $limit . ' OFFSET ' . (int) $start;
@@ -46,7 +50,7 @@ class NewsManagerPDO extends NewsManager
 
     public function getUnique(Int $id): News
     {
-        $request = $this->dao->prepare('SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", "news_added_date", "news_update_date" FROM blog."news" WHERE id = :id');
+        $request = $this->dao->prepare('SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" WHERE id = :id');
         $request->bindValue(':id', (int) $id, \PDO::PARAM_INT);
         $request->execute();
 

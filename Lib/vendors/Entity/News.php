@@ -12,6 +12,7 @@ class News extends Entity
     protected $news_category;
     protected $news_cover;
     protected $news_content;
+    protected $news_archive;
     protected $news_added_date;
     protected $news_update_date;
 
@@ -20,6 +21,7 @@ class News extends Entity
     const INVALID_CATEGORY = 3;
     const INVALID_COVER = 4;
     const INVALID_CONTENT = 5;
+    const INVALID_ARCHIVE = 6;
 
     public function isValid()
     {
@@ -116,6 +118,22 @@ class News extends Entity
         }
 
         $this->news_content = htmlspecialchars($news_content);
+
+        return $this;
+    }
+
+    public function newsArchive()
+    {
+        return $this->news_archive;
+    }
+
+    public function setNewsArchive(Bool $news_archive): Self
+    {
+        if (!is_bool($news_archive)) {
+            $this->errors[] = self::INVALID_ARCHIVE;
+        }
+
+        $this->news_archive = htmlspecialchars($news_archive);
 
         return $this;
     }

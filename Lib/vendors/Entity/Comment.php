@@ -8,7 +8,7 @@ class Comment extends Entity
 {
     protected $comment_news_id,
         $comment_news_author_id,
-        $commment_content,
+        $comment_content,
         $comment_date;
 
     const INVALID_AUTHOR = 1;
@@ -16,7 +16,7 @@ class Comment extends Entity
 
     public function isValid()
     {
-        return !(empty($this->comment_news_author_id) || empty($this->commment_content));
+        return !(empty($this->comment_news_author_id) || empty($this->comment_content));
     }
 
     public function setCommentNewsId(Int $comment_news_id): Void
@@ -39,7 +39,7 @@ class Comment extends Entity
             $this->erreurs[] = self::INVALID_CONTENT;
         }
 
-        $this->commment_content = $comment_content;
+        $this->comment_content = $comment_content;
     }
 
     public function setCommentDate(\DateTime $comment_date): Void
@@ -59,7 +59,7 @@ class Comment extends Entity
 
     public function commentContent(): String
     {
-        return $this->commment_content;
+        return $this->comment_content;
     }
 
     public function commentDate(): Mixed

@@ -10,11 +10,11 @@ class CommentsManagerPDO extends CommentsManager
 {
     protected function add(Comment $comment): Void
     {
-        $q = $this->dao->prepare('INSERT INTO blog."comments"(comment_news_id, comment_news_author_id, "commment_content", "commment_date") VALUES(:comment_news_id, :comment_news_author_id, :commment_content, NOW())');
+        $q = $this->dao->prepare('INSERT INTO blog."comment"(comment_news_id, comment_news_author_id, "comment_content", "commment_date") VALUES(:comment_news_id, :comment_news_author_id, :comment_content, NOW())');
 
         $q->bindValue(':comment_news_id', $comment->commentNewsId(), PDO::PARAM_INT);
         $q->bindValue(':comment_news_author_id', $comment->commentNewsAuthorId(), PDO::PARAM_INT);
-        $q->bindValue(':commment_content', $comment->commentContent(), PDO::PARAM_STR);
+        $q->bindValue(':comment_content', $comment->commentContent(), PDO::PARAM_STR);
 
         $q->execute();
 
@@ -27,7 +27,7 @@ class CommentsManagerPDO extends CommentsManager
             throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
         }
 
-        $q = $this->dao->prepare('SELECT id, comment_news_id, comment_news_author_id, commment_content, "commment_date" FROM blog."comments" WHERE comment_news_id = :comment_news_id');
+        $q = $this->dao->prepare('SELECT id, comment_news_id, comment_news_author_id, comment_content, "comment_date" FROM blog."comment" WHERE comment_news_id = :comment_news_id');
         $q->bindValue(':comment_news_id', $comment_news_id, PDO::PARAM_INT);
         $q->execute();
 
@@ -36,7 +36,7 @@ class CommentsManagerPDO extends CommentsManager
         $comments = $q->fetchAll();
 
         foreach ($comments as $comment) {
-            $comment->setDate(new \DateTime($comment->date()));
+            $comment->setCommentDate(new \DateTime($comment->commentDate()));
         }
 
         return $comments;
@@ -44,10 +44,10 @@ class CommentsManagerPDO extends CommentsManager
 
     protected function modify(Comment $comment): Void
     {
-        $q = $this->dao->prepare('UPDATE blog."comments" SET comment_news_author_id = :comment_news_author_id, "commment_content" = :commment_content WHERE id = :id');
+        $q = $this->dao->prepare('UPDATE blog."comment" SET comment_news_author_id = :comment_news_author_id, "comment_content" = :comment_content WHERE id = :id');
 
         $q->bindValue(':comment_news_author_id', $comment->commentNewsAuthorId(), PDO::PARAM_INT);
-        $q->bindValue(':commment_content', $comment->commentContent(), PDO::PARAM_STR);
+        $q->bindValue(':comment_content', $comment->commentContent(), PDO::PARAM_STR);
         $q->bindValue(':id', $comment->id(), PDO::PARAM_INT);
 
         $q->execute();
@@ -55,7 +55,7 @@ class CommentsManagerPDO extends CommentsManager
 
     public function get(Int $id): Comment
     {
-        $q = $this->dao->prepare('SELECT id, comment_news_id, comment_news_author_id, "commment_content" FROM blog."comments" WHERE id = :id');
+        $q = $this->dao->prepare('SELECT id, comment_news_id, comment_news_author_id, "comment_content" FROM blog."comment" WHERE id = :id');
         $q->bindValue(':id', (int) $id, PDO::PARAM_INT);
         $q->execute();
 
@@ -66,11 +66,11 @@ class CommentsManagerPDO extends CommentsManager
 
     public function delete(Int $id): Void
     {
-        $this->dao->exec('DELETE FROM blog."comments" WHERE id = ' . (int) $id);
+        $this->dao->exec('DELETE FROM blog."comment" WHERE id = ' . (int) $id);
     }
 
     public function deleteFromNews(Int $news_id): Void
     {
-        $this->dao->exec('DELETE FROM blog."comments" WHERE comment_news_id = ' . (int) $news_id);
+        $this->dao->exec('DELETE FROM blog."comment" WHERE comment_news_id = ' . (int) $news_id);
     }
 }
