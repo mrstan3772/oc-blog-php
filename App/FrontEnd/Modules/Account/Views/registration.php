@@ -1,24 +1,24 @@
 <!-- ======= Rgistration Section ======= -->
 <section id="registration" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/<?= $config->get('assets_path') ?>/images/contact/overlay-bg.jpg)">
-    <div class="overlay-mf"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="registration-mf">
                     <div id="registration" class="box-shadow-full">
-                        <div class="row"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
                         <div class="row">
+                            <div class="col-md-12"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
                             <div class="col-md-6">
                                 <div class="title-box-2">
                                     <h5 class="title-left">
-                                        Envoyez-nous un message
+                                        Inscrivez-vous
                                     </h5>
                                 </div>
                                 <div>
-                                    <form action="/" method="post" role="form" class="php-email-form">
-                                        <?= $form_contact ?>
+                                    <form action="/registration" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
+                                        <?= $form_registration ?>
+                                        <label class="form-label"><input type="password" name="memberPasswordRepeat" id="memberPasswordRepeat" class="form-control" required="" maxlength="30" minlength="8" placeholder="RETAPEZ LE MOT DE PASSE"></label>
                                         <div class="col-md-12 text-center">
-                                            <button type="submit" class="button button-a button-big button-rouded">Envoyer un message</button>
+                                            <button type="submit" class="button button-a button-big button-rouded">M'inscrire</button>
                                         </div>
                                     </form>
                                 </div>
@@ -26,27 +26,11 @@
                             <div class="col-md-6">
                                 <div class="title-box-2 pt-4 pt-md-0">
                                     <h5 class="title-left">
-                                        Contactez-nous
+                                        J'ai un commpte
                                     </h5>
                                 </div>
-                                <div class="more-info">
-                                    <p class="lead">
-                                        Je reste à votre écoute 7j/7 si jamais vous avez des questions, doléances ou simplement souhaitez avoir des recommandations.
-                                        Si vous voulez prendre rapidement contact avec moi n'hésitez pas me joindre sur les réseaux sociaux ou nous purrons échanger plus simplement.
-                                    </p>
-                                    <ul class="list-ico">
-                                        <li><span class="bi bi-geo-alt"></span> 22 Allée des Frères Voisin, 75015 Paris</li>
-                                        <li><span class="bi bi-phone"></span> + 33 7 82 49 89 79</li>
-                                        <li><span class="bi bi-envelope"></span> stanleylouisjean@dhoruba.com</li>
-                                    </ul>
-                                </div>
-                                <div class="socials">
-                                    <ul>
-                                        <li><a href="#contact"><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
-                                        <li><a href="#contact"><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
-                                        <li><a href="#contact"><span class="ico-circle"><i class="bi bi-twitter"></i></span></a></li>
-                                        <li><a href="#contact"><span class="ico-circle"><i class="bi bi-linkedin"></i></span></a></li>
-                                    </ul>
+                                <div class="d-flex justify-content-center align-items-center sign-in">
+                                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="/login" role="button">ME CONNECTEZ</a></p>
                                 </div>
                             </div>
                         </div>

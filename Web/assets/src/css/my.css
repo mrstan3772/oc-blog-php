@@ -13,3 +13,7 @@
 .form-control, .form-label {
   width: 100%;
 }
+
+.sign-in {
+  height: 80%;
+}

@@ -5,6 +5,8 @@ namespace FormBuilder;
 use \SamplePHPFramework\Form\FormBuilder;
 use \SamplePHPFramework\Form\StringField;
 use \SamplePHPFramework\Form\TextField;
+use SamplePHPFramework\Validator\IsEmailValidator;
+use SamplePHPFramework\Validator\IsStringValidator;
 use \SamplePHPFramework\Validator\MaxLengthValidator;
 use \SamplePHPFramework\Validator\MinLengthValidator;
 use \SamplePHPFramework\Validator\NotNullValidator;
@@ -26,6 +28,7 @@ class ContactFormBuilder extends FormBuilder
                         new MinLengthValidator('Le nom spécifié est trop court (2 caractères minimum)', 2),
                         new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
                         new NotNullValidator('Merci de spécifier un nom'),
+                        new IsStringValidator('Valeur illisible !')
                     ],
                 ]
             )
@@ -43,6 +46,7 @@ class ContactFormBuilder extends FormBuilder
                             new MinLengthValidator('Le prénom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le prénom spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un prénom'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )
@@ -60,6 +64,7 @@ class ContactFormBuilder extends FormBuilder
                         'validators' => [
                             new MinLengthValidator('L\'email spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('L\'email spécifié est trop long (30 caractères maximum)', 30),
+                            new IsEmailValidator('La valeur saisie ne correspond pas à une adresse email type'),
                             new NotNullValidator('Merci de spécifier un prénom'),
                         ],
                     ]
@@ -78,6 +83,7 @@ class ContactFormBuilder extends FormBuilder
                             new MinLengthValidator('L\'objet spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('L\'objet spécifié est trop long (255 caractères maximum)', 255),
                             new NotNullValidator('Merci de spécifier un objet'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )
@@ -97,6 +103,7 @@ class ContactFormBuilder extends FormBuilder
                             new MinLengthValidator('Le contenu du message spécifié est trop court (5 caractères minimum)', 5),
                             new MaxLengthValidator('Le contenu du message spécifié est trop long (50000 caractères maximum)', 50000),
                             new NotNullValidator('Merci de spécifier le contenu du message'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )

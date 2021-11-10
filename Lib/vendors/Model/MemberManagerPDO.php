@@ -23,11 +23,11 @@ class MemberManagerPDO extends MemberManager
         );
 
         $request->bindValue(':member_pseudonym', $member->memberPseudonym(), PDO::PARAM_STR);
-        $request->bindValue(':member_email_address', $member->memberEmailAdress(), PDO::PARAM_STR);
+        $request->bindValue(':member_email_address', $member->memberEmailAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_firstname', $member->memberFirstName(), PDO::PARAM_STR);
         $request->bindValue(':member_lastname', $member->memberLastName(), PDO::PARAM_STR);
         $request->bindValue(':member_profile_picture_path', $member->memberProfilePicturePath(), PDO::PARAM_STR);
-        $request->bindValue(':member_home_address', $member->memberHomeAdress(), PDO::PARAM_STR);
+        $request->bindValue(':member_home_address', $member->memberHomeAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_zip_code', $member->memberZipCode(), PDO::PARAM_INT);
         $request->bindValue(':member_city_name_fr_fr', $member->memberCityNameFrFr(), PDO::PARAM_STR);
         $request->bindValue(':member_country_name_fr_fr', $member->memberCountryNameFrFr(), PDO::PARAM_STR);
@@ -38,7 +38,7 @@ class MemberManagerPDO extends MemberManager
         $request->bindValue(':member_facebook_page_url', $member->memberFacebookPageUrl(), PDO::PARAM_STR);
         $request->bindValue(':member_instagram_page_url', $member->memberInstagramPageUrl(), PDO::PARAM_STR);
         $request->bindValue(':member_youtube_page_url', $member->memberYoutubePageUrl(), PDO::PARAM_STR);
-        $request->bindValue(':member_password', $member->memberPassword(), PDO::PARAM_STR);
+        $request->bindValue(':member_password', password_hash($member->memberPassword(), PASSWORD_DEFAULT), PDO::PARAM_STR);
 
         $request->execute();
 
@@ -69,23 +69,28 @@ class MemberManagerPDO extends MemberManager
         return $member_list;
     }
 
-    public function getUnique($info): Member
+    public function getUnique(Mixed $info, String $field = null): ?Member
     {
         $sql = 'SELECT id, member_pseudonym, member_email_address, member_firstname, member_lastname, member_profile_picture_path, 
         member_home_address, member_zip_code, member_city_name_fr_fr, member_country_name_fr_fr, member_bio_fr_fr, member_date_of_birth, member_gender,
         member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password
         FROM blog."member"';
 
-        if (is_int($info)) {            
+        if (is_int($info)) {
             $sql .= ' WHERE id = :id';
 
             $request = $this->dao->prepare($sql);
             $request->bindValue(':id', (int) $info, PDO::PARAM_INT);
-        } else {
+        } else if ($field === null) {
             $sql .= ' WHERE member_pseudonym = :member_pseudonym';
-            
+
             $request = $this->dao->prepare($sql);
             $request->bindValue(':member_pseudonym', (string) $info, PDO::PARAM_STR);
+        } else {
+            $sql .= ' WHERE ' . $field . ' = :' . $field;
+
+            $request = $this->dao->prepare($sql);
+            $request->bindValue(':' . $field, (string) $info, PDO::PARAM_STR);
         }
 
         $request->execute();
@@ -120,11 +125,11 @@ class MemberManagerPDO extends MemberManager
         );
 
         $request->bindValue(':member_pseudonym', $member->memberPseudonym(), PDO::PARAM_STR);
-        $request->bindValue(':member_email_address', $member->memberEmailAdress(), PDO::PARAM_STR);
+        $request->bindValue(':member_email_address', $member->memberEmailAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_firstname', $member->memberFirstName(), PDO::PARAM_STR);
         $request->bindValue(':member_lastname', $member->memberLastName(), PDO::PARAM_STR);
         $request->bindValue(':member_profile_picture_path', $member->memberProfilePicturePath(), PDO::PARAM_STR);
-        $request->bindValue(':member_home_address', $member->memberHomeAdress(), PDO::PARAM_STR);
+        $request->bindValue(':member_home_address', $member->memberHomeAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_zip_code', $member->memberZipCode(), PDO::PARAM_INT);
         $request->bindValue(':member_city_name_fr_fr', $member->memberCityNameFrFr(), PDO::PARAM_STR);
         $request->bindValue(':member_country_name_fr_fr', $member->memberCountryNameFrFr(), PDO::PARAM_STR);

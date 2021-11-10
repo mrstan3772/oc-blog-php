@@ -24,7 +24,7 @@ abstract class MemberManager extends Manager
      * 
      * @return int
      */
-    abstract public function count() : Int;
+    abstract public function count(): Int;
 
     /**
      * Méthode permettant de supprimer un membre.
@@ -32,7 +32,7 @@ abstract class MemberManager extends Manager
      * @param $id int L'identifiant du membre à supprimer.
      * @return void
      */
-    abstract public function delete(Int $id) : Void;
+    abstract public function delete(Int $id): Void;
 
     /**
      * Méthode retournant une liste de membres demandée.
@@ -41,7 +41,7 @@ abstract class MemberManager extends Manager
      * @param $limite int Le nombre de membres à sélectionner.
      * @return array La liste des membres. Chaque entrée est une instance de s.
      */
-    abstract public function getList(Int $start = -1, Int $limit = -1) : Array;
+    abstract public function getList(Int $start = -1, Int $limit = -1): array;
 
     /**
      * Méthode retournant un membre précis.
@@ -49,7 +49,7 @@ abstract class MemberManager extends Manager
      * @param $info mixed L'identifiant du membre à récupérer ou alors son pseudonyme.
      * @return Member Membre demandé.
      */
-    abstract public function getUnique($info) : Member;
+    abstract public function getUnique(Mixed $info, String $field = null): ?Member;
 
     /**
      * Méthode permettant de modifier un membre.
@@ -67,7 +67,7 @@ abstract class MemberManager extends Manager
      * @see self::modify()
      * @return void
      */
-    public function save(Member $member) : Void
+    public function save(Member $member): Void
     {
         if ($member->isValid()) {
             $member->isNew() ? $this->add($member) : $this->modify($member);

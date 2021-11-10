@@ -63,6 +63,12 @@
                         </ul>
                     </li> -->
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li class="dropdown"><a href="#"><span>Mon Compte</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li><a href="/login">Me connectez</a></li>
+                            <li><a href="/registration">S'inscrire</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

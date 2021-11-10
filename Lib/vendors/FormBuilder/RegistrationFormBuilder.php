@@ -8,8 +8,11 @@ use \SamplePHPFramework\Form\DropDownListField;
 use \SamplePHPFramework\Form\EmailField;
 use \SamplePHPFramework\Form\FileField;
 use \SamplePHPFramework\Form\PasswordField;
+use SamplePHPFramework\Validator\AllowedFileValidator;
 use \SamplePHPFramework\Validator\IsEmailValidator;
 use \SamplePHPFramework\Validator\IsInTheListValidator;
+use SamplePHPFramework\Validator\IsStringValidator;
+use SamplePHPFramework\Validator\MaxFileSizeValidator;
 use \SamplePHPFramework\Validator\MaxLengthValidator;
 use \SamplePHPFramework\Validator\MinLengthValidator;
 use \SamplePHPFramework\Validator\NotNullValidator;
@@ -31,6 +34,7 @@ class RegistrationFormBuilder extends FormBuilder
                         new MinLengthValidator('Le nom d\'utilisateur spécifié est trop court (3 caractères minimum)', 3),
                         new MaxLengthValidator('Le nom d\'utilisateur spécifié est trop long (50 caractères maximum)', 50),
                         new NotNullValidator('Merci de spécifier le nom d\'utilisateur'),
+                        new IsStringValidator('Valeur illisible !')
                     ],
                 ]
             )
@@ -48,6 +52,7 @@ class RegistrationFormBuilder extends FormBuilder
                             new MinLengthValidator('Le nom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le nom spécifié est trop long (50 caractères maximum)', 50),
                             new NotNullValidator('Merci de spécifier un nom'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )
@@ -65,6 +70,7 @@ class RegistrationFormBuilder extends FormBuilder
                             new MinLengthValidator('Le prénom spécifié est trop court (2 caractères minimum)', 2),
                             new MaxLengthValidator('Le prénom spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un prénom'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )
@@ -113,6 +119,19 @@ class RegistrationFormBuilder extends FormBuilder
                 )
             )
             ->add(
+                new FileField(
+                    [
+                        'label' => 'IMAGE DE PROFILE',
+                        'name' => 'memberProfilePicturePath',
+                        'accept' => 'image/png, image/jpeg, image/gif',
+                        'validators' => [
+                            new AllowedFileValidator('Ce type de fichier n\'est pas supproté. Seul les images JPEG, PNG, GIF sont autorisés.', ['jpeg', 'jpg', 'png', 'gif']),
+                            new MaxFileSizeValidator('Le fichier est trop voluminuex et excède la limite maximal de 5MO qui peut être téléversé.', 5242880),
+                        ],
+                    ]
+                )
+            )
+            ->add(
                 new PasswordField(
                     [
                         'label' => '',
@@ -125,34 +144,8 @@ class RegistrationFormBuilder extends FormBuilder
                             new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
                             new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un mot de passe'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
-                    ]
-                )
-            )
-            ->add(
-                new PasswordField(
-                    [
-                        'label' => '',
-                        'name' => 'memberPasswordRepeat',
-                        'classField' => 'form-control',
-                        'minLength' => 8,
-                        'maxLength' => 30,
-                        'placeholder' => 'RETAPEZ LE MOT DE PASSE',
-                        'validators' => [
-                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
-                            new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
-                            new NotNullValidator('Merci de spécifier un mot de passe'),
-                        ],
-                    ]
-                )
-            )
-            ->add(
-                new FileField(
-                    [
-                        'label' => 'IMAGE DE PROFILE',
-                        'name' => 'memberProfilePicturePath',
-                        'accept' => 'image/png, image/jpeg',
-                        'validators' => [],
                     ]
                 )
             );
