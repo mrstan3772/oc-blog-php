@@ -1,27 +1,43 @@
 routes:
-    index:       
-        url: '/'        
-        module: 'Main'
-        action: 'index'
+    index:
+        url: "/"
+        module: "Main"
+        action: "index"
         vars:
-            - 'section'
+            - "section"
     work:
-        url: '/work/([-a-z]+)'
-        module: 'Work'
-        action: 'show'
+        url: "/work/([-a-z]+)/?"
+        module: "Work"
+        action: "show"
     news-list:
-        url: '/news/?'
-        module: 'News'
-        action: 'index'
+        url: "/news/?"
+        module: "News"
+        action: "index"
     news-list-page:
-        url: '/news/page/([1-9]+)/?'
-        module: 'News'
-        action: 'index'
+        url: "/news/page/([1-9]+)/?"
+        module: "News"
+        action: "index"
         vars:
-            - 'page'
+            - "page"
     news:
-        url: '/news/([0-9]+)/?'
-        module: 'News'
-        action: 'show'
-        vars: 
-            - 'id'
+        url: "/news/([0-9]+)/?"
+        module: "News"
+        action: "show"
+        vars:
+            - "id"
+    registration:
+        url: "/registration/?"
+        module: "Account"
+        action: "registration"
+    connection:
+        url: "/connection/?"
+        module: "Account"
+        action: "connection"
+    disconnection:
+        url: "/disconnection/?"
+        module: "Account"
+        action: "disconnection"
+    member-space:
+        url: "/user/([0-9]+)/?"
+        module: "Account"
+        action: "index"

@@ -42,7 +42,7 @@
                             <?php foreach ($comments as $comment) : ?>
                                 <li>
                                     <div class="comment-avatar">
-                                        <img src="/<?= $config->get('assets_path') ?>/images/member/<?= $author_list[$comment['id']]['memberProfilePicturePath'] ?>" alt="">
+                                        <img src="/dist/images/member/<?= $author_list[$comment['id']]['memberProfilePicturePath'] ?>" alt="">
                                     </div>
                                     <div class="comment-details">
                                         <h4 class="comment-author"><?= $author_list[$comment['id']]['memberFirstName'] ?> <?= $author_list[$comment['id']]['memberLastName'] ?></h4>
@@ -84,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                                    <button type="submit" class="button button-a button-big button-rouded">Envoyer</button>
                                 </div>
                             </div>
                         </form>

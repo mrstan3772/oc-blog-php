@@ -39,6 +39,19 @@ class FrontEndApplication extends Application
 
         $controller->page()->addVar('copyright_date', $current_year);
 
+        //VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
+        if ($this->user->isAuthenticated()) {
+            $user_session = $this->user->getAttribute('USER_INFO');
+            $controller->page()->addVar('user_session', $user_session);
+
+            if (
+                $this->http_request->requestURI() === '/registration' || $this->http_request->requestURI() === '/registration/'
+                || $this->http_request->requestURI() === '/connection' ||  $this->http_request->requestURI() === '/connection/'
+            ) {
+                $this->http_response->redirect('/user/'.$user_session->id());
+            }
+        }
+
         $this->http_response->setPage($controller->page());
         $this->http_response->send();
     }

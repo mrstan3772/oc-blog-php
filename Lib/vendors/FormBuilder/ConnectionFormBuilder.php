@@ -5,26 +5,29 @@ namespace FormBuilder;
 use \SamplePHPFramework\Form\FormBuilder;
 use \SamplePHPFramework\Form\StringField;
 use \SamplePHPFramework\Form\PasswordField;
+use SamplePHPFramework\Validator\IsStringValidator;
 use \SamplePHPFramework\Validator\MaxLengthValidator;
 use \SamplePHPFramework\Validator\MinLengthValidator;
 use \SamplePHPFramework\Validator\NotNullValidator;
 
-class LoginFormBuilder extends FormBuilder
+class ConnectionFormBuilder extends FormBuilder
 {
-    public function build() : Void
+    public function build(): Void
     {
         $this->form->add(
             new StringField(
                 [
-                    'label' => 'NOM D\'UTILISATEUR',
-                    'name' => 'username',
+                    'label' => '',
+                    'name' => 'memberPseudonym',
+                    'classField' => 'form-control',
                     'minLength' => 3,
                     'maxLength' => 50,
-                    'placeholder' => 'john76',
+                    'placeholder' => 'NOM D\'UTILISATEUR',
                     'validators' => [
                         new MinLengthValidator('Le nom d\'utilisateur spécifié est trop court (3 caractères minimum)', 3),
                         new MaxLengthValidator('Le nom d\'utilisateur spécifié est trop long (50 caractères maximum)', 50),
                         new NotNullValidator('Merci de spécifier le nom d\'utilisateur'),
+                        new IsStringValidator('Valeur illisible !')
                     ],
                 ]
             )
@@ -32,15 +35,15 @@ class LoginFormBuilder extends FormBuilder
             ->add(
                 new PasswordField(
                     [
-                        'label' => 'MOT DE PASSE',
-                        'name' => 'password',
+                        'label' => '',
+                        'name' => 'memberPassword',
+                        'classField' => 'form-control',
                         'minLength' => 8,
                         'maxLength' => 30,
-                        'placeholder' => 'Votre mot de passe (8 caractères minimum)',
+                        'placeholder' => 'MOT DE PASSE',
                         'validators' => [
-                            new MinLengthValidator('Le mot de passe spécifié est trop court (8 caractères minimum)', 8),
-                            new MaxLengthValidator('Le mot de passe spécifié est trop long (30 caractères maximum)', 30),
                             new NotNullValidator('Merci de spécifier un mot de passe'),
+                            new IsStringValidator('Valeur illisible !')
                         ],
                     ]
                 )

@@ -32,7 +32,7 @@ class Member extends Entity
     protected ?String $member_firstname = null;
 
     /** @var string Le genre du membre. */
-    protected String $member_gender;
+    protected String $member_gender = 'M';
 
     /** @var string L'addresse email du membre. */
     protected ?String $member_home_address = null;
@@ -41,16 +41,16 @@ class Member extends Entity
     protected ?String $member_instagram_page_url = null;
 
     /** @var string Le nom de famille du membre. */
-    protected String $member_lastname;
+    protected ?String $member_lastname = null;
 
     /** @var int Le numéro de téléphone du membre. */
     protected ?Int $member_phone_number = null;
 
     /** @var string La photo de profile du membre. */
-    protected String $member_profile_picture_path;
+    protected Mixed $member_profile_picture_path = null;
 
     /** @var string Le pseudonyme du membre. */
-    protected String $member_pseudonym;
+    protected ?String $member_pseudonym = null;
 
     /** @var string L'URL associé à la chaine Youtube du membre. */
     protected ?String $member_youtube_page_url = null;
@@ -59,7 +59,7 @@ class Member extends Entity
     protected ?Int $member_zip_code = null;
 
     /** @var int Le mot de passe du membre. */
-    protected String $member_password;
+    protected ?String $member_password = null;
 
     /** @var int Retourne un code d'erreur si la bio du membre ne respecte pas les contraintes de validation attendues. */
     const INVALID_MEMBER_BIO = 1;
@@ -119,18 +119,26 @@ class Member extends Entity
      */
     public function isValid(): Bool
     {
-        return !(empty($this->member_bio_fr_fr) || empty($this->member_city_name_fr_fr) || empty($this->member_country_name_fr_fr)
-            || empty($this->member_date_of_birth) || empty($this->member_email_address) || empty($this->member_facebook_page_url)
-            || empty($this->member_firstname) || empty($this->member_gender) || empty($this->member_home_address)
-            || empty($this->member_instagram_page_url) || empty($this->member_lastname) || empty($this->member_phone_number)
-            || empty($this->member_profile_picture_path) || empty($this->member_pseudonym) || empty($this->member_youtube_page_url)
-            || empty($this->member_zip_code) || empty($this->member_password))
-            && is_string($this->member_bio_fr_fr) && is_string($this->member_city_name_fr_fr) && is_string($this->member_country_name_fr_fr)
-            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime)  && is_string($this->member_email_address) && is_string($this->member_facebook_page_url)
-            && is_string($this->member_firstname) && is_string($this->member_gender) && is_string($this->member_home_address)
-            && is_string($this->member_instagram_page_url) && is_string($this->member_lastname) && is_int($this->member_phone_number)
-            && is_string($this->member_profile_picture_path) && is_string($this->member_pseudonym) && is_string($this->member_youtube_page_url)
-            && is_int($this->member_zip_code) && is_string($this->member_profile_picture_path);
+        return !(is_null($this->member_email_address) || is_null($this->member_firstname) || is_null($this->member_gender)
+            || is_null($this->member_lastname) || is_null($this->member_pseudonym)
+            || is_null($this->member_password))
+            && (is_string($this->member_bio_fr_fr) || is_null($this->member_bio_fr_fr))
+            && (is_string($this->member_city_name_fr_fr) || is_null($this->member_city_name_fr_fr))
+            && (is_string($this->member_country_name_fr_fr) ||  is_null($this->member_country_name_fr_fr))
+            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime || is_null($this->member_date_of_birth))
+            && is_string($this->member_email_address)
+            && (is_string($this->member_facebook_page_url) || is_null($this->member_facebook_page_url))
+            && is_string($this->member_firstname)
+            && is_string($this->member_gender)
+            && (is_string($this->member_home_address) || is_null($this->member_home_address))
+            && (is_string($this->member_instagram_page_url) || is_null($this->member_instagram_page_url))
+            && is_string($this->member_lastname)
+            && (is_int($this->member_phone_number) || is_null($this->member_phone_number))
+            && (is_string($this->member_profile_picture_path) || is_null($this->member_profile_picture_path))
+            && is_string($this->member_pseudonym)
+            && (is_string($this->member_youtube_page_url) || is_null($this->member_youtube_page_url))
+            && (is_int($this->member_zip_code) || is_null($this->member_zip_code))
+            && is_string($this->member_password);
     }
 
     /**
@@ -138,7 +146,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberBioFrFr(): String
+    public function memberBioFrFr(): ?String
     {
         return $this->member_bio_fr_fr;
     }
@@ -178,7 +186,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberEmailAddress(): String
+    public function memberEmailAddress(): ?String
     {
         return $this->member_email_address;
     }
@@ -188,7 +196,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberFacebookPageUrl(): String
+    public function memberFacebookPageUrl(): ?String
     {
         return $this->member_facebook_page_url;
     }
@@ -198,7 +206,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberFirstName(): String
+    public function memberFirstName(): ?String
     {
         return $this->member_firstname;
     }
@@ -208,7 +216,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberGender(): String
+    public function memberGender(): ?String
     {
         return $this->member_gender;
     }
@@ -228,7 +236,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberInstagramPageUrl(): String
+    public function memberInstagramPageUrl(): ?String
     {
         return $this->member_instagram_page_url;
     }
@@ -238,7 +246,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberLastName(): String
+    public function memberLastName(): ?String
     {
         return $this->member_lastname;
     }
@@ -258,7 +266,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberProfilePicturePath(): String
+    public function memberProfilePicturePath(): Mixed
     {
         return $this->member_profile_picture_path;
     }
@@ -268,7 +276,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberPseudonym(): String
+    public function memberPseudonym(): ?String
     {
         return $this->member_pseudonym;
     }
@@ -278,7 +286,7 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberYoutubePageUrl(): String
+    public function memberYoutubePageUrl(): ?String
     {
         return $this->member_youtube_page_url;
     }
@@ -298,8 +306,9 @@ class Member extends Entity
      * 
      * @return string
      */
-    public function memberPassword(): String
+    public function memberPassword(): ?String
     {
+
         return $this->member_password;
     }
 
@@ -412,7 +421,7 @@ class Member extends Entity
      */
     public function setMemberGender(String $member_gender): Void
     {
-        strlen($member_gender) !== 1 ? $this->errors[] = self::INVALID_MEMBER_GENDER : $this->member_gender = $member_gender;
+        strlen($member_gender) > 30 || strlen($member_gender) < 1  ? $this->errors[] = self::INVALID_MEMBER_GENDER : $this->member_gender = $member_gender;
     }
 
     /**
@@ -478,10 +487,12 @@ class Member extends Entity
      * @param string $member_profile_picture_path
      * @return  void
      */
-    public function setMemberProfilePicturePath(String $member_profile_picture_path): Void
+    public function setMemberProfilePicturePath(Mixed $member_profile_picture_path): Void
     {
-        if (!strlen($member_profile_picture_path) >= 5 && !strlen($member_profile_picture_path) <= 255) {
-            $this->errors[] = self::INVALID_MEMBER_PROFILE_PICTURE_PATH;
+        if (is_string($member_profile_picture_path)) {
+            if (!strlen($member_profile_picture_path) >= 5 && !strlen($member_profile_picture_path) <= 255) {
+                $this->errors[] = self::INVALID_MEMBER_PROFILE_PICTURE_PATH;
+            }
         }
 
         $this->member_profile_picture_path = $member_profile_picture_path;

@@ -1,3 +1,19 @@
+.form-control,
+.form-label {
+  width: 100%;
+}
+
+.sign-in {
+  height: 80%;
+}
+
+.user-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-left: 77.5px;
+}
+
 @media (min-width: 767px) {
   .card-blog {
     min-height: 500px;
@@ -6,12 +22,11 @@
 
 @media (max-width: 760px) {
   #header .logo a {
-    font-size: .9rem;
+    font-size: 0.9rem;
   }
-}
-
-.form-control, .form-label {
-  width: 100%;
+  .user-image {
+    margin-left: 45%;
+  }
 }
 
 /*# sourceMappingURL=maps/my.css.map */

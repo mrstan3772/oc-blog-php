@@ -6,12 +6,9 @@ use \Entity\NewsletterEmail;
 use \Entity\Contact;
 use \FormBuilder\NewsletterFormBuilder;
 use \FormBuilder\ContactFormBuilder;
-use \FormBuilder\ProductionRequestFormBuilder;
 use \SamplePHPFramework\Components\BackController;
 use \SamplePHPFramework\Components\HTTPRequest;
 use \SamplePHPFramework\Form\FormHandler;
-use \DateTime;
-
 /**
  * MainController
  */
@@ -73,7 +70,7 @@ class MainController extends BackController
         $news_list = $news_manager->getList(0, $news_number);
 
         $author_list = [];
-
+        
         foreach ($news_list as $news) {
             if (strlen($news->newsLeadParagraph()) > $characters_number) {
                 $start = substr($news->newsLeadParagraph(), 0, $characters_number);
