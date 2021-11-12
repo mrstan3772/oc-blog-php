@@ -34,7 +34,7 @@
                          </div>
                          <div class="card-footer">
                              <div class="post-author">
-                                 <img src="/<?= $config->get('assets_path') ?>/images/any/<?= $author_list[$news['id']]['memberProfilePicturePath'] ?>" alt="" class="avatar rounded-circle">
+                                 <img src="/dist/images/any/<?= $author_list[$news['id']]['memberProfilePicturePath'] ?>" alt="" class="avatar rounded-circle">
                                  <span class="author"><?= $author_list[$news['id']]['memberFirstname'] ?> <?= $author_list[$news['id']]['memberLastName'] ?></span>
                              </div>
                              <div class="post-date">

@@ -63,12 +63,22 @@
                         </ul>
                     </li> -->
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li class="dropdown"><a href="#"><span>Mon Compte</span> <i class="bi bi-chevron-down"></i></a>
-                        <ul>
-                            <li><a href="/login">Me connectez</a></li>
-                            <li><a href="/registration">S'inscrire</a></li>
-                        </ul>
-                    </li>
+                    <?php if (!isset($user_session)) : ?>
+                        <li class="dropdown"><a href="#"><span>Mon Compte</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a href="/connection">Me connectez</a></li>
+                                <li><a href="/registration">S'inscrire</a></li>
+                            </ul>
+                        </li>
+                    <?php else : ?>
+                        <li class="dropdown"><a href="#"><span><?= $user_session['memberPseudonym'] ?></span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><img src="/dist/images/member/<?= $user_session['memberProfilePicturePath'] ?>" alt="user profile" class="user-image"></li>
+                                <li><a href="/user/<?= strtolower($user_session['id']) ?>">Espace personnel</a></li>
+                                <li><a href="/disconnection">Se déconnecter</a></li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

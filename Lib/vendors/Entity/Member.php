@@ -122,10 +122,10 @@ class Member extends Entity
         return !(is_null($this->member_email_address) || is_null($this->member_firstname) || is_null($this->member_gender)
             || is_null($this->member_lastname) || is_null($this->member_pseudonym)
             || is_null($this->member_password))
-            && (is_string($this->member_bio_fr_fr) || is_null($this->member_bio_fr_fr)) 
+            && (is_string($this->member_bio_fr_fr) || is_null($this->member_bio_fr_fr))
             && (is_string($this->member_city_name_fr_fr) || is_null($this->member_city_name_fr_fr))
             && (is_string($this->member_country_name_fr_fr) ||  is_null($this->member_country_name_fr_fr))
-            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime || is_null($this->member_date_of_birth))  
+            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime || is_null($this->member_date_of_birth))
             && is_string($this->member_email_address)
             && (is_string($this->member_facebook_page_url) || is_null($this->member_facebook_page_url))
             && is_string($this->member_firstname)
@@ -421,7 +421,7 @@ class Member extends Entity
      */
     public function setMemberGender(String $member_gender): Void
     {
-        strlen($member_gender) !== 1 ? $this->errors[] = self::INVALID_MEMBER_GENDER : $this->member_gender = $member_gender;
+        strlen($member_gender) > 30 || strlen($member_gender) < 1  ? $this->errors[] = self::INVALID_MEMBER_GENDER : $this->member_gender = $member_gender;
     }
 
     /**

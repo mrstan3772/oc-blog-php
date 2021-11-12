@@ -1,24 +1,23 @@
-<!-- ======= Rgistration Section ======= -->
-<section id="registration" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/<?= $config->get('assets_path') ?>/images/contact/overlay-bg.jpg)">
+<!-- ======= Connection Section ======= -->
+<section id="connection" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/<?= $config->get('assets_path') ?>/images/contact/overlay-bg.jpg)">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <div class="registration-mf">
-                    <div id="registration" class="box-shadow-full">
+                <div class="connection-mf">
+                    <div id="connection" class="box-shadow-full">
                         <div class="row">
                             <div class="col-md-12"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
                             <div class="col-md-6">
                                 <div class="title-box-2">
                                     <h5 class="title-left">
-                                        Inscrivez-vous
+                                        Connectez-vous
                                     </h5>
                                 </div>
                                 <div>
-                                    <form action="/registration" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
-                                        <?= $form_registration ?>
-                                        <label class="form-label"><input type="password" name="memberPasswordRepeat" id="memberPasswordRepeat" class="form-control" required="" maxlength="30" minlength="8" placeholder="RETAPEZ LE MOT DE PASSE"></label>
+                                    <form action="/connection" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
+                                        <?= $form_connection ?>
                                         <div class="col-md-12 text-center">
-                                            <button type="submit" class="button button-a button-big button-rouded">M'inscrire</button>
+                                            <button type="submit" class="button button-a button-big button-rouded">Me connectez</button>
                                         </div>
                                     </form>
                                 </div>
@@ -26,11 +25,11 @@
                             <div class="col-md-6">
                                 <div class="title-box-2 pt-4 pt-md-0">
                                     <h5 class="title-left">
-                                        J'ai un commpte
+                                        Je ne dispose d'aucun compte
                                     </h5>
                                 </div>
                                 <div class="d-flex justify-content-center align-items-center sign-in">
-                                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="/connection" role="button">ME CONNECTEZ</a></p>
+                                    <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="/registration" role="button">M'INSCRIRE</a></p>
                                 </div>
                             </div>
                         </div>
@@ -39,4 +38,4 @@
             </div>
         </div>
     </div>
-</section><!-- End Registration Section -->
+</section><!-- End Connection Section -->

@@ -13,20 +13,32 @@ class MemberManagerPDO extends MemberManager
 {
     protected function add(Member $member): Void
     {
-        $request = $this->dao->prepare(
-            'INSERT INTO blog."member"(member_pseudonym, member_email_address, member_firstname, member_lastname, member_profile_picture_path, 
+        if ($member->memberProfilePicturePath()) {
+            $request = $this->dao->prepare(
+                'INSERT INTO blog."member"(member_pseudonym, member_email_address, member_firstname, member_lastname, member_profile_picture_path, 
             member_home_address, member_zip_code, member_city_name_fr_fr, member_country_name_fr_fr, member_bio_fr_fr, member_date_of_birth, member_gender,
             member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password) 
             VALUES(:member_pseudonym, :member_email_address, :member_firstname, :member_lastname, :member_profile_picture_path, :member_home_address,
             :member_zip_code, :member_city_name_fr_fr, :member_country_name_fr_fr, :member_bio_fr_fr, :member_date_of_birth, :member_gender, :member_phone_number,
             :member_facebook_page_url, :member_instagram_page_url, :member_youtube_page_url, :member_password)'
-        );
+            );
+
+            $request->bindValue(':member_profile_picture_path', $member->memberProfilePicturePath(), PDO::PARAM_STR);
+        } else {
+            $request = $this->dao->prepare(
+                'INSERT INTO blog."member"(member_pseudonym, member_email_address, member_firstname, member_lastname, 
+            member_home_address, member_zip_code, member_city_name_fr_fr, member_country_name_fr_fr, member_bio_fr_fr, member_date_of_birth, member_gender,
+            member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password) 
+            VALUES(:member_pseudonym, :member_email_address, :member_firstname, :member_lastname, :member_home_address,
+            :member_zip_code, :member_city_name_fr_fr, :member_country_name_fr_fr, :member_bio_fr_fr, :member_date_of_birth, :member_gender, :member_phone_number,
+            :member_facebook_page_url, :member_instagram_page_url, :member_youtube_page_url, :member_password)'
+            );
+        }
 
         $request->bindValue(':member_pseudonym', $member->memberPseudonym(), PDO::PARAM_STR);
         $request->bindValue(':member_email_address', $member->memberEmailAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_firstname', $member->memberFirstName(), PDO::PARAM_STR);
         $request->bindValue(':member_lastname', $member->memberLastName(), PDO::PARAM_STR);
-        $request->bindValue(':member_profile_picture_path', $member->memberProfilePicturePath(), PDO::PARAM_STR);
         $request->bindValue(':member_home_address', $member->memberHomeAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_zip_code', $member->memberZipCode(), PDO::PARAM_INT);
         $request->bindValue(':member_city_name_fr_fr', $member->memberCityNameFrFr(), PDO::PARAM_STR);

@@ -123,7 +123,8 @@ class RegistrationFormBuilder extends FormBuilder
                     [
                         'label' => 'IMAGE DE PROFILE',
                         'name' => 'memberProfilePicturePath',
-                        'accept' => 'image/png, image/jpeg, image/gif',
+                        'pattern' => 'image/png, image/jpeg, image/gif',
+                        'required' => false,
                         'validators' => [
                             new AllowedFileValidator('Ce type de fichier n\'est pas supproté. Seul les images JPEG, PNG, GIF sont autorisés.', ['jpeg', 'jpg', 'png', 'gif']),
                             new MaxFileSizeValidator('Le fichier est trop voluminuex et excède la limite maximal de 5MO qui peut être téléversé.', 5242880),
