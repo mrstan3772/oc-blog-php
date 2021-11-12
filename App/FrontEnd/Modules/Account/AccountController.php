@@ -205,7 +205,7 @@ class AccountController extends BackController
         preg_match($pattern, $request_path, $matches);
         $request_path = $matches[2];
 
-        if ($request_path != $this->app->user()->getAttribute('USER_INFO')->id()) {
+        if ($request_path != /* $this->app->user()->getAttribute('USER_INFO')->id() */  $this->page->vars()['USER_INFO']->id()) {
             $this->app->httpResponse()->redirect404();
         }
 

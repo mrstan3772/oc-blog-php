@@ -1,7 +1,8 @@
 routes:
     index:       
-        url: '/'        
+        url: '/admin/?'        
         module: 'Main'
         action: 'index'
         vars:
             - 'section'
+        

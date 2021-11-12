@@ -40,11 +40,11 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Accueil</a></li>
-                    <li><a class="nav-link scrollto" href="#about">À propos</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#work">Projet</a></li>
-                    <li><a class="nav-link scrollto " href="#blog">Blog</a></li>
+                    <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
+                    <li><a class="nav-link scrollto" href="/#about">À propos</a></li>
+                    <li><a class="nav-link scrollto" href="/#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="/#work">Projet</a></li>
+                    <li><a class="nav-link scrollto " href="/#blog">Blog</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
                             <li><a href="#">Drop Down 1</a></li>
@@ -62,7 +62,7 @@
                             <li><a href="#">Drop Down 4</a></li>
                         </ul>
                     </li> -->
-                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <li><a class="nav-link scrollto" href="/#contact">Contact</a></li>
                     <?php if (!isset($user_session)) : ?>
                         <li class="dropdown"><a href="#"><span>Mon Compte</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
