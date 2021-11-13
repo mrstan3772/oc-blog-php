@@ -1,2 +1,4 @@
 default_lang: "fr_fr"
 assets_path: "dist"
+news_number: 500
+characters_number: 50

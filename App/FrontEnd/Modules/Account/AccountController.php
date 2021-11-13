@@ -27,12 +27,19 @@ class AccountController extends BackController
         $member_profil_picture_path = null;
         $register_error_message = [];
 
+        // VÉRIFICATION DE LA SIMILITUDE DES MOTS DE PASSE
+        if ($request->postData('memberPassword') !== $request->postData('memberPasswordRepeat')) {
+            $register_error_message[0] = 'Les deux mots de passe ne sont pas identiques !';
+            // throw new \RuntimeException('Erreur mot de passe');
+        }
+
         // RÉCUPÉRATION DU CONTENU ENVOYÉ PAR UNE REQUETE VIA LA MÉTHODE POST
         if ($request->postExists('memberPseudonym') && $request->fileExists('memberProfilePicturePath') && $request->fileData('memberProfilePicturePath')['name'] !== '') {
             if (
                 $this->managers->getManagerOf('Member')->getUnique($request->postData('memberPseudonym')) === null
                 || $this->managers->getManagerOf('Member')->getUnique($request->postData('memberEmailAddress'), 'member_email_address') === null
             ) {
+                error_log(print_r('Level 1', true), 0);
                 $member = new Member([
                     'memberPseudonym' => $request->postData('memberPseudonym'),
                     'memberLastName' => $request->postData('memberLastName'),
@@ -43,19 +50,18 @@ class AccountController extends BackController
                     'memberPassword' => $request->postData('memberPassword'),
                     'memberProfilePicturePath' => $request->fileData('memberProfilePicturePath'),
                 ]);
-
-                // UPLOAD PROFIL PICTURE
-                $member_profil_picture_path = $this->uploadFile($request->fileData('memberProfilePicturePath'))->getNameWithExtension();
             } else {
+                error_log(print_r('Level 2', true), 0);
                 $member = new Member;
 
-                $register_error_message[0] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
+                $register_error_message[1] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
             }
         } elseif (($request->postExists('memberPseudonym'))) {
             if (
                 $this->managers->getManagerOf('Member')->getUnique($request->postData('memberPseudonym')) === null
                 || $this->managers->getManagerOf('Member')->getUnique($request->postData('memberEmailAddress'), 'member_email_address') === null
             ) {
+                error_log(print_r('Level 3', true), 0);
                 $member = new Member([
                     'memberPseudonym' => $request->postData('memberPseudonym'),
                     'memberLastName' => $request->postData('memberLastName'),
@@ -66,20 +72,14 @@ class AccountController extends BackController
                     'memberPassword' => $request->postData('memberPassword'),
                 ]);
             } else {
+                error_log(print_r('Level 4', true), 0);
                 $member = new Member;
 
-                $register_error_message[0] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
+                $register_error_message[1] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
             }
         } else {
+            error_log(print_r('Level 5', true), 0);
             $member = new Member;
-        }
-
-        // print_r($member);
-
-        // VÉRIFICATION DU MOT DE PASSE
-        if ($request->postData('memberPassword') !== $request->postData('memberPasswordRepeat')) {
-            $register_error_message[1] = 'Les deux mots de passe ne sont pas identiques !';
-            // throw new \RuntimeException('Erreur mot de passe');
         }
 
         // AFFICHAGE DES ERREURS
@@ -103,8 +103,14 @@ class AccountController extends BackController
 
         $registration_form_handler = new FormHandler($form_registration, $this->managers->getManagerOf('Member'), $request);
 
-        if ($registration_form_handler->process()) {
-            $member->setMemberProfilePicturePath($member_profil_picture_path);
+        if ($registration_form_handler->process() && empty($register_error_message)) {
+            if ($request->fileExists('memberProfilePicturePath') && $request->fileData('memberProfilePicturePath')['name'] !== '') {
+
+                // UPLOAD PROFIL PICTURE
+                $member_profil_picture_path = $this->uploadFile($request->fileData('memberProfilePicturePath'))->getNameWithExtension();
+
+                $member->setMemberProfilePicturePath($member_profil_picture_path);
+            }
 
             $this->managers->getManagerOf('Member')->save($member);
 
@@ -205,7 +211,7 @@ class AccountController extends BackController
         preg_match($pattern, $request_path, $matches);
         $request_path = $matches[2];
 
-        if ($request_path != /* $this->app->user()->getAttribute('USER_INFO')->id() */  $this->page->vars()['USER_INFO']->id()) {
+        if ($request_path != $this->app->user()->getAttribute('USER_INFO')->id()) {
             $this->app->httpResponse()->redirect404();
         }
 

@@ -29,4 +29,35 @@
   }
 }
 
+.pc-sidebar .m-header {
+  height: initial;
+}
+
+.pcm-logo .logo.logo-lg {
+  height: 60px;
+}
+
+.b-brand {
+  display: block;
+  margin: auto;
+}
+
+.pc-header .user-avtar {
+  height: 40px;
+}
+
+.blog-post td {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
+
+.blog-post table {
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.blog-post .card.table-card {
+  overflow-y: scroll;
+}
+
 /*# sourceMappingURL=maps/my.css.map */

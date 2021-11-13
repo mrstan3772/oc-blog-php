@@ -67,6 +67,7 @@
                                                 <?php endif ?>
                                             </span>
                                         </p>
+                                        <p><span class="title-s">Inscrit(e) depuis le: </span> <span><?= $user_session['memberRegistrationDate']->format('d/m/Y à H\hi') ?></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -90,9 +91,21 @@
                     </div>
                     <div class="d-flex justify-content-center socials">
                         <ul>
-                            <li><a href="<?php if(empty($user_session['memberFacebookPageUrl'])) { echo '#';} else {echo $user_session['memberFacebookPageUrl'];} ?>"><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
-                            <li><a href="<?php if(empty($user_session['memberInstagramPageUrl'])) { echo '#';} else {echo $user_session['memberInstagramPageUrl'];} ?>"><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
-                            <li><a href="<?php if(empty($user_session['memberYoutubePageUrl'])) { echo '#';} else {echo $user_session['memberYoutubePageUrl'];} ?>"><span class="ico-circle"><i class="bi bi-youtube"></i></span></a></li>
+                            <li><a href="<?php if (empty($user_session['memberFacebookPageUrl'])) {
+                                                echo '#';
+                                            } else {
+                                                echo $user_session['memberFacebookPageUrl'];
+                                            } ?>"><span class="ico-circle"><i class="bi bi-facebook"></i></span></a></li>
+                            <li><a href="<?php if (empty($user_session['memberInstagramPageUrl'])) {
+                                                echo '#';
+                                            } else {
+                                                echo $user_session['memberInstagramPageUrl'];
+                                            } ?>"><span class="ico-circle"><i class="bi bi-instagram"></i></span></a></li>
+                            <li><a href="<?php if (empty($user_session['memberYoutubePageUrl'])) {
+                                                echo '#';
+                                            } else {
+                                                echo $user_session['memberYoutubePageUrl'];
+                                            } ?>"><span class="ico-circle"><i class="bi bi-youtube"></i></span></a></li>
                         </ul>
                     </div>
                 </div>

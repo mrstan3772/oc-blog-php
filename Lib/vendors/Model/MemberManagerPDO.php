@@ -61,7 +61,8 @@ class MemberManagerPDO extends MemberManager
     {
         $sql = 'SELECT id, member_pseudonym, member_email_address, member_firstname, member_lastname, member_profile_picture_path, 
         member_home_address, member_zip_code, member_city_name_fr_fr, member_country_name_fr_fr, member_bio_fr_fr, member_date_of_birth, member_gender,
-        member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password
+        member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password,
+        member_admin, member_registration_date
         FROM blog."member" 
         ORDER BY id ASC';
 
@@ -76,6 +77,7 @@ class MemberManagerPDO extends MemberManager
 
         foreach ($member_list as $member) {
             $member->setMemberDateOfBirth(new DateTime($member->memberDateOfBirth()));
+            $member->setMemberRegistrationDate(new DateTime($member->memberRegistrationDate()));
         }
 
         return $member_list;
@@ -85,7 +87,8 @@ class MemberManagerPDO extends MemberManager
     {
         $sql = 'SELECT id, member_pseudonym, member_email_address, member_firstname, member_lastname, member_profile_picture_path, 
         member_home_address, member_zip_code, member_city_name_fr_fr, member_country_name_fr_fr, member_bio_fr_fr, member_date_of_birth, member_gender,
-        member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password
+        member_phone_number, member_facebook_page_url, member_instagram_page_url, member_youtube_page_url, member_password,
+        member_admin, member_registration_date
         FROM blog."member"';
 
         if (is_int($info)) {
@@ -111,6 +114,7 @@ class MemberManagerPDO extends MemberManager
 
         if ($member = $request->fetch()) {
             $member->setMemberDateOfBirth(new DateTime($member->memberDateOfBirth()));
+            $member->setMemberRegistrationDate(new DateTime($member->memberRegistrationDate()));
 
             return $member;
         }
@@ -127,16 +131,16 @@ class MemberManagerPDO extends MemberManager
     {
         $request = $this->dao->prepare(
             'UPDATE blog."member" 
-            SET member_pseudonym = :member_pseudonym, member_email_address = :member_email_address, member_firstname = :member_firstname, 
+            SET member_email_address = :member_email_address, member_firstname = :member_firstname, 
             member_lastname = :member_lastname, member_profile_picture_path = :member_profile_picture_path, member_home_address = :member_home_address, 
             member_zip_code = :member_zip_code, member_city_name_fr_fr = :member_city_name_fr_fr, member_country_name_fr_fr = :member_country_name_fr_fr, 
             member_bio_fr_fr = :member_bio_fr_fr, member_date_of_birth = :member_date_of_birth, member_gender = :member_gender, member_phone_number = :member_phone_number, 
             member_facebook_page_url = :member_facebook_page_url, member_instagram_page_url = :member_instagram_page_url , member_youtube_page_url = :member_youtube_page_url,
-            member_password = :member_password
+            member_password = :member_password, member_admin = :member_admin
             WHERE id = :id'
         );
 
-        $request->bindValue(':member_pseudonym', $member->memberPseudonym(), PDO::PARAM_STR);
+        // $request->bindValue(':member_pseudonym', $member->memberPseudonym(), PDO::PARAM_STR);
         $request->bindValue(':member_email_address', $member->memberEmailAddress(), PDO::PARAM_STR);
         $request->bindValue(':member_firstname', $member->memberFirstName(), PDO::PARAM_STR);
         $request->bindValue(':member_lastname', $member->memberLastName(), PDO::PARAM_STR);
@@ -153,6 +157,7 @@ class MemberManagerPDO extends MemberManager
         $request->bindValue(':member_instagram_page_url', $member->memberInstagramPageUrl(), PDO::PARAM_STR);
         $request->bindValue(':member_youtube_page_url', $member->memberYoutubePageUrl(), PDO::PARAM_STR);
         $request->bindValue(':member_password', $member->memberPassword(), PDO::PARAM_STR);
+        $request->bindValue(':member_admin', $member->memberAdmin(), PDO::PARAM_BOOL);
         $request->bindValue(':id', $member->id(), PDO::PARAM_INT);
 
         $request->execute();

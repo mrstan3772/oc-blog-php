@@ -20,7 +20,7 @@ class Member extends Entity
     protected ?String $member_country_name_fr_fr = null;
 
     /** @var mixed La date de naissance du membre. */
-    protected $member_date_of_birth = null;
+    protected Mixed $member_date_of_birth = null;
 
     /** @var string L'addresse email du membre. */
     protected ?String $member_email_address = null;
@@ -60,6 +60,12 @@ class Member extends Entity
 
     /** @var int Le mot de passe du membre. */
     protected ?String $member_password = null;
+
+    /** @var bool Le type de compte du membre c.a.d utilisateur standard ou administrateur. */
+    protected Bool $member_admin = false;
+
+    /** @var mixed La date d'enregistrement du membre. */
+    protected Mixed $member_registration_date = null;
 
     /** @var int Retourne un code d'erreur si la bio du membre ne respecte pas les contraintes de validation attendues. */
     const INVALID_MEMBER_BIO = 1;
@@ -112,6 +118,13 @@ class Member extends Entity
     /** @var int Retourne un code d'erreur si le mot de passe du membre ne respecte pas les contraintes de validation attendues. */
     const INVALID_MEMBER_PASSWORD = 17;
 
+    /** @var int Retourne un code d'erreur si le type de compte du membre ne respecte pas les contraintes de validation attendues. */
+    const INVALID_MEMBER_ADMIN = 18;
+
+    /** @var int Retourne un code d'erreur si la date d'enregistrement du membre ne respecte pas les contraintes de validation attendues. */
+    const INVALID_MEMBER_REGISTRATION_DATE = 19;
+
+
     /**
      * Méthode permettant de s'assurer que l'ensemble des attributs soient valides après l'application ou non de restrictions au cas par cas.
      *
@@ -138,7 +151,9 @@ class Member extends Entity
             && is_string($this->member_pseudonym)
             && (is_string($this->member_youtube_page_url) || is_null($this->member_youtube_page_url))
             && (is_int($this->member_zip_code) || is_null($this->member_zip_code))
-            && is_string($this->member_password);
+            && is_string($this->member_password)
+            && is_bool($this->member_admin)
+            && (is_string($this->member_registration_date) || $this->member_registration_date instanceof DateTime || is_null($this->member_registration_date));
     }
 
     /**
@@ -176,7 +191,7 @@ class Member extends Entity
      * 
      * @return mixed
      */
-    public function memberDateOfBirth()
+    public function memberDateOfBirth(): Mixed
     {
         return $this->member_date_of_birth;
     }
@@ -313,6 +328,26 @@ class Member extends Entity
     }
 
     /**
+     * Obtenir la valeur de member_admin
+     * 
+     * @return bool
+     */
+    public function memberAdmin(): Bool
+    {
+        return $this->member_admin;
+    }
+
+    /**
+     * Obtenir la valeur de member_registration_date
+     * 
+     * @return mixed
+     */
+    public function memberRegistrationDate(): Mixed
+    {
+        return $this->member_registration_date;
+    }
+
+    /**
      * Définir la valeur de member_bio_fr_fr
      *
      * @param string $member_bio_fr_fr
@@ -363,7 +398,7 @@ class Member extends Entity
      * @param mixed $member_date_of_birth
      * @return  void
      */
-    public function setMemberDateOfBirth($member_date_of_birth): Void
+    public function setMemberDateOfBirth(Mixed $member_date_of_birth): Void
     {
         $this->member_date_of_birth = $member_date_of_birth;
     }
@@ -553,5 +588,33 @@ class Member extends Entity
         }
 
         $this->member_password = $member_password;
+    }
+
+    /**
+     * Définir la valeur de member_admin
+     *
+     * @param bool $member_admin
+     * 
+     * @return void
+     */
+    public function setMemberAdmin(Bool $member_admin): Void
+    {
+        if (!is_bool($member_admin)) {
+            $this->errors[] = self::INVALID_MEMBER_ADMIN;
+        }
+
+        $this->member_admin = $member_admin;
+    }
+
+
+    /**
+     * Définir la valeur de member_registration_date
+     *
+     * @param mixed $member_registration_date
+     * @return  void
+     */
+    public function setMemberRegistrationDate(Mixed $member_registration_date): Void
+    {
+        $this->member_registration_date = $member_registration_date;
     }
 }

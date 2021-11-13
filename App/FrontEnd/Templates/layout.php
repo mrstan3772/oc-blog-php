@@ -10,7 +10,7 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="/<?= $config->get('assets_path') ?>/any/favicon.png" rel="icon">
+    <link href="/<?= $config->get('assets_path') ?>/images/icons/svg/svg1.svg" rel="icon">
     <link href="/<?= $config->get('assets_path') ?>/any/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Vendor CSS Files -->
@@ -75,6 +75,9 @@
                             <ul>
                                 <li><img src="/dist/images/member/<?= $user_session['memberProfilePicturePath'] ?>" alt="user profile" class="user-image"></li>
                                 <li><a href="/user/<?= strtolower($user_session['id']) ?>">Espace personnel</a></li>
+                                <?php if ($user_session['memberAdmin']) : ?>
+                                    <li><a href="/admin">Espace administration</a></li>
+                                <?php endif ?>
                                 <li><a href="/disconnection">Se déconnecter</a></li>
                             </ul>
                         </li>
