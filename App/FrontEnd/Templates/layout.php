@@ -66,7 +66,7 @@
                     <?php if (!isset($user_session)) : ?>
                         <li class="dropdown"><a href="#"><span>Mon Compte</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a href="/connection">Me connectez</a></li>
+                                <li><a href="/connection">Me connecter</a></li>
                                 <li><a href="/registration">S'inscrire</a></li>
                             </ul>
                         </li>

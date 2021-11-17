@@ -16,7 +16,12 @@
 
 @media (min-width: 767px) {
   .card-blog {
-    min-height: 500px;
+    height: 550px;
+  }
+
+  .card-blog .card-img img {
+    height: 250px;
+    width: 100%;
   }
 }
 
@@ -48,7 +53,7 @@
 }
 
 .blog-post td {
-  white-space: normal !important; 
+  white-space: normal !important;
   word-wrap: break-word;
 }
 
@@ -57,6 +62,13 @@
   overflow-y: scroll;
 }
 
-.blog-post .card.table-card {
+.blog-post .card.table-card .pro-scroll {
   overflow-y: scroll;
+}
+
+.checkbox-label {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  width: 100px;
 }

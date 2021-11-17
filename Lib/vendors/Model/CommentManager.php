@@ -6,7 +6,7 @@ use \SamplePHPFramework\Manager;
 use \Entity\Comment;
 use \Entity\News;
 
-abstract class CommentsManager extends Manager
+abstract class CommentManager extends Manager
 {
 	/**
 	 * Méthode permettant d'ajouter un commentaire

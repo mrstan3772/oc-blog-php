@@ -6,7 +6,7 @@ use \Entity\Comment;
 use \Entity\News;
 use \PDO;
 
-class CommentsManagerPDO extends CommentsManager
+class CommentManagerPDO extends CommentManager
 {
     protected function add(Comment $comment): Void
     {

@@ -9,14 +9,19 @@ class NewsManagerPDO extends NewsManager
 {
     protected function add(News $news): Void
     {
-        $request = $this->dao->prepare('INSERT INTO blog."news"(news_author_id, news_lead_paragraph, news_title, news_category, news_cover, news_content) VALUES(:news_author_id, :news_lead_paragraph, :news_title, :news_category, :news_cover, :news_content)');
+        if ($news->newsCover()) {
+            $request = $this->dao->prepare('INSERT INTO blog."news"(news_author_id, news_lead_paragraph, news_title, news_category, news_cover, news_content, news_archive) VALUES(:news_author_id, :news_lead_paragraph, :news_title, :news_category, :news_cover, :news_content, :news_archive)');
+            $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
+        } else {
+            $request = $this->dao->prepare('INSERT INTO blog."news"(news_author_id, news_lead_paragraph, news_title, news_category, news_content, news_archive) VALUES(:news_author_id, :news_lead_paragraph, :news_title, :news_category, :news_content, :news_archive)');
+        }
 
         $request->bindValue(':news_title', $news->newsTitle(), PDO::PARAM_STR);
         $request->bindValue(':news_lead_paragraph', $news->newsLeadParagraph(), PDO::PARAM_STR);
         $request->bindValue(':news_author_id', $news->newsAuthorId(), PDO::PARAM_INT);
         $request->bindValue(':news_category', $news->newsCategory(), PDO::PARAM_STR);
-        $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
         $request->bindValue(':news_content', $news->newsContent(), PDO::PARAM_STR);
+        $request->bindValue(':news_archive', $news->newsArchive(), PDO::PARAM_STR);
 
         $request->execute();
     }
@@ -74,13 +79,27 @@ class NewsManagerPDO extends NewsManager
 
     protected function modify(News $news): Void
     {
-        $request = $this->dao->prepare('UPDATE blog."news" SET news_author_id = :news_author_id, news_title = :news_title, news_category = :news_category, news_cover = :news_cover, news_content = :news_content WHERE id = :id');
+        if ($news->newsCover()) {
+            $request = $this->dao->prepare(
+                'UPDATE blog."news" SET news_author_id = :news_author_id, news_title = :news_title, 
+                news_lead_paragraph = :news_lead_paragraph, news_category = :news_category, news_cover = :news_cover, 
+                news_content = :news_content, news_update_date = NOW(), news_archive = :news_archive  WHERE id = :id'
+            );
+            $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
+        } else {
+            $request = $this->dao->prepare(
+                'UPDATE blog."news" SET news_author_id = :news_author_id, news_title = :news_title,
+                news_lead_paragraph = :news_lead_paragraph, news_category = :news_category, 
+                news_content = :news_content, news_update_date = NOW(), news_archive = :news_archive  WHERE id = :id'
+            );
+        }
 
         $request->bindValue(':news_title', $news->newsTitle(), PDO::PARAM_STR);
+        $request->bindValue(':news_lead_paragraph', $news->newsLeadParagraph(), PDO::PARAM_STR);
         $request->bindValue(':news_author_id', $news->newsAuthorId(), PDO::PARAM_INT);
         $request->bindValue(':news_category', $news->newsCategory(), PDO::PARAM_STR);
-        $request->bindValue(':news_cover', $news->newsCover(), PDO::PARAM_STR);
         $request->bindValue(':news_content', $news->newsContent(), PDO::PARAM_STR);
+        $request->bindValue(':news_archive', $news->newsArchive(), PDO::PARAM_BOOL);
         $request->bindValue(':id', $news->id(), PDO::PARAM_INT);
 
         $request->execute();

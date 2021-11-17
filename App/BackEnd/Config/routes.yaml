@@ -1,21 +1,21 @@
 routes:
-    index:       
-        url: '/admin/?'        
-        module: 'Main'
-        action: 'index'
+    index:
+        url: "/admin/?"
+        module: "Main"
+        action: "index"
     news-insert:
-        url: '/admin/news-insert/?'
-        module: 'News'
-        action: 'insert'
+        url: "/admin/news-insert/?"
+        module: "News"
+        action: "insert"
     news-update:
-        url: '/admin/news-update-([0-9]+)/?'
-        module: 'News'
-        action: 'update'
-        var:
-            - id
+        url: "/admin/news-update-([0-9]+)/?"
+        module: "News"
+        action: "update"
+        vars:
+            - "id"
     news-delete:
-        url: '/admin/news-delete-([0-9]+)/?'
-        module: 'News'
-        action: 'delete'
-        var:
-            - id
+        url: "/admin/news-delete-([0-9]+)/?"
+        module: "News"
+        action: "delete"
+        vars:
+            - "id"

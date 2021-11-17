@@ -39,7 +39,6 @@ class AccountController extends BackController
                 $this->managers->getManagerOf('Member')->getUnique($request->postData('memberPseudonym')) === null
                 || $this->managers->getManagerOf('Member')->getUnique($request->postData('memberEmailAddress'), 'member_email_address') === null
             ) {
-                error_log(print_r('Level 1', true), 0);
                 $member = new Member([
                     'memberPseudonym' => $request->postData('memberPseudonym'),
                     'memberLastName' => $request->postData('memberLastName'),
@@ -51,7 +50,6 @@ class AccountController extends BackController
                     'memberProfilePicturePath' => $request->fileData('memberProfilePicturePath'),
                 ]);
             } else {
-                error_log(print_r('Level 2', true), 0);
                 $member = new Member;
 
                 $register_error_message[1] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
@@ -61,7 +59,6 @@ class AccountController extends BackController
                 $this->managers->getManagerOf('Member')->getUnique($request->postData('memberPseudonym')) === null
                 || $this->managers->getManagerOf('Member')->getUnique($request->postData('memberEmailAddress'), 'member_email_address') === null
             ) {
-                error_log(print_r('Level 3', true), 0);
                 $member = new Member([
                     'memberPseudonym' => $request->postData('memberPseudonym'),
                     'memberLastName' => $request->postData('memberLastName'),
@@ -72,13 +69,11 @@ class AccountController extends BackController
                     'memberPassword' => $request->postData('memberPassword'),
                 ]);
             } else {
-                error_log(print_r('Level 4', true), 0);
                 $member = new Member;
 
                 $register_error_message[1] = 'Un utilisateur avec le même nom ou la même adresse email existe déjà.';
             }
         } else {
-            error_log(print_r('Level 5', true), 0);
             $member = new Member;
         }
 

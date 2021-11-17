@@ -8,7 +8,7 @@
                         <h5 class="m-b-10"><?= $title ?></h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><?= $title_page ?></a></li>
+                        <li class="breadcrumb-item"><a href="/admin"><?= $title_page ?></a></li>
                         <li class="breadcrumb-item">Tableau de bord</li>
                     </ul>
                 </div>
@@ -17,6 +17,7 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
+    <div class="row"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
     <div class="row">
         <!-- support-section start -->
         <!-- <div class="col-xl-6 col-md-12">
@@ -198,7 +199,7 @@
                 <div class="card-header">
                     <h5>Billets de blog</h5>
                 </div>
-                <div class="pro-scroll" style="height:255px;position:relative;">
+                <div class="pro-scroll" style="height:720px;position:relative;">
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-hover m-b-0">
@@ -233,7 +234,7 @@
                                                 } else {
                                                     echo '<i class="fas fa-window-close"></i>';
                                                 } ?></td>
-                                            <td><a href="#!"><i class="icon feather icon-edit f-16  text-success"></i></a><a href="#!"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a></td>
+                                            <td><a href="/admin/news-update-<?= $news['id'] ?>"><i class="icon feather icon-edit f-16  text-success"></i></a><a href="/admin/news-delete-<?= $news['id'] ?>"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>

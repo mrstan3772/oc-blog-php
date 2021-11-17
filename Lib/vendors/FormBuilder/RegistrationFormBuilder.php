@@ -123,7 +123,7 @@ class RegistrationFormBuilder extends FormBuilder
                     [
                         'label' => 'IMAGE DE PROFILE',
                         'name' => 'memberProfilePicturePath',
-                        'pattern' => 'image/png, image/jpeg, image/gif',
+                        'accept' => 'image/png, image/jpeg, image/gif',
                         'required' => false,
                         'validators' => [
                             new AllowedFileValidator('Ce type de fichier n\'est pas supproté. Seul les images JPEG, PNG, GIF sont autorisés.', ['jpeg', 'jpg', 'png', 'gif']),

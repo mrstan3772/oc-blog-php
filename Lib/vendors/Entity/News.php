@@ -6,15 +6,15 @@ use SamplePHPFramework\Entity;
 
 class News extends Entity
 {
-    protected $news_author_id;
-    protected $news_title;
-    protected $news_lead_paragraph;
-    protected $news_category;
-    protected $news_cover;
-    protected $news_content;
-    protected $news_archive;
-    protected $news_added_date;
-    protected $news_update_date;
+    protected ?Int $news_author_id = null;
+    protected ?String $news_title = null;
+    protected ?String $news_lead_paragraph = null;
+    protected ?String $news_category = null;
+    protected Mixed $news_cover = null;
+    protected ?String $news_content = null;
+    protected ?Bool $news_archive = null;
+    protected Mixed $news_added_date = null;
+    protected Mixed $news_update_date = null;
 
     const INVALID_LEAD_PARAGRAPH = 1;
     const INVALID_TITLE = 2;
@@ -53,7 +53,7 @@ class News extends Entity
             $this->errors[] = self::INVALID_TITLE;
         }
 
-        $this->news_lead_paragraph = htmlspecialchars($news_lead_paragraph);
+        $this->news_lead_paragraph = $news_lead_paragraph;
 
         return $this;
     }
@@ -69,7 +69,7 @@ class News extends Entity
             $this->errors[] = self::INVALID_TITLE;
         }
 
-        $this->news_title = htmlspecialchars($news_title);
+        $this->news_title = $news_title;
 
         return $this;
     }
@@ -85,7 +85,7 @@ class News extends Entity
             $this->errors[] = self::INVALID_CATEGORY;
         }
 
-        $this->news_category = htmlspecialchars($news_category);
+        $this->news_category = $news_category;
 
         return $this;
     }
@@ -95,13 +95,15 @@ class News extends Entity
         return $this->news_cover;
     }
 
-    public function setNewsCover(String $news_cover): Self
+    public function setNewsCover(Mixed $news_cover): Self
     {
-        if (!is_string($news_cover) || empty($news_cover) || strlen($news_cover) >= 5 && strlen($news_cover) <= 255) {
-            $this->errors[] = self::INVALID_COVER;
+        if (is_string($news_cover)) {
+            if (empty($news_cover) || strlen($news_cover) >= 5 && strlen($news_cover) <= 255) {
+                $this->errors[] = self::INVALID_COVER;
+            }
         }
 
-        $this->news_cover = strip_tags($news_cover);
+        $this->news_cover = $news_cover;
 
         return $this;
     }
@@ -117,7 +119,7 @@ class News extends Entity
             $this->errors[] = self::INVALID_CONTENT;
         }
 
-        $this->news_content = htmlspecialchars($news_content);
+        $this->news_content = $news_content;
 
         return $this;
     }
@@ -133,7 +135,7 @@ class News extends Entity
             $this->errors[] = self::INVALID_ARCHIVE;
         }
 
-        $this->news_archive = htmlspecialchars($news_archive);
+        $this->news_archive = $news_archive;
 
         return $this;
     }

@@ -20,13 +20,6 @@ class MainController extends BackController
      */
     public function executeIndex(HTTPRequest $request): Void
     {
-        if (
-            !$this->app->user()->isAuthenticated()
-            && $this->app->user()->getAttribute('USER_INFO')->memberAdmin()
-        ) {
-            $this->app->httpResponse()->redirect404();
-        }
-
          // GESTION DES NEWS
          $news_number = $this->app->config()->get('news_number');
          $characters_number = $this->app->config()->get('characters_number');

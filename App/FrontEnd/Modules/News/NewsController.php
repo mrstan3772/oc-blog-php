@@ -5,6 +5,7 @@ namespace App\Frontend\Modules\News;
 use \SamplePHPFramework\Components\BackController;
 use \SamplePHPFramework\Components\HTTPRequest;
 use \SamplePHPFramework\Form\FormHandler;
+use Michelf\Markdown;
 
 class NewsController extends BackController
 {
@@ -76,6 +77,8 @@ class NewsController extends BackController
 		$news_archive_list = $this->managers->getManagerOf('News')->getList(0, $news_index_list_number, true);
 		
 		$news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+		$news->setNewsLeadParagraph(Markdown::defaultTransform($news->newsLeadParagraph()));
+		$news->setNewsContent(Markdown::defaultTransform($news->newsContent()));
 		if (empty($news)) {
 			$this->app->httpResponse()->redirect404();
 		}

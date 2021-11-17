@@ -1,27 +1,30 @@
 'use strict';
-$(document).ready(function() {
-    setTimeout(function() {
-        floatchart()
-    }, 700);
-    // [ campaign-scroll ] start
-    var px = new PerfectScrollbar('.feed-scroll', {
-        wheelSpeed: .5,
-        swipeEasing: 0,
-        wheelPropagation: 1,
-        minScrollbarLength: 40,
-    });
-    var px = new PerfectScrollbar('.pro-scroll', {
-        wheelSpeed: .5,
-        swipeEasing: 0,
-        wheelPropagation: 1,
-        minScrollbarLength: 40,
-    });
-    // [ campaign-scroll ] end
+$(document).ready(function () {
+    const el = document.querySelector('.pro-scroll')
+    if (el !== null) {
+        setTimeout(function () {
+            floatchart()
+        }, 700);
+        // [ campaign-scroll ] start
+        var px = new PerfectScrollbar('.feed-scroll', {
+            wheelSpeed: .5,
+            swipeEasing: 0,
+            wheelPropagation: 1,
+            minScrollbarLength: 40,
+        });
+        var px = new PerfectScrollbar('.pro-scroll', {
+            wheelSpeed: .5,
+            swipeEasing: 0,
+            wheelPropagation: 1,
+            minScrollbarLength: 40,
+        });
+        // [ campaign-scroll ] end
+    }
 });
 
 function floatchart() {
     // [ support-chart ] start
-    $(function() {
+    $(function () {
         var options1 = {
             chart: {
                 type: 'area',
@@ -47,7 +50,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return 'Ticket '
                         }
                     }
@@ -89,7 +92,7 @@ function floatchart() {
                 },
                 y: {
                     title: {
-                        formatter: function(seriesName) {
+                        formatter: function (seriesName) {
                             return ''
                         }
                     }
@@ -103,8 +106,8 @@ function floatchart() {
     });
     // [ support-chart ] end
     // [ account-chart ] start
-    $(function() {
-        $(function() {
+    $(function () {
+        $(function () {
             var options = {
                 chart: {
                     height: 350,
@@ -128,7 +131,7 @@ function floatchart() {
                 }, {
                     name: 'Moyenne',
                     type: 'line',
-                    data: [2302, 1549,1728, 1823, 1682, 2190, 2123, 1573, 1551, 1555, 2238]
+                    data: [2302, 1549, 1728, 1823, 1682, 2190, 2123, 1573, 1551, 1555, 2238]
                 }],
                 fill: {
                     opacity: [0.85, 1],
@@ -147,9 +150,9 @@ function floatchart() {
                     shared: true,
                     intersect: false,
                     y: {
-                        formatter: function(y) {
+                        formatter: function (y) {
                             if (typeof y !== "undefined") {
-                                return "$ " +y.toFixed(0);
+                                return "$ " + y.toFixed(0);
                             }
                             return y;
 
@@ -162,10 +165,10 @@ function floatchart() {
                     },
                     markers: {
                         customHTML: [
-                            function() {
+                            function () {
                                 return ''
                             },
-                            function() {
+                            function () {
                                 return ''
                             }
                         ]
@@ -181,7 +184,7 @@ function floatchart() {
     });
     // [ account-chart ] end
     // [ satisfaction-chart ] start
-    $(function() {
+    $(function () {
         var options = {
             chart: {
                 height: 260,
