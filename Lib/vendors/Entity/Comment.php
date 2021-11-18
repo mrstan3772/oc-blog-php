@@ -6,22 +6,30 @@ use \SamplePHPFramework\Entity;
 
 class Comment extends Entity
 {
-    protected $comment_news_id,
-        $comment_news_author_id,
-        $comment_content,
-        $comment_date;
+    protected ?Int $comment_news_id = null;
+    protected ?Int $comment_news_author_id = null;
+    protected ?String $comment_content = null;
+    protected Mixed $comment_date = null;
+    protected Bool $comment_status = false;
 
-    const INVALID_AUTHOR = 1;
-    const INVALID_CONTENT = 2;
+    const INVALID_NEWS = 1;
+    const INVALID_AUTHOR = 2;
+    const INVALID_CONTENT = 3;
+    const INVALID_DATE = 4;
+    const INVALID_STATUS = 5;
 
     public function isValid()
     {
-        return !(empty($this->comment_news_author_id) || empty($this->comment_content));
+        return !(empty($this->comment_news_author_id) || empty($this->comment_content) || empty($this->comment_news_id));
     }
 
     public function setCommentNewsId(Int $comment_news_id): Void
     {
-        $this->comment_news_id = (int) $comment_news_id;
+        if (!is_int($comment_news_id) || empty($comment_news_id)) {
+            $this->erreurs[] = self::INVALID_NEWS;
+        }
+
+        $this->comment_news_id = $comment_news_id;
     }
 
     public function setCommentNewsAuthorId(Int $comment_news_author_id): Void
@@ -44,7 +52,20 @@ class Comment extends Entity
 
     public function setCommentDate(\DateTime $comment_date): Void
     {
+        if (!$comment_date instanceof \DateTime) {
+            $this->erreurs[] = self::INVALID_DATE;
+        }
+
         $this->comment_date = $comment_date;
+    }
+
+    public function setCommentStatus(Bool $comment_status): Void
+    {
+        if (!is_bool($comment_status)) {
+            $this->erreurs[] = self::INVALID_STATUS;
+        }
+
+        $this->comment_status = $comment_status;
     }
 
     public function commentNewsId(): Int
@@ -52,12 +73,12 @@ class Comment extends Entity
         return $this->comment_news_id;
     }
 
-    public function commentNewsAuthorId(): Int
+    public function commentNewsAuthorId(): ?Int
     {
         return $this->comment_news_author_id;
     }
 
-    public function commentContent(): String
+    public function commentContent(): ?String
     {
         return $this->comment_content;
     }
@@ -65,5 +86,10 @@ class Comment extends Entity
     public function commentDate(): Mixed
     {
         return $this->comment_date;
+    }
+
+    public function commentStatus(): ?Bool
+    {
+        return $this->comment_status;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Frontend\Modules\News;
 
+use Entity\Comment;
+use FormBuilder\CommentFormBuilder;
 use \SamplePHPFramework\Components\BackController;
 use \SamplePHPFramework\Components\HTTPRequest;
 use \SamplePHPFramework\Form\FormHandler;
@@ -56,7 +58,7 @@ class NewsController extends BackController
 		}
 
 		// AFFECTATION DES VARIABLES
-        $this->page->addVar('title', 'LISTE DES BILLETS DE BLOG' . ' | ' . $this->page->vars()['title']);
+		$this->page->addVar('title', 'LISTE DES BILLETS DE BLOG' . ' | ' . $this->page->vars()['title']);
 		$this->page->addVar('news_list', $news_list);
 		$this->page->addVar('author_list', $author_list);
 		$this->page->addVar('page_number', $news_manager->count() / $news_index_list_number + 1);
@@ -70,12 +72,12 @@ class NewsController extends BackController
 	 * 
 	 * @return void
 	 */
-	public function executeShow(HTTPRequest $request)
+	public function executeShow(HTTPRequest $request): Void
 	{
 		$news_index_list_number = $this->app->config()->get('news_index_list_number');
 		$news_list = $this->managers->getManagerOf('News')->getList(0, $news_index_list_number);
 		$news_archive_list = $this->managers->getManagerOf('News')->getList(0, $news_index_list_number, true);
-		
+
 		$news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
 		$news->setNewsLeadParagraph(Markdown::defaultTransform($news->newsLeadParagraph()));
 		$news->setNewsContent(Markdown::defaultTransform($news->newsContent()));
@@ -84,64 +86,78 @@ class NewsController extends BackController
 		}
 
 		$member_manager = $this->managers->getManagerOf('Member');
-		$comment_list = $this->managers->getManagerOf('Comments')->getListOf($news->id());
+		$comment_list = $this->managers->getManagerOf('Comment')->getListOf($news->id());
 
 		$author_list = [];
 
+		$comment_count = 0;
+
 		foreach ($comment_list as $comment) {
 			$author_list[$comment->id()] = $member_manager->getUnique($news->newsAuthorId());
+			if ($comment->commentStatus()) {
+				$comment_count++;
+			}
+		}
+
+		//VÉRIFIER SI L'UTILISATEUR EST CONNECTÉ
+		if ($this->app->user()->isAuthenticated()) {
+			// RÉCUPÉRATION DU CONTENU ENVOYÉ PAR UNE REQUETE VIA LA MÉTHODE POST
+			if ($request->method() === 'POST') {
+				$comment = new Comment([
+					'commentNewsId' => $request->getData('id'),
+					'commentNewsAuthorId' => $this->app->user()->getAttribute('USER_INFO')->id(),
+					'commentContent' => $request->postData('commentContent')
+				]);
+			} else {
+				$comment = new Comment;
+			}
+
+
+			$form_builder = new CommentFormBuilder($comment);
+			$form_builder->build();
+
+			$comment_form = $form_builder->form();
+
+			$form_hanlder = new FormHandler($comment_form, $this->managers->getManagerOf('Comment'), $request);
+
+			if ($form_hanlder->process()) {
+				$this->managers->getManagerOf('Comment')->save($comment);
+				$this->app->user()->setFlash('<div class="alert alert-success" role="alert">Le commentaire a bien été ajouté, merci !</div>');
+				$this->app->httpResponse()->redirect('/news/' . $request->getData('id'));
+			}
+
+			$comment_form = $comment_form->createView();
+		} else {
+			$comment_form = '<div class="alert alert-warning" role="alert"><a href="/connection" title="Se connecter" class="text-danger text-decoration-underline">Connectez-vous</a> pour poster un message.</div>';
 		}
 
 		// AFFECTATION DES VARIABLES
-        $this->page->addVar('title', $news->newstitle() . ' | ' . $this->page->vars()['title']);
+		$this->page->addVar('title', $news->newstitle() . ' | ' . $this->page->vars()['title']);
 		$this->page->addVar('news', $news);
 		$this->page->addVar('recent_news', $news_list);
 		$this->page->addVar('archive_news', $news_archive_list);
 		$this->page->addVar('author', $this->managers->getManagerOf('Member')->getUnique($news->newsAuthorId()));
 		$this->page->addVar('author_list', $author_list);
+		$this->page->addVar('comment_count', $comment_count);
 		$this->page->addVar('comments', $comment_list);
+		$this->page->addVar('comment_form', $comment_form);
 	}
 
-	// public function executeInsertComment(HTTPRequest $request)
-	// {
-	//   if ($request->method() === 'POST') {
-	//     $comment = new Comment([
-	//       'news' => $request->getData('news'),
-	//       'author' => $request->postData('author'),
-	//       'content' => $request->postData('content')
-	//     ]);
-	//   } else {
-	//     $comment = new Comment;
-	//   }
+	/**
+	 * ExecuteDeleteComment
+	 *
+	 * @param HTTPRequest $request Request parameter
+	 * 
+	 * @return void
+	 */
+	public function executeDeleteComment(HTTPRequest $request): Void
+	{
+		$comment = $this->managers->getManagerOf('Comment')->getUnique($request->getData('id'));
 
-	//   $formBuilder = new CommentFormBuilder($comment);
-	//   $formBuilder->build();
+		$this->managers->getManagerOf('Comment')->delete($request->getData('id'));
 
-	//   $form = $formBuilder->form();
+		$this->app->user()->setFlash('<div class="alert alert-success" role="alert">Le commentaire a bien été supprimé !</div>');
 
-	//   // On récupère le gestionnaire de formulaire (le paramètre de getManagerOf() est bien entendu à remplacer).
-	//   $formHandler = new \OCFram\FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
-	//   if ($formHandler->process()) {
-	//     $this->managers->getManagerOf('Comments')->save($comment);
-	//     $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
-	//     $this->app->httpResponse()->redirect('news-' . $request->getData('news'));
-	//   }
-
-	//   /* if ($comment->isValid())
-	//       {
-	//         $this->managers->getManagerOf('Comments')->save($comment);
-
-	//         $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
-
-	//         $this->app->httpResponse()->redirect('news-'.$request->getData('news'));
-	//       }
-	//       else
-	//       {
-	//         $this->page->addVar('erreurs', $comment->errors());
-	//       } */
-
-	//   $this->page->addVar('comment', $comment);
-	//   $this->page->addVar('form', $form->createView()); // On passe le formulaire généré à la vue.
-	//   $this->page->addVar('title', 'Ajout d\'un commentaire');
-	// }
+		$this->app->httpResponse()->redirect('/news/' . $comment->commentNewsId());
+	}
 }

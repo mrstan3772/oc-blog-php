@@ -43,7 +43,7 @@
                     <li><a class="nav-link scrollto active" href="/">Accueil</a></li>
                     <li><a class="nav-link scrollto" href="/#about">À propos</a></li>
                     <li><a class="nav-link scrollto" href="/#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="/#work">Projet</a></li>
+                    <li><a class="nav-link scrollto " href="/#work">Projets</a></li>
                     <li><a class="nav-link scrollto " href="/#blog">Blog</a></li>
                     <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
@@ -74,7 +74,7 @@
                         <li class="dropdown"><a href="#"><span><?= $user_session['memberPseudonym'] ?></span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <li><img src="/dist/images/member/<?= $user_session['memberProfilePicturePath'] ?>" alt="user profile" class="user-image"></li>
-                                <li><a href="/user/<?= strtolower($user_session['id']) ?>">Espace personnel</a></li>
+                                <li><a href="/user/<?= $user_session['id'] ?>">Espace personnel</a></li>
                                 <?php if ($user_session['memberAdmin']) : ?>
                                     <li><a href="/admin">Espace administration</a></li>
                                 <?php endif ?>
@@ -105,7 +105,6 @@
     </div><!-- End Hero Section -->
 
     <main id="main">
-        <?php if ($user->hasFlash()) echo '<p style="text-align: center;">', $user->getFlash(), '</p>'; ?>
         <noscript>
             Désolé, le navigateur que vous utilisez actuellement ne supporte malheureusement pas JavaScript.
             Pour résoudre ce problème activer la prise en charge de JavaScript dans vos paramètres ou si nécessaire optez pour un autre navigateur.
@@ -120,6 +119,22 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="copyright-box">
+                        <div class="d-flex flex-wrap justify-content-center footer-nav-link">
+                            <p><a href="/" title="Accueil">ACCUEIL</a> | </p>
+                            <p><a href="/#about" title="À Propos">À PROPOS</a> | </p>
+                            <p><a href="/#services" title="Services">SERVICES</a> | </p>
+                            <p><a href="/#work" title="Projets">PROJETS</a> | </p>
+                            <p><a href="/#blog" title=">Blog">BLOG</a> | </p>
+                            <p><a href="/#contact" title="Contact">CONTACT</a> </p>
+                        </div>
+                        <div class="footer-nav-link">
+                            <?php if ($user_session['memberPseudonym']) : ?>
+                                <p><a href="/user/<?= $user_session['id'] ?>" title="Mon compte">MON COMPTE</a></p>
+                            <?php endif; ?>
+                            <?php if ($user_session['memberAdmin']) : ?>
+                                <p><a href="/admin" title="Administration">ADMINISTRATION</a></p>
+                            <?php endif; ?>
+                        </div>
                         <p class="copyright">&copy; Copyright © <?= $copyright_date = isset($copyright_date) ? $copyright_date : date('Y'); ?> <strong>STANLEY LOUIS JEAN</strong> Tous droits réservés.</p>
                         <div class="credits">
                             <!--

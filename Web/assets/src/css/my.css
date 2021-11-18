@@ -20,7 +20,7 @@
   }
 
   .card-blog .card-img img {
-    height: 250px;
+    height: 230px;
     width: 100%;
   }
 }
@@ -32,6 +32,12 @@
 
   .user-image {
     margin-left: 45%;
+  }
+}
+
+@media (max-width: 468px) {
+  .card-blog {
+    margin-bottom: 50px;
   }
 }
 
@@ -71,4 +77,20 @@
   flex-direction: row-reverse;
   justify-content: space-around;
   width: 100px;
+}
+
+.footer-nav-link {
+}
+
+.footer-nav-link a {
+  color: #fff !important;
+  margin: 0 10px;
+}
+
+.footer-nav-link a:hover {
+  text-decoration: underline;
+}
+
+#main {
+  margin-top: -70px;
 }

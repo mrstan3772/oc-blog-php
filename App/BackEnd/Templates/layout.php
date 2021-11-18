@@ -80,6 +80,9 @@
 					<li class="pc-item">
 						<a href="/admin" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">home</i></span><span class="pc-mtext">Tableau de bord</span></a>
 					</li>
+					<li class="pc-item">
+						<a href="/admin/news-insert" class="pc-link "><span class="pc-micon"><i class="material-icons-two-tone">edit</i></span><span class="pc-mtext">Ajouter un article de blog</span></a>
+					</li>
 					<li class="pc-item pc-caption">
 						<label>Élements</label>
 						<span>Composants Interface Utilisateur</span>
@@ -194,7 +197,7 @@
 				<ul class="list-unstyled">
 					<li class="dropdown pc-h-item">
 						<a class="pc-head-link active dropdown-toggle arrow-none mr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-							Level
+							Niveau
 						</a>
 						<div class="dropdown-menu pc-h-dropdown">
 							<a href="#!" class="dropdown-item">

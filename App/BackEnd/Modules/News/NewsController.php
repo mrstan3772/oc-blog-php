@@ -55,7 +55,7 @@ class NewsController extends BackController
      * @return void
      */
     public function executeDelete(HTTPRequest $request): Void
-    {   
+    {
         $news_id = $request->getData('id');
 
         $news_title = $this->managers->getManagerOf('News')->getUnique($news_id)->newsTitle();

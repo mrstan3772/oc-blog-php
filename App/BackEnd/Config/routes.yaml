@@ -19,3 +19,15 @@ routes:
         action: "delete"
         vars:
             - "id"
+    commment-delete:
+        url: "/admin/comment-delete-([0-9]+)"
+        module: "Main"
+        action: "deleteComment"
+        vars:
+            - "id"
+    commment-validate:
+        url: "/admin/comment-validate-([0-9]+)"
+        module: "Main"
+        action: "validateComment"
+        vars:
+            - "id"

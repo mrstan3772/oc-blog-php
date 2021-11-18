@@ -41,3 +41,15 @@ routes:
         url: "/user/([0-9]+)/?"
         module: "Account"
         action: "index"
+    comment-update:
+        url: "/comment-update/([0-9]+)/?"
+        module: "News"
+        action: "updateComment"
+        vars:
+            - "id"
+    commment-delete:
+        url: "/comment-delete/([0-9]+)/?"
+        module: "News"
+        action: "deleteComment"
+        vars:
+            - "id"

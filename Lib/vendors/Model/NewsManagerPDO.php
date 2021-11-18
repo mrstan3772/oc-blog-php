@@ -29,9 +29,9 @@ class NewsManagerPDO extends NewsManager
     public function getList(Int $start = -1, Int $limit = -1, Bool $archive = false): array
     {
         if (!$archive) {
-            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" ORDER BY id DESC';
+            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" ORDER BY news_added_date DESC';
         } else {
-            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" WHERE news_archive = true ORDER BY id DESC';
+            $sql = 'SELECT id, news_author_id, news_lead_paragraph, news_title, news_category, news_cover, "news_content", news_archive, "news_added_date", "news_update_date" FROM blog."news" WHERE news_archive = true ORDER BY news_added_date DESC';
         }
 
         if ($start != -1 || $limit != -1) {
@@ -41,16 +41,16 @@ class NewsManagerPDO extends NewsManager
         $request = $this->dao->query($sql);
         $request->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, 'Entity\News');
 
-        $newsList = $request->fetchAll();
+        $news_list = $request->fetchAll();
 
-        foreach ($newsList as $news) {
+        foreach ($news_list as $news) {
             $news->setNewsAddedDate(new \DateTime($news->newsAddedDate()));
             $news->setNewsUpdateDate(new \DateTime($news->newsUpdateDate()));
         }
 
         $request->closeCursor();
 
-        return $newsList;
+        return $news_list;
     }
 
     public function getUnique(Int $id): News

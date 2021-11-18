@@ -21,7 +21,7 @@
                                 </li>
                                 <li>
                                     <span class="bi bi-chat-left-text"></span>
-                                    <a href="#"><?= count($comments) ?></a>
+                                    <a href="#"><?= $comment_count ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -35,23 +35,36 @@
                         </div>
                     </div>
                     <div class="box-comments">
+                        <div><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
                         <div class="title-box-2">
-                            <h4 class="title-comments title-left">Commentaires (<?= count($comments) ?>)</h4>
+                            <h4 class="title-comments title-left">Commentaires (<?= $comment_count ?>)</h4>
                         </div>
                         <ul class="list-comments">
                             <?php foreach ($comments as $comment) : ?>
-                                <li>
-                                    <div class="comment-avatar">
-                                        <img src="/dist/images/member/<?= $author_list[$comment['id']]['memberProfilePicturePath'] ?>" alt="">
-                                    </div>
-                                    <div class="comment-details">
-                                        <h4 class="comment-author"><?= $author_list[$comment['id']]['memberFirstName'] ?> <?= $author_list[$comment['id']]['memberLastName'] ?></h4>
-                                        <span><?= $comment['commentDate']->format('d/m/Y à H\hi') ?></span>
-                                        <p>
-                                            <?= $comment['commentContent'] ?>
-                                        </p>
-                                    </div>
-                                </li>
+                                <?php if ((!$comment['commentStatus'] && $user_session['id'] === $author_list[$comment['id']]['id'])
+                                    || ($comment['commentStatus'])
+                                ) : ?>
+                                    <li>
+                                        <div class="comment-avatar">
+                                            <img src="/dist/images/member/<?= $author_list[$comment['id']]['memberProfilePicturePath'] ?>" alt="">
+                                        </div>
+                                        <div class="comment-details">
+                                            <h4 class="comment-author"><?= $author_list[$comment['id']]['memberFirstName'] ?> <?= $author_list[$comment['id']]['memberLastName'] ?></h4>
+                                            <span><?= $comment['commentDate']->format('d/m/Y à H\hi') ?></span>
+                                            <p>
+                                                <?= $comment['commentContent'] ?>
+                                            </p>
+                                            <?php if ($user_session['id'] === $author_list[$comment['id']]['id']) : ?>
+                                                <?php if ($comment['commentStatus']) : ?>
+                                                    <p class="text-success text-end">VALIDÉ</p>
+                                                <?php elseif (!$comment['commentStatus'] && $user_session['id']) : ?>
+                                                    <p class="text-warning text-end">EN ATTENTE DE VALIDATION</p>
+                                                <?php endif; ?>
+                                                <p class="text-end"><a href="/comment-delete/<?= $comment['id'] ?>" title="Supprimer" class="text-danger"><i class="bi bi-trash-fill"></i></i></a></p>
+                                            <?php endif ?>
+                                        </div>
+                                    </li>
+                                <?php endif; ?>
                             <?php endforeach ?>
                         </ul>
                     </div>
@@ -61,32 +74,13 @@
                                 Laissez un commentaire
                             </h3>
                         </div>
-                        <form class="form-mf">
-                            <div class="row">
-                                <div class="col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control input-mf" id="inputName" placeholder="Name *" required="">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control input-mf" id="inputEmail1" placeholder="Email *" required="">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <div class="form-group">
-                                        <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-3">
-                                    <div class="form-group">
-                                        <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="message" cols="45" rows="8" required=""></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="button button-a button-big button-rouded">Envoyer</button>
-                                </div>
+                        <form action="/news/<?= $news['id'] ?>" method="post" role="form" class="form-mf">
+                            <?= $comment_form ?>
+                            <?php if(isset($user_session)) : ?>
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="button button-a button-big button-rouded">Envoyez</button>
                             </div>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>
