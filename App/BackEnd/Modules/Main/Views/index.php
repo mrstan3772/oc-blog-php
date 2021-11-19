@@ -8,7 +8,7 @@
                         <h5 class="m-b-10"><?= $title ?></h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin"><?= $title_page ?></a></li>
+                        <li class="breadcrumb-item"><a href="/admin"><?= htmlspecialchars($title_page) ?></a></li>
                         <li class="breadcrumb-item">Tableau de bord</li>
                     </ul>
                 </div>
@@ -17,7 +17,7 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
-    <div class="row"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
+    <div class="row"><?php if ($user->hasFlash()) print_r($user->getFlash()); ?></div>
     <div class="row">
         <div class="col-xl-6 col-md-12">
             <div class="card">
