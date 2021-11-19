@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="row"><?php if ($user->hasFlash()) print_r($user->getFlash()); ?></div>
+    <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
     
     <div class="row">
         <div class="col-md-12">
