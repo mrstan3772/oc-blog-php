@@ -1,0 +1,33 @@
+routes:
+    index:
+        url: "/admin/?"
+        module: "Main"
+        action: "index"
+    news-insert:
+        url: "/admin/news-insert/?"
+        module: "News"
+        action: "insert"
+    news-update:
+        url: "/admin/news-update-([0-9]+)/?"
+        module: "News"
+        action: "update"
+        vars:
+            - "id"
+    news-delete:
+        url: "/admin/news-delete-([0-9]+)/?"
+        module: "News"
+        action: "delete"
+        vars:
+            - "id"
+    commment-delete:
+        url: "/admin/comment-delete-([0-9]+)"
+        module: "Main"
+        action: "deleteComment"
+        vars:
+            - "id"
+    commment-validate:
+        url: "/admin/comment-validate-([0-9]+)"
+        module: "Main"
+        action: "validateComment"
+        vars:
+            - "id"

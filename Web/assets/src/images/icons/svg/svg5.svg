@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg2972"
+   version="1.1"
+   viewBox="0 0 16.398874 19.169062"
+   height="19.169062mm"
+   width="16.398874mm">
+  <defs
+     id="defs2966" />
+  <metadata
+     id="metadata2969">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-8.431515,-167.21904)"
+     id="layer1">
+    <g
+       id="g2953"
+       transform="matrix(0.26458333,0,0,0.26458333,-7.4117348,78.670937)">
+      <polygon
+         class="cls-8"
+         points="90.43,407.12 85.58,402.69 77.36,402.69 64.31,390.39 64.31,352.21 76.5,340.71 97.8,360.15 97.8,372.03 102.23,372.03 102.23,358.2 76.46,334.67 59.88,350.3 59.88,392.3 75.6,407.12 "
+         id="polygon57"
+         style="fill:#22231e" />
+      <polygon
+         class="cls-8"
+         points="117.44,389.58 105.23,401.08 83.94,381.64 83.94,369.76 79.52,369.76 79.52,383.59 105.28,407.12 121.86,391.49 121.86,349.5 106.14,334.67 91.31,334.67 96.16,339.1 104.38,339.1 117.44,351.41 "
+         id="polygon59"
+         style="fill:#22231e" />
+    </g>
+  </g>
+</svg>

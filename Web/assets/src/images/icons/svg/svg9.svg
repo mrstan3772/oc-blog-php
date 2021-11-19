@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg5434"
+   version="1.1"
+   viewBox="0 0 34.396046 15.851188"
+   height="15.851188mm"
+   width="34.396046mm">
+  <defs
+     id="defs5428" />
+  <metadata
+     id="metadata5431">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-135.50436,-118.22917)"
+     id="layer1">
+    <g
+       id="g5412"
+       transform="matrix(0.26458333,0,0,0.26458333,45.71028,27.249544)">
+      <rect
+         class="cls-8"
+         x="356.14999"
+         y="342.42001"
+         width="18.780001"
+         height="55.209999"
+         transform="rotate(45,365.52966,370.02734)"
+         id="rect163"
+         style="fill:#22231e" />
+      <polyline
+         class="cls-8"
+         points="399.09 388.83 430.56 357.08 417.23 343.86 398.98 362.27"
+         id="polyline165"
+         style="fill:#22231e" />
+      <polyline
+         class="cls-8"
+         points="378.42 377.85 378.42 390.5 391.69 403.77 391.69 364.57"
+         id="polyline167"
+         style="fill:#22231e" />
+      <polyline
+         class="cls-8"
+         points="437.9 388.83 469.38 357.08 456.04 343.86 437.79 362.27"
+         id="polyline169"
+         style="fill:#22231e" />
+      <polyline
+         class="cls-8"
+         points="417.23 377.85 417.23 390.5 430.51 403.77 430.51 364.57"
+         id="polyline171"
+         style="fill:#22231e" />
+    </g>
+  </g>
+</svg>
