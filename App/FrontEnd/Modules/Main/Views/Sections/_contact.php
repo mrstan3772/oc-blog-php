@@ -6,7 +6,7 @@
             <div class="col-sm-12">
                 <div class="contact-mf">
                     <div id="contact" class="box-shadow-full">
-                        <div class="row"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
+                        <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="title-box-2">

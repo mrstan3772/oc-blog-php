@@ -17,7 +17,7 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
-    <div class="row"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
+    <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
     <div class="row">
         <div class="col-xl-6 col-md-12">
             <div class="card">
