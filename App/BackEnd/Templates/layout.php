@@ -296,7 +296,7 @@
 
     <!-- [ Main Content ] start -->
     <main class="pc-container">
-        <?php echo $content ?>
+        <?php print_r($content); ?>
     </main>
     <!-- [ Main Content ] end -->
 

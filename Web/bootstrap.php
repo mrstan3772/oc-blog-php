@@ -1,7 +1,9 @@
 <?php
 const DEFAULT_APP = 'FrontEnd';
 
-if (!isset($_GET['app']) || !file_exists(__DIR__.'/../App/'.$_GET['app'])) $_GET['app'] = DEFAULT_APP;
+$app = filter_input(INPUT_GET, $_GET['app'], FILTER_SANITIZE_STRING);
+
+if (!isset($app) || !file_exists(__DIR__.'/../App/'.$app)) $app = DEFAULT_APP;
 
 require __DIR__.'/../Lib/SamplePHPFramework/Psr4AutoloaderClass.php';
 
@@ -17,7 +19,7 @@ $loader->addNamespace('Model', __DIR__.'/../Lib/vendors/Model');
 $loader->addNamespace('Entity', __DIR__.'/../Lib/vendors/Entity');
 $loader->addNamespace('FormBuilder', __DIR__.'/../Lib/vendors/FormBuilder');
 
-$appClass = 'App\\'.$_GET['app'].'\\'.$_GET['app'].'Application';
+$appClass = 'App\\'.$app.'\\'.$app.'Application';
 
 require '../vendor/autoload.php';
 
