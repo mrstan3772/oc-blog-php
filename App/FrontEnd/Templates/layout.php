@@ -110,7 +110,7 @@
             Pour résoudre ce problème activer la prise en charge de JavaScript dans vos paramètres ou si nécessaire optez pour un autre navigateur.
         </noscript>
 
-        <?php echo $content; ?>
+        <?php print_r($content); ?>
     </main>
 
     <!-- ======= Footer ======= -->
