@@ -7,15 +7,19 @@
                         <h5 class="m-b-10"></h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin"><?= $title ?></a></li>
-                        <li class="breadcrumb-item"><a href="/admin/news-insert"><?= $title_page ?></a></li>
+                        <li class="breadcrumb-item"><a href="/admin">{{ title | raw }}</a></li>
+                        <li class="breadcrumb-item"><a href="/admin/news-insert">{{ title_page | raw }}</a></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
+    <div class="row">
+        {% if user.hasFlash %}
+        {{ user.getFlash | raw }}
+        {% endif %}
+    </div>
 
     <div class="row">
         <div class="col-md-12">
@@ -28,10 +32,10 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-12">
-                            <form action="/admin/news-update-<?= $news['id'] ?>" method="post" enctype="multipart/form-data">
+                            <form action="/admin/news-update-{{ news.id | raw }}" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <p>
-                                        <?= $form ?>
+                                        {{ form | raw }}
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn  btn-primary">METTRE À JOUR</button>
                                     </div>
