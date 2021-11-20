@@ -1,12 +1,16 @@
 <!-- ======= Rgistration Section ======= -->
-<section id="registration" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/<?= $config->get('assets_path') ?>/images/contact/overlay-bg.jpg)">
+<section id="registration" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/{{ attribute(config, 'get', ['assets_path']) }}/images/contact/overlay-bg.jpg)">
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="registration-mf">
                     <div id="registration" class="box-shadow-full">
                         <div class="row">
-                            <div class="col-md-12"><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
+                            <div>
+                                {% if user.hasFlash %}
+                                {{ user.getFlash | raw }}
+                                {% endif %}
+                            </div>
                             <div class="col-md-6">
                                 <div class="title-box-2">
                                     <h5 class="title-left">
@@ -15,7 +19,7 @@
                                 </div>
                                 <div>
                                     <form action="/registration" method="post" role="form" class="php-email-form" enctype="multipart/form-data">
-                                        <?= $form_registration ?>
+                                        {{ form_registration | raw }}
                                         <label class="form-label"><input type="password" name="memberPasswordRepeat" id="memberPasswordRepeat" class="form-control" required="" maxlength="30" minlength="8" placeholder="RETAPEZ LE MOT DE PASSE"></label>
                                         <div class="col-md-12 text-center">
                                             <button type="submit" class="button button-a button-big button-rouded">M'inscrire</button>

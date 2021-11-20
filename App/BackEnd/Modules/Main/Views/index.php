@@ -5,10 +5,10 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="page-header-title">
-                        <h5 class="m-b-10"><?= $title ?></h5>
+                        <h5 class="m-b-10">{{ title | raw }}</h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/admin"><?= $title_page ?></a></li>
+                        <li class="breadcrumb-item"><a href="/admin">{{ title_page | raw }}</a></li>
                         <li class="breadcrumb-item">Tableau de bord</li>
                     </ul>
                 </div>
@@ -17,7 +17,11 @@
     </div>
     <!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] start -->
-    <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
+    <div class="row">
+        {% if user.hasFlash %}
+        {{ user.getFlash | raw }}
+        {% endif %}
+    </div>
     <div class="row">
         <div class="col-xl-6 col-md-12">
             <div class="card">
@@ -87,25 +91,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($news_list as $news) : ?>
-                                        <tr>
-                                            <td><?= $news['id'] ?></td>
-                                            <td><?= $news['newsTitle'] ?></td>
-                                            <td><img src="/<?= $config->get('assets_path') ?>/images/blog/<?= $news['newsCover'] ?>" alt="miniature du billet de blog" width="80" class="img-20"></td>
-                                            <td><?= $author_list[$news['id']]['memberFirstname'] ?> <?= $author_list[$news['id']]['memberLastName'] ?></td>
-                                            <td><?= $author_list[$news['id']]['id'] ?></td>
-                                            <td><?= $news['newsLeadParagraph'] ?></td>
-                                            <td><?= $news['newsCategory'] ?></td>
-                                            <td><?= $news['newsAddedDate']->format('d/m/Y à H\hi') ?></td>
-                                            <td><?= $news['newsUpdateDate']->format('d/m/Y à H\hi') ?></td>
-                                            <td><?php if ($news['newsArchive']) {
-                                                    echo '<i class="fas fa-check-square"></i>';
-                                                } else {
-                                                    echo '<i class="fas fa-window-close"></i>';
-                                                } ?></td>
-                                            <td><a href="/admin/news-update-<?= $news['id'] ?>"><i class="icon feather icon-edit f-16  text-success"></i></a><a href="/admin/news-delete-<?= $news['id'] ?>"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a></td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    {% for news in news_list %}
+                                    <tr>
+                                        <td>{{ news.id | raw }}</td>
+                                        <td>{{ news.newsTitle | raw }}</td>
+                                        <td><img src="/{{ attribute(config, 'get', ['assets_path']) }}/images/blog/{{ news.newsCover | raw }}" alt="miniature du billet de blog" width="80" class="img-20"></td>
+                                        <td>{{ author_list[news['id']]['memberFirstName'] | raw }} {{ author_list[news['id']]['memberLastName'] | raw }}</td>
+                                        <td>{{ author_list[news['id']]['id'] | raw }}</td>
+                                        <td>{{ news.newsLeadParagraph | raw }}</td>
+                                        <td>{{ news.newsCategory | raw }}</td>
+                                        <td>{{ news.newsAddedDate|date('d/m/Y à H:h:i') | raw }}</td>
+                                        <td>{{ news.newsUpdateDate|date('d/m/Y à H:h:i') | raw }}</td>
+                                        <td>
+                                            {% if news.newsArchive %}
+                                            <i class="fas fa-check-square"></i>
+                                            {% else %}
+                                            <i class="fas fa-window-close"></i>
+                                            {% endif %}
+                                        </td>
+                                        <td><a href="/admin/news-update-{{ news.id | raw }}"><i class="icon feather icon-edit f-16  text-success"></i></a><a href="/admin/news-delete-{{ news.id | raw }}"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a></td>
+                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -133,27 +139,29 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($comment_list as $comment) : ?>
-                                        <tr>
-                                            <td><?= $comment['id'] ?></td>
-                                            <td><?= $comment['commentNewsId'] ?></td>
-                                            <td><?= $comment['commentNewsAuthorId'] ?></td>
-                                            <td><?= $comment['commentContent'] ?></td>
-                                            <td><?= $comment['commentDate']->format('d/m/Y à H\hi') ?></td>
-                                            <td><?php if ($comment['commentStatus']) {
-                                                    echo '<label class="badge bg-light-success">Validé</label>';
-                                                } else {
-                                                    echo '<label class="badge bg-light-warning">En attente de validation</label>';
-                                                } ?></td>
-                                            <td>
-                                            <td class="d-flex justify-content-center">
-                                                <?php if (!$comment['commentStatus']) : ?>
-                                                    <a href="/admin/comment-validate-<?= $comment['id'] ?>"><i class="icon feather icon-check-circle f-16 text-success"></i></a>
-                                                <?php endif; ?>
-                                                <a href="/admin/comment-delete-<?= $comment['id'] ?>"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
+                                    {% for comment in comment_list %}
+                                    <tr>
+                                        <td>{{ comment.id | raw }}</td>
+                                        <td>{{ comment.commentNewsId | raw }}</td>
+                                        <td>{{ comment.commentNewsAuthorId | raw }}</td>
+                                        <td>{{ comment.commentContent | raw }}</td>
+                                        <td>{{ comment.commentDate|date('d/m/Y à H:h:i') | raw }}</td>
+                                        <td>
+                                            {% if comment.commentStatus %}
+                                            <label class="badge bg-light-success">Validé</label>
+                                            {% else %}
+                                            <label class="badge bg-light-warning">En attente de validation</label>
+                                            {% endif %}
+                                        </td>
+                                        <td class="d-flex justify-content-center">
+                                            {% if not comment.commentStatus %}
+                                            <a href="/admin/comment-validate-{{ comment.id | raw }}"><i class="icon feather icon-check-circle f-16 text-success"></i></a>
+                                            {% else %}
+                                            <a href="/admin/comment-delete-{{ comment.id | raw }}"><i class="feather icon-trash-2 ml-3 f-16 text-danger"></i></a>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>

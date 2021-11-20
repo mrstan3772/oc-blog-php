@@ -9,7 +9,7 @@
                             <div class="row">
                                 <div class="col-sm-6 col-md-5">
                                     <div class="about-img">
-                                        <img src="/<?= $config->get('assets_path') ?>/images/about/profil.jpg" class="img-fluid rounded b-shadow-a" alt="">
+                                        <img src="/{{ attribute(config, 'get', ['assets_path']) }}/images/about/profil.jpg" class="img-fluid rounded b-shadow-a" alt="">
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-md-7">
@@ -57,7 +57,7 @@
                                 <p class="lead">
                                     Dans un premier temps j’évolue sur des applications PHP & JS qui peuvent éventuellement êtres accompagné de l'utilisation de différents types de structure de travail comme Symfony, Laravel, React, Vue.js , le recours à des piles de logiciels, l’utilisation de CMS comme WordPress et la polyvalence sur des environnements d’exploitation variés (Windows, distributions linux..).
                                 </p>
-                                <p class="d-flex justify-content-center pt-3"><a class="btn btn-primary btn js-scroll px-4" target="_blank" href="/<?= $config->get('assets_path') ?>/pdf/CV_2021-02-17_STANLEY_LOUIS_JEAN.pdf" role="button">CONSULTER LE CV</a></p>
+                                <p class="d-flex justify-content-center pt-3"><a class="btn btn-primary btn js-scroll px-4" target="_blank" href="/{{ attribute(config, 'get', ['assets_path']) }}/pdf/CV_2021-02-17_STANLEY_LOUIS_JEAN.pdf" role="button">CONSULTER LE CV</a></p>
                             </div>
                         </div>
                     </div>

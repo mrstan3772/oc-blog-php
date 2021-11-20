@@ -15,35 +15,35 @@
              </div>
          </div>
          <div class="row">
-             <?php foreach ($news_list as $news) : ?>
-                 <div class="col-md-4">
-                     <div class="card card-blog">
-                         <div class="card-img">
-                             <a href="news/<?= $news['id'] ?>"><img src="/<?= $config->get('assets_path') ?>/images/blog/<?= $news['newsCover'] ?>" alt="" class="img-fluid"></a>
+             {% for news in news_list %}
+             <div class="col-md-4">
+                 <div class="card card-blog">
+                     <div class="card-img">
+                         <a href="news/{{ news.id | raw }}"><img src="/{{ attribute(config, 'get', ['assets_path']) }}/images/blog/{{ news.newsCover | raw }}" alt="" class="img-fluid"></a>
+                     </div>
+                     <div class="card-body">
+                         <div class="card-category-box">
+                             <div class="card-category">
+                                 <h6 class="category">{{ news.newsCategory | raw }}</h6>
+                             </div>
                          </div>
-                         <div class="card-body">
-                             <div class="card-category-box">
-                                 <div class="card-category">
-                                     <h6 class="category"><?= $news['newsCategory'] ?></h6>
-                                 </div>
-                             </div>
-                             <h3 class="card-title"><a href="news/<?= $news['id'] ?>"><?= $news['newsTitle'] ?></a></h3>
-                             <p class="card-description">
-                                 <?= $news->newsLeadParagraph() ?>
-                             </p>
+                         <h3 class="card-title"><a href="news/{{ news.id | raw }}">{{ news.newsTitle | raw }}</a></h3>
+                         <p class="card-description">
+                             {{ news.newsLeadParagraph | raw }}
+                         </p>
+                     </div>
+                     <div class="card-footer">
+                         <div class="post-author">
+                             <img src="/dist/images/member/{{ author_list[news['id']]['memberProfilePicturePath'] | raw }}" alt="" class="avatar rounded-circle">
+                             <span class="author">{{ author_list[news['id']]['memberFirstName'] | raw }} {{ author_list[news['id']]['memberLastName'] | raw }}</span>
                          </div>
-                         <div class="card-footer">
-                             <div class="post-author">
-                                     <img src="/dist/images/member/<?= $author_list[$news['id']]['memberProfilePicturePath'] ?>" alt="" class="avatar rounded-circle">
-                                     <span class="author"><?= $author_list[$news['id']]['memberFirstname']?> <?= $author_list[$news['id']]['memberLastName']?></span>
-                             </div>
-                             <div class="post-date">
-                                 <span class="bi bi-clock"></span> <?= $news['newsAddedDate']->format('d/m/Y à H\hi') ?>
-                             </div>
+                         <div class="post-date">
+                             <span class="bi bi-clock"></span> {{ news.newsAddedDate|date('d/m/Y à H:h:i') | raw }}
                          </div>
                      </div>
                  </div>
-             <?php endforeach; ?>
+             </div>
+             {% endfor %}
              <p class="d-flex justify-content-center pt-3"><a class="btn btn-primary btn js-scroll px-4" href="/news" role="button">TOUT AFFICHER</a></p>
          </div>
      </div>
