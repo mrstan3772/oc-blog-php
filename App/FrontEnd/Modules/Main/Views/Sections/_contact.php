@@ -1,12 +1,16 @@
 <!-- ======= Contact Section ======= -->
-<section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/<?= $config->get('assets_path') ?>/images/contact/overlay-bg.jpg)">
+<section id="contact" class="paralax-mf footer-paralax bg-image sect-mt4 route" style="background-image: url(/{{ attribute(config, 'get', ['assets_path']) }}/images/contact/overlay-bg.jpg)">
     <div class="overlay-mf"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
                 <div class="contact-mf">
                     <div id="contact" class="box-shadow-full">
-                        <div class="row"><?php if ($user->hasFlash()) {echo $user->getFlash();}; ?></div>
+                        <div>
+                            {% if user.hasFlash %}
+                            {{ user.getFlash | raw }}
+                            {% endif %}
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="title-box-2">
@@ -16,7 +20,7 @@
                                 </div>
                                 <div>
                                     <form action="/" method="post" role="form" class="php-email-form">
-                                        <?= $form_contact ?>
+                                        {{ form_contact | raw }}
                                         <div class="col-md-12 text-center">
                                             <button type="submit" class="button button-a button-big button-rouded">Envoyer un message</button>
                                         </div>

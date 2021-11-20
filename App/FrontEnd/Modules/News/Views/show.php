@@ -6,66 +6,76 @@
                 <div class="col-md-8">
                     <div class="post-box">
                         <div class="post-thumb">
-                            <img src="/<?= $config->get('assets_path') ?>/images/blog/<?= $news['newsCover'] ?>" class="img-fluid" alt="">
+                            <img src="/{{ attribute(config, 'get', ['assets_path']) }}/images/blog/{{ news.newsCover }}" class="img-fluid" alt="">
                         </div>
                         <div class="post-meta">
-                            <h1 class="article-title"><?= $news['newsTitle'] ?></h1>
+                            <h1 class="article-title">{{ news.newsTitle | raw}}</h1>
                             <ul>
                                 <li>
                                     <span class="bi bi-person"></span>
-                                    <a href="#"><?= $author['memberFirstname'] ?> <?= $author['memberLastName'] ?></a>
+                                    <a href="#">{{ author.memberFirstName | raw}} {{ author.memberLastName | raw}}</a>
                                 </li>
                                 <li>
                                     <span class="bi bi-tag"></span>
-                                    <a href="#"><?= $news['newsCategory'] ?></a>
+                                    <a href="#">{{ news.newsCategory | raw}}</a>
                                 </li>
                                 <li>
                                     <span class="bi bi-chat-left-text"></span>
-                                    <a href="#"><?= $comment_count ?></a>
+                                    <a href="#">{{ comment_count | raw }}</a>
+                                </li>
+                                <li>
+                                    <span class="bi bi-clock"></span>
+                                    <a href="#">{{ news.newsAddedDate|date('d/m/Y à H:h:i') | raw }}</a>
+                                    {% if news.newsAddedDate|date('d/m/Y à H:h:i') != news.newsUpdateDate|date('d/m/Y à H:h:i')  %}
+                                    <span> - </span>
+                                    <a href="#">{{ news.newsUpdateDate|date('d/m/Y à H:h:i') | raw }} (MAJ)</a>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>
                         <div class="article-lead-paragraph">
                             <blockquote class="blockquote">
-                                <p class="mb-0"><?= $news['newsLeadParagraph'] ?></p>
+                                <p class="mb-0">{{ news.newsLeadParagraph | raw }}</p>
                             </blockquote>
                         </div>
                         <div class="article-content">
-                            <?= $news['newsContent'] ?>
+                            {{ news.newsContent | raw }}
                         </div>
                     </div>
                     <div class="box-comments">
-                        <div><?php if ($user->hasFlash()) echo $user->getFlash(); ?></div>
+                        <div>
+                            {% if user.hasFlash %}
+                            {{ user.getFlash | raw }}
+                            {% endif %}
+                        </div>
                         <div class="title-box-2">
-                            <h4 class="title-comments title-left">Commentaires (<?= $comment_count ?>)</h4>
+                            <h4 class="title-comments title-left">Commentaires ({{ comment_count | raw }})</h4>
                         </div>
                         <ul class="list-comments">
-                            <?php foreach ($comments as $comment) : ?>
-                                <?php if ((!$comment['commentStatus'] && $user_session['id'] === $author_list[$comment['id']]['id'])
-                                    || ($comment['commentStatus'])
-                                ) : ?>
-                                    <li>
-                                        <div class="comment-avatar">
-                                            <img src="/dist/images/member/<?= $author_list[$comment['id']]['memberProfilePicturePath'] ?>" alt="">
-                                        </div>
-                                        <div class="comment-details">
-                                            <h4 class="comment-author"><?= $author_list[$comment['id']]['memberFirstName'] ?> <?= $author_list[$comment['id']]['memberLastName'] ?></h4>
-                                            <span><?= $comment['commentDate']->format('d/m/Y à H\hi') ?></span>
-                                            <p>
-                                                <?= $comment['commentContent'] ?>
-                                            </p>
-                                            <?php if ($user_session['id'] === $author_list[$comment['id']]['id']) : ?>
-                                                <?php if ($comment['commentStatus']) : ?>
-                                                    <p class="text-success text-end">VALIDÉ</p>
-                                                <?php elseif (!$comment['commentStatus'] && $user_session['id']) : ?>
-                                                    <p class="text-warning text-end">EN ATTENTE DE VALIDATION</p>
-                                                <?php endif; ?>
-                                                <p class="text-end"><a href="/comment-delete/<?= $comment['id'] ?>" title="Supprimer" class="text-danger"><i class="bi bi-trash-fill"></i></i></a></p>
-                                            <?php endif ?>
-                                        </div>
-                                    </li>
-                                <?php endif; ?>
-                            <?php endforeach ?>
+                            {% for comment in comments %}
+                            {% if not comment.commentStatus and user_session.id == author_list[comment['id']]['id'] or comment.commentStatus %}
+                            <li>
+                                <div class="comment-avatar">
+                                    <img src="/dist/images/member/{{ author_list[comment['id']]['memberProfilePicturePath'] | raw }}" alt="">
+                                </div>
+                                <div class="comment-details">
+                                    <h4 class="comment-author">{{ author_list[comment['id']]['memberFirstName'] | raw }} {{ author_list[comment['commentNewsAuthorId']]['memberLastName'] | raw }}</h4>
+                                    <span>{{ comment.commentDate|date('d/m/Y à H:h:i') | raw }}</span>
+                                    <p>
+                                        {{ comment.commentContent | raw }}
+                                    </p>
+                                    {% if user_session.id == author_list[comment['id']]['id'] %}
+                                    {% if comment.commentStatus %}
+                                    <p class="text-success text-end">VALIDÉ</p>
+                                    {% elseif not comment.commentStatus %}
+                                    <p class="text-warning text-end">EN ATTENTE DE VALIDATION</p>
+                                    {% endif %}
+                                    <p class="text-end"><a href="/comment-delete/{{ comment.id | raw }}" title="Supprimer" class="text-danger"><i class="bi bi-trash-fill"></i></i></a></p>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
                         </ul>
                     </div>
                     <div class="form-comments">
@@ -74,13 +84,13 @@
                                 Laissez un commentaire
                             </h3>
                         </div>
-                        <form action="/news/<?= $news['id'] ?>" method="post" role="form" class="form-mf">
-                            <?= $comment_form ?>
-                            <?php if(isset($user_session)) : ?>
+                        <form action="/news/{{ news.id | raw }}" method="post" role="form" class="form-mf">
+                            {{ comment_form | raw }}
+                            {% if user_session %}
                             <div class="col-md-12 text-center">
                                 <button type="submit" class="button button-a button-big button-rouded">Envoyez</button>
                             </div>
-                            <?php endif; ?>
+                            {% endif %}
                         </form>
                     </div>
                 </div>
@@ -104,11 +114,11 @@
                         <h5 class="sidebar-title">Poste récent</h5>
                         <div class="sidebar-content">
                             <ul class="list-sidebar">
-                                <?php foreach ($recent_news as $news) : ?>
-                                    <li>
-                                        <a href="/news/<?= $news['id'] ?>"><?= $news['newsTitle'] ?></a>
-                                    </li>
-                                <?php endforeach ?>
+                                {% for news in recent_news %}
+                                <li>
+                                    <a href="/news/{{ news.id | raw }}">{{ news.newsTitle | raw }}</a>
+                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -116,11 +126,11 @@
                         <h5 class="sidebar-title">Archives</h5>
                         <div class="sidebar-content">
                             <ul class="list-sidebar">
-                                <?php foreach ($archive_news as $news) : ?>
-                                    <li>
-                                        <a href="/news/<?= $news['id'] ?>"><?= $news['newsTitle'] ?></a>
-                                    </li>
-                                <?php endforeach ?>
+                                {% for news in archive_news %}
+                                <li>
+                                    <a href="/news/{{ news.id | raw }}">{{ news.newsTitle | raw }}</a>
+                                </li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
