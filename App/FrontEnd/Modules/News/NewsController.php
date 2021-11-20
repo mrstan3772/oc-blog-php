@@ -93,7 +93,7 @@ class NewsController extends BackController
 		$comment_count = 0;
 
 		foreach ($comment_list as $comment) {
-			$author_list[$comment->id()] = $member_manager->getUnique($news->newsAuthorId());
+			$author_list[$comment->id()] = $member_manager->getUnique($comment->commentNewsAuthorId());
 			if ($comment->commentStatus()) {
 				$comment_count++;
 			}

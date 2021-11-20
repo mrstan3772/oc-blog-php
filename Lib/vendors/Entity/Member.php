@@ -132,28 +132,28 @@ class Member extends Entity
      */
     public function isValid(): Bool
     {
-        return !(is_null($this->member_email_address) || is_null($this->member_firstname) || is_null($this->member_gender)
-            || is_null($this->member_lastname) || is_null($this->member_pseudonym)
-            || is_null($this->member_password))
-            && (is_string($this->member_bio_fr_fr) || is_null($this->member_bio_fr_fr))
-            && (is_string($this->member_city_name_fr_fr) || is_null($this->member_city_name_fr_fr))
-            && (is_string($this->member_country_name_fr_fr) ||  is_null($this->member_country_name_fr_fr))
-            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime || is_null($this->member_date_of_birth))
+        return !($this->member_email_address === null || $this->member_firstname === null || $this->member_gender === null
+            || $this->member_lastname === null || $this->member_pseudonym === null
+            || $this->member_password === null)
+            && (is_string($this->member_bio_fr_fr) || $this->member_bio_fr_fr === null)
+            && (is_string($this->member_city_name_fr_fr) || $this->member_city_name_fr_fr === null)
+            && (is_string($this->member_country_name_fr_fr) ||  $this->member_country_name_fr_fr === null)
+            && (is_string($this->member_date_of_birth) || $this->member_date_of_birth instanceof DateTime || $this->member_date_of_birth === null)
             && is_string($this->member_email_address)
-            && (is_string($this->member_facebook_page_url) || is_null($this->member_facebook_page_url))
+            && (is_string($this->member_facebook_page_url) || $this->member_facebook_page_url === null)
             && is_string($this->member_firstname)
             && is_string($this->member_gender)
-            && (is_string($this->member_home_address) || is_null($this->member_home_address))
-            && (is_string($this->member_instagram_page_url) || is_null($this->member_instagram_page_url))
+            && (is_string($this->member_home_address) || $this->member_home_address === null)
+            && (is_string($this->member_instagram_page_url) || $this->member_instagram_page_url === null)
             && is_string($this->member_lastname)
-            && (is_int($this->member_phone_number) || is_null($this->member_phone_number))
-            && (is_string($this->member_profile_picture_path) || is_null($this->member_profile_picture_path))
+            && (is_int($this->member_phone_number) || $this->member_phone_number === null)
+            && (is_string($this->member_profile_picture_path) || $this->member_profile_picture_path === null)
             && is_string($this->member_pseudonym)
-            && (is_string($this->member_youtube_page_url) || is_null($this->member_youtube_page_url))
-            && (is_int($this->member_zip_code) || is_null($this->member_zip_code))
+            && (is_string($this->member_youtube_page_url) || $this->member_youtube_page_url === null)
+            && (is_int($this->member_zip_code) || $this->member_zip_code === null)
             && is_string($this->member_password)
             && is_bool($this->member_admin)
-            && (is_string($this->member_registration_date) || $this->member_registration_date instanceof DateTime || is_null($this->member_registration_date));
+            && (is_string($this->member_registration_date) || $this->member_registration_date instanceof DateTime || $this->member_registration_date === null);
     }
 
     /**
